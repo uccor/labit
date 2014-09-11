@@ -119,3 +119,5 @@ nbproject
 
 sh.exe.stackdump
 batch-afk.bat
+start-afk.bat
+end-afk.bat
