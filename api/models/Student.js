@@ -9,7 +9,7 @@ module.exports = {
 
   attributes: {
 
- /*     name:{
+      name:{
           type: 'string',
           required: true
       },
@@ -26,7 +26,7 @@ module.exports = {
           required: true
       }
 
-*/
+
   }
 
    /* beforeCreate: function (attrs, next) {
