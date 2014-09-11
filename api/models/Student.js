@@ -9,7 +9,7 @@ module.exports = {
 
   attributes: {
 
-      name:{
+ /*     name:{
           type: 'string',
           required: true
       },
@@ -26,10 +26,10 @@ module.exports = {
           required: true
       }
 
+*/
+  }
 
-  },
-
-    beforeCreate: function (attrs, next) {
+   /* beforeCreate: function (attrs, next) {
         var bcrypt = require('bcrypt');
 
         bcrypt.genSalt(10, function(err, salt) {
@@ -42,6 +42,6 @@ module.exports = {
                 next();
             });
         });
-    }
+    }*/
 };
 
