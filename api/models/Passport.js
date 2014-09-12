@@ -54,8 +54,8 @@ var Passport = {
     //
     // For more information on associations in Waterline, check out:
     // https://github.com/balderdashy/waterline
-    user: { model: 'User', required: true },
-
+    user: { model: 'Student', required: true },
+    
     /**
      * Validate password used by the local strategy.
      *

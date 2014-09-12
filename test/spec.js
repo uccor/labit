@@ -27,22 +27,17 @@
 //   });
 // });
 
+var loginPage = require('./model/loginPage');
+
 describe('homepage', function() { 
   it('should have a title', function() {
   	browser.get('http://localhost:1337/index');
     expect(browser.getTitle()).toEqual('Hi!!!');
   });
-  it('should get email', function(){
-  	browser.get('http://localhost:1337/index');
-  	e=element(by.id('email'));
-  	e.sendKeys('luciano@gmail.com')
-  	
-  	ee=e.getAttribute('value');
-  	name=ee
-  	name.then(function(text){
-  		console.log(text);
-  	});
-  	
-  	expect(ee).toEqual('luciano@gmail.com');
+  it('should login ', function() {
+      //var loginPage = LoginPage;
+      loginPage.get();
+      loginPage.fill('ani@g.com','aniiiii');
+      loginPage.login();
   });
 });
