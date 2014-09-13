@@ -129,13 +129,12 @@ var AuthController = {
       // If an error was thrown, redirect the user to the login which should
       // take care of rendering the error messages.
       req.flash('form', req.body);
-      console.log('callback param', req.param('action'));
       res.redirect(req.param('action') === 'register' ? '/register' : '/login');
     }
 
     passport.callback(req, res, function (err, user) {
-      console.log('callback error', err);
-      console.log('callback user', user);
+      // console.log('callback error', err);
+      // console.log('callback user', user);
       if (err) return tryAgain();
 
       req.login(user, function (loginErr) {
