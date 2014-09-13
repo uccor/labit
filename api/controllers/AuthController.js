@@ -31,23 +31,22 @@ var AuthController = {
    * @param {Object} res
    */
   login: function (req, res) {
-    var strategies = sails.config.passport
-      , providers  = {};
-
+    var strategies = sails.config.passport, providers  = {};
+    
     // Get a list of available providers for use in your templates.
     Object.keys(strategies).forEach(function (key) {
       if (key === 'local') return;
 
       providers[key] = {
-        name : strategies[key].name
-      , slug : key
+        name : strategies[key].name, 
+        slug : key
       };
     });
 
     // Render the `auth/login.ext` view
     res.view({
-      providers : providers
-    , errors    : req.flash('error')
+      providers : providers,
+      errors    : req.flash('error')
     });
   },
 
@@ -86,6 +85,11 @@ var AuthController = {
    * @param {Object} res
    */
   register: function (req, res) {
+    // var student = require('./StudentController');
+    // var created = student.createNew(req);
+    // if (created == true) {
+    //   console.log("user created successfully")
+    // }
     res.view({
       errors: req.flash('error')
     });

@@ -58,3 +58,10 @@ label {
     border-radius: 3px;  
     text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);  
 }  
+.registerForm input{
+    display: block;
+    margin-left: 25%;
+}
+.registerForm button{
+    
+}
