@@ -30,9 +30,10 @@ var AuthController = {
    * @param {Object} req
    * @param {Object} res
    */
-  login: function (req, res) {
+
+   login: function (req, res) {
     var strategies = sails.config.passport, providers  = {};
-    
+    console.log('login auth')
     // Get a list of available providers for use in your templates.
     Object.keys(strategies).forEach(function (key) {
       if (key === 'local') return;
@@ -86,7 +87,9 @@ var AuthController = {
    */
   register: function (req, res) {
     // var student = require('./StudentController');
+   // console.log(Student)
     // var created = student.createNew(req);
+
     // if (created == true) {
     //   console.log("user created successfully")
     // }
@@ -126,10 +129,13 @@ var AuthController = {
       // If an error was thrown, redirect the user to the login which should
       // take care of rendering the error messages.
       req.flash('form', req.body);
+      console.log('callback param', req.param('action'));
       res.redirect(req.param('action') === 'register' ? '/register' : '/login');
     }
 
     passport.callback(req, res, function (err, user) {
+      console.log('callback error', err);
+      console.log('callback user', user);
       if (err) return tryAgain();
 
       req.login(user, function (loginErr) {
