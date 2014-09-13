@@ -33,7 +33,7 @@ var AuthController = {
 
    login: function (req, res) {
     var strategies = sails.config.passport, providers  = {};
-    console.log('login auth')
+    
     // Get a list of available providers for use in your templates.
     Object.keys(strategies).forEach(function (key) {
       if (key === 'local') return;
@@ -131,6 +131,15 @@ var AuthController = {
       req.flash('form', req.body);
       res.redirect(req.param('action') === 'register' ? '/register' : '/login');
     }
+
+    //---------====--------------==============------------
+    // var io = require('sails.io');
+    // io.socket = new TmpSocket();
+    //var actualSocket = io.connect(io.sails.url);
+    // Replay event bindings from the existing TmpSocket
+    //io.socket = io.socket.become(actualSocket);
+    // io.socket.on("user", function(event){console.log(event);})
+    //--------================---------------==============
 
     passport.callback(req, res, function (err, user) {
       // console.log('callback error', err);
