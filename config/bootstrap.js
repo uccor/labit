@@ -9,9 +9,17 @@
  * http://sailsjs.org/#/documentation/reference/sails.config/sails.config.bootstrap.html
  */
 
-module.exports.bootstrap = function(cb) {
+module.exports.bootstrap = function (cb) {
 
-  // It's very important to trigger this callback method when you are finished
-  // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
-  cb();
+	var pdfs = [{id:'abc123',nombre:'pdf1_example',ruta:'../assets/pdf/pdf1'}];
+	
+	// This callback is run after all of our Users are created.
+	// It takes the returned User and stores it in our storeUsers array for later.
+	var afterPdf = function(err,newUsers){
+	  return cb()
+	};
+	
+	Pdf.create(pdfs).exec(afterPdf);
+
+
 };
