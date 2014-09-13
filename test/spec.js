@@ -27,17 +27,15 @@
 //   });
 // });
 
+
 var loginPage = require('./model/loginPage');
 
-describe('homepage', function() { 
-  it('should have a title', function() {
-  	browser.get('http://localhost:1337/index');
-    expect(browser.getTitle()).toEqual('Hi!!!');
-  });
-  it('should login ', function() {
+describe('login page', function() { 
+  it('should login', function() {
       //var loginPage = LoginPage;
       loginPage.get();
-      loginPage.fill('ani@g.com','aniiiii');
+      loginPage.fill('pepe','12');
       loginPage.login();
+      loginPage.check();
   });
 });
