@@ -10,14 +10,8 @@ module.exports = {
   schema: true, 
   attributes: { 
 
-    // name: { 
-    //   type: 'string',
-    //   // required: true
-    // },
-    // lastName:{
-    //   type: 'string',
-    //   // required: true
-    // },
+    name: { type: 'string' },
+    lastName:{ type: 'string' },
     // username:{
     //   type: 'string',
     //   required: true,

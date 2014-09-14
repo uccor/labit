@@ -19,8 +19,8 @@ function usernameExists () {
     $('input[name="username"]').change( function () {
         username = $(this).val();
         $.getJSON('/user?username='+username+'', function(response) {
-            if (response.length == 0) { $('#message').html('El usuario ya existe'); }
-            else { $('#message').html('Usuario Correcto'); }
+            if (response.length == 0) { $('#message').html('Usuario Correcto'); }
+            else { $('#message').html('El usuario ya existe'); }
         });  
     });   
 }

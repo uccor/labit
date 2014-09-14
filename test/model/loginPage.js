@@ -12,16 +12,20 @@ var LoginPage= function() {
         p=element(by.id('pass'));
         p.sendKeys(pass);
     }
-    this.login = function(){
+    this.login = function () {
        e=element(by.id('submit'));
        e.click();
     }
-    this.check = function (){
+    this.check = function () {
          // ptor = protractor.getInstance();
         browser.getTitle().then(function (text) {
             console.log(text)
         });
         expect(browser.getTitle()).toEqual('Main');
+
+    }
+    this.close = function () {
+        browser.get('http://localhost:1337/logout'); 
     }
 }
 module.exports = new LoginPage();
