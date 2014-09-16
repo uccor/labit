@@ -1,7 +1,7 @@
 /**
- * StudentController
+ * UserController
  *
- * @description :: Server-side logic for managing students
+ * @description :: Server-side logic for managing Users
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 

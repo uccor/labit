@@ -1,4 +1,4 @@
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcryptjs');
 
 /**
  * Passport Model
@@ -30,7 +30,7 @@ var Passport = {
     //
     // When the local strategy is employed, a password will be used as the
     // means of authentication along with either a username or an email.
-    password: { type: 'string', minLength: 8 },
+    password: { type: 'string', minLength: 2 },
 
     // Provider fields: Provider, identifer and tokens
     //
@@ -54,7 +54,7 @@ var Passport = {
     //
     // For more information on associations in Waterline, check out:
     // https://github.com/balderdashy/waterline
-    user: { model: 'Student', required: true },
+    user: { model: 'User', required: true },
     
     /**
      * Validate password used by the local strategy.

@@ -21,5 +21,7 @@ module.exports.bootstrap = function (cb) {
 	
 	Pdf.create(pdfs).exec(afterPdf);
 
+  sails.services.passport.loadStrategies();
+
 
 };
