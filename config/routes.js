@@ -39,6 +39,9 @@ module.exports.routes = {
   '/index': {
     view: 'index'
   },
+  '/student': {
+    view: 'student'
+  },
   
   'get /login': 'AuthController.login',
   'get /logout': 'AuthController.logout',
