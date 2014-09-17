@@ -93,6 +93,7 @@ var AuthController = {
     // if (created == true) {
     //   console.log("user created successfully")
     // }
+
     res.view({
       errors: req.flash('error')
     });
@@ -142,14 +143,11 @@ var AuthController = {
     //--------================---------------==============
 
     passport.callback(req, res, function (err, user) {
-      console.log('------====------')
-      console.log('callback error', err);
-      console.log('callback user', user);
       if (err) return tryAgain();
 
       req.login(user, function (loginErr) {
         if (loginErr) return tryAgain();
-
+        
         // Upon successful login, send the user to the homepage were req.user
         // will available.
         res.redirect('/');
