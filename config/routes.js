@@ -51,7 +51,11 @@ module.exports.routes = {
   'get /auth/:provider': 'AuthController.provider',
   'get /auth/:provider/callback': 'AuthController.callback',
 
-  'get /show': 'ConnectController.show'
+  'get /show': 'ConnectController.show',
+  
+  '/chat': {
+    view: 'chatPrueba'
+  },
   
   
   /***************************************************************************

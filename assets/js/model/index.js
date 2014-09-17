@@ -22,13 +22,21 @@ window.onload=function(){
 };
 
 $(document).ready(function () {
-
+	
 	// Socket_io is your front-end library you included before
 	var Socket = io.connect('http://localhost:8080');
 	Socket.on('welcome', function (socket) {
 		// What we've send from the back-end
+		//console.log(socket.message);
+		// And we send something else !
+		//Socket.emit('hey', {message: "I really don't care."});
+		$("#textA").append(socket.message);
+		$("#textA").append('-------');
+	});
+	Socket.on('bye', function (socket) {
+		// What we've send from the back-end
 		console.log(socket.message);
 		// And we send something else !
-		Socket.emit('hey', {message: "I really don't care."});
+		//Socket.emit('hey', {message: "digo hey cliente."});
 	});
 });

@@ -7,22 +7,16 @@
 
 var ConnectController = {
 	show: function (req, res) {
-		//req.session.user = user.id;
+		var io = require('../services/socks.js');
+		io.sockets.on('connection', function (socket) {
+			console.log('connection - show');
+			socket.emit('welcome', {message: " welcome from server"});	
+		});
 		
-
-		var http = require("http")
-		var server = http.createServer().listen(8080);
-		var io = require('socket.io').listen(server) 
-		var fs = require('fs');
-		io.sockets.emit('welcome', {message: "Hi i'm Laurent and i write shitty articles on my blog"});
-		
-		res.json({"pepe":'chat'});
-		
-		res.view({
-      		
-      		errors    : req.flash('error')
-    	});
+		//res.json({"pepe":'chat'});
+		res.redirect('/chat');
 	}
 }
 
 module.exports = ConnectController;
+
