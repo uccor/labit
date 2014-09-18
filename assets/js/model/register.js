@@ -11,8 +11,8 @@ function validatePass() {
     });
 }
 $(document).ready(function () {
-    usernameExists();
-    validatePass();
+    //usernameExists();
+    //validatePass();
 });
 
 function usernameExists () {

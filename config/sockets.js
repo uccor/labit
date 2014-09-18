@@ -24,6 +24,18 @@ module.exports.sockets = {
   onConnect: function(session, socket) {
 
     // By default, do nothing.
+    
+    //console.log('antes id join', session.user.id);
+    try {
+      console.log(' sessions', session.passport);
+      //console.log(' id join _', session.passport["user"]);
+      var idUser = session.passport.user; 
+      sails.sockets.join(socket, idUser);
+      // sails.sockets.subscribeToFirehose(socket, idUser);
+    }
+    catch (ex) {console.log('error subscribe')}
+    
+    
 
   },
 
