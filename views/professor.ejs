@@ -1,10 +1,8 @@
 <div class="bkd" ng-app="app_getPdfs">
-    <br><br>
-
     <div class="container bkdW" ng-controller="PdfsController">
 
-        <table class="table table-striped table-hover">
-            <caption> Archivos Subidos</caption>
+        <table class="table table-striped table-hover table-condensed">
+            <caption> <font class="h2"> Archivos Subidos </font></caption>
             <thead>
             <tr>
                 <th>#</th>
@@ -16,12 +14,14 @@
             <tr ng-repeat="pdf in pdfs">
                 <td>{{ pdf.id }}</td>
                 <td>{{ pdf.nombre }}</td>
-                <td>
-                    <div class="radio">
+                <td class="text-center">
+                    <span class="glyphicon glyphicon-list-alt"></span>
+                    <!--div class="radio">
                         <label>
-                            <input type="radio" name="comp" id="rad2" value="2" checked>
+                            <!--input type="radio" name="comp" id="rad2" value="2" checked-->
+                            <!--span class="glyphicon glyphicon-eye-close"></span-->
                         </label>
-                    </div>
+                    </div-->
                 </td>
             </tr>
 
