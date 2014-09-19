@@ -1,6 +1,8 @@
-<div>
+<div ng-app="app_getPdfs">
     <br><br>
-    <div class="container" ng-controller="customersController">
+
+    <div class="container" ng-controller="getPdfsController">
+
         <table class="table table-striped table-hover">
             <caption> Archivos Subidos</caption>
             <thead>
@@ -11,7 +13,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="x in names">
+            <tr ng-repeat="x in list_pdf">
                 <td>{{ x.id }}</td>
                 <td>{{ x.nombre }}</td>
                 <td>
@@ -22,40 +24,9 @@
                     </div>
                 </td>
             </tr>
-            <tr>
-                <td>2</td>
-                <td> Derecho Penal I </td>
-                <td>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="comp" id="rad2" value="2" checked>
-                        </label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td> Derecho Penal II </td>
-                <td>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="comp" id="rad3" value="3" checked>
-                        </label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td> Repaso: Derecho Penal </td>
-                <td>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="comp" id="rad3" value="3" checked>
-                        </label>
-                    </div>
-                </td>
-            </tr>
+
             </tbody>
         </table>
     </div>
+
 </div>
