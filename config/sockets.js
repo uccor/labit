@@ -27,14 +27,28 @@ module.exports.sockets = {
     
     //console.log('antes id join', session.user.id);
     try {
-      console.log(' sessions', session.passport);
+      console.log('users in session: ', session.passport);
       //console.log(' id join _', session.passport["user"]);
       var idUser = session.passport.user; 
       sails.sockets.join(socket, idUser);
       // sails.sockets.subscribeToFirehose(socket, idUser);
+
+
+      console.log('----------sails.sockets----------');
+      console.log(sails.sockets);
+      console.log('-------------');
+
+      console.log('--------sails.io----------');
+      console.log(sails.io);
+      console.log('-------------');
+
+      io.socket.on('messageName', function () {
+        console.log('recibi emision!!');
+      });
+
     }
-    catch (ex) {console.log('error subscribe')}
-    
+    catch (ex) { console.log(ex)}
+
     
 
   },

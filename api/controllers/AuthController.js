@@ -44,7 +44,7 @@ var AuthController = {
       };
     });
 
-   
+    
     // Render the `auth/login.ext` view
     res.view({
       providers : providers,
@@ -151,6 +151,7 @@ var AuthController = {
         
         // Upon successful login, send the user to the homepage were req.user
         // will available.
+        
         
         res.redirect('/');
       });
