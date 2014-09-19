@@ -6,3 +6,11 @@
 .table-hover > tbody > tr:hover > th {
     background-color: #81BEF7;
 }
+
+.bkd{
+    background: url("/images/wood.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+
+.bkdW{
+    background-color: #ffffff;
+}
