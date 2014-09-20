@@ -1,8 +1,7 @@
-<div class="bkd" ng-app="app_getPdfs">
-    <div class="container bkdW" ng-controller="PdfsController">
-
+<div class="bkd">
+    <div class="container bkdW" ng-controller="update_PdfsController">
         <table class="table table-striped table-hover table-condensed">
-            <caption> <font class="h2"> Archivos Subidos </font></caption>
+                <caption> Archivos Subidos</caption>
             <thead>
             <tr>
                 <th>#</th>
@@ -15,19 +14,14 @@
                 <td>{{ pdf.id }}</td>
                 <td>{{ pdf.nombre }}</td>
                 <td class="text-center">
+                        <span class="glyphicon glyphicon-list-alt" ng-click="share(pdf.id,pdf.ruta)"></span>
                     <img src="images/ico_pdf.png">
-                    <!--span class="glyphicon glyphicon-list-alt"></span-->
-                    <!--div class="radio">
-                        <label>
-                            <!--input type="radio" name="comp" id="rad2" value="2" checked-->
-                            <!--span class="glyphicon glyphicon-eye-close"></span-->
-                        </label>
-                    </div-->
+
                 </td>
             </tr>
-
             </tbody>
         </table>
+            <p> Compartiendo Archivo: {{radioButtonState}} </p>
+            <p> Ruta para mostrar PDF: {{pdf_route}} </p>
     </div>
-
 </div>

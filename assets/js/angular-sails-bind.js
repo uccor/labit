@@ -1,4 +1,4 @@
-/*! angular-sails-bind - v1.0.3 - 2014-07-17
+/*! angular-sails-bind - v1.0.3 - 2014-09-20
 * https://github.com/diegopamio/angular-sails-bind
 * Copyright (c) 2014 Diego Pamio; Licensed MIT */
 /*! angular-sails-bind - v1.0.3 - 2014-05-20
@@ -17,8 +17,8 @@
 var app = angular.module("ngSailsBind", []);
 
 app.factory('$sailsBind', [
-    '$q', "$rootScope",
-    function ($q, $rootScope) {
+    '$q', "$rootScope", "$timeout", "$log",
+    function ($q, $rootScope, $timeout, $log) {
         'use strict';
         /**
          * This function basically does three things:
@@ -26,35 +26,43 @@ app.factory('$sailsBind', [
          *     resourceName endpoint.
          *  2. Setup the socket's incoming messages (created, updated and destroyed) to update the model.
          *  3. Setup watchers to the model to persist the changes via socket to the backend.
-         * @param resourceName {string} is the name of the resource in the backend to bind.
+         * @param resourceName {string} is the name of the resource in the backend to bind, can have prefix route.
          * @param $scope {object} is the scope where to attach the bounded model.
          * @param subset {json} is the query parameters where you can filter and sort your initial model fill.
          *        check http://beta.sailsjs.org/#!documentation/reference/Blueprints/FindRecords.html to see
          *        what you can send.
          */
         var bind = function (resourceName, $scope, subset) {
+
+            var prefix = resourceName.split('/');
+            if(prefix.length>1) {
+                resourceName = prefix.splice(prefix.length - 1, 1);
+                prefix = prefix.join('/') + '/';
+            }else{
+                prefix = '';
+            }
+
             var defer_bind = new $q.defer();
             //1. Get the initial data into the newly created model.
-            var requestEnded = _get("/" + resourceName, subset);
+            var requestEnded = _get("/" + prefix + resourceName, subset);
 
             requestEnded.then(function (data) {
         		if ( ! Array.isArray(data) ) {
         			data=[data];
         		}
                 $scope[resourceName + "s"] = data;
-                addCollectionWatchersToSubitemsOf(data, $scope, resourceName);
+                addCollectionWatchersToSubitemsOf(data, $scope, resourceName, prefix);
                 init();
                 defer_bind.resolve();
             });
 
             //2. Hook the socket events to update the model.
-            io.socket.on(resourceName, function (message) {
+            function onMessage(message) {
                 var elements = $scope[resourceName + "s"],
                     actions = {
                         created: function () {
-                            $scope.$apply(function() {
-                                $scope[resourceName + "s"].push(message.data);
-                            });
+                            $scope[resourceName + "s"].push(message.data);
+                            return true;
                         },
                         updated: function () {
                             var updatedElement = elements.find(
@@ -62,8 +70,11 @@ app.factory('$sailsBind', [
                                     return message.id == element.id;
                                 }
                             );
-
-                            angular.extend(updatedElement, message.data);
+                            if (updatedElement) {
+                                angular.extend(updatedElement, message.data);
+                                return true;
+                            }
+                            return false;
                         },
                         destroyed: function () {
                             var deletedElement = elements.find(
@@ -72,14 +83,23 @@ app.factory('$sailsBind', [
                                 }
                             );
                             if (deletedElement) {
-                                $scope.$apply(function() {
-                                    elements.splice(elements.indexOf(deletedElement), 1);
-                                });
+                                elements.splice(elements.indexOf(deletedElement), 1);
+                                return true;
                             }
+                            return false;
                         }
                     };
-                actions[message.verb]();
-                $scope.$apply();
+                if (actions[message.verb]) {
+                  if (actions[message.verb]())
+                      $timeout(function(){ $scope.$apply(); });
+                } else {
+                  $log.log("Unknown action »"+message.verb+"«");
+                }
+            }
+            io.socket.on(resourceName, onMessage);
+            $scope.$on(resourceName, function (event, message) {
+              if ($scope.$id!=message.scope)
+                  onMessage(message);
             });
 
             //3. Watch the model for changes and send them to the backend using socket.
@@ -92,18 +112,20 @@ app.factory('$sailsBind', [
                     removedElements = diff(oldValues, newValues);
 
                     removedElements.forEach(function (item) {
-                        _get("/" + resourceName + "?id=" + item.id ).then(function (itemIsOnBackend) {
+                        _get("/" + prefix + resourceName + "?id=" + item.id ).then(function (itemIsOnBackend) {
                             if (itemIsOnBackend && !itemIsOnBackend.error) {
-                                io.socket.delete('/' + resourceName + '/destroy/' + item.id);
+                                $rootScope.$broadcast(resourceName, { id: item.id, verb: 'destroyed', scope: $scope.$id });
+                                io.socket.delete("/" + prefix + resourceName + '/destroy/' + item.id);
                             }
                         });
                     });
 
                     addedElements.forEach(function (item) {
                         if (!item.id) { //if is a brand new item w/o id from the database
-                            io.socket.put('/' + resourceName + '/create/', item, function (data) {
-                                _get("/" + resourceName + "/" + data.id ).then(function (newData) {
+                            io.socket.put("/" + prefix + resourceName + '/create/', item, function (data) {
+                                _get("/" + prefix + resourceName + "/" + data.id ).then(function (newData) {
                                     angular.extend(item, newData);
+                                    $rootScope.$broadcast(resourceName, { id: item.id, verb: 'created', scope: $scope.$id, data: angular.copy(item) });
                                 });
                             });
                         }
@@ -111,7 +133,7 @@ app.factory('$sailsBind', [
                     });
 
                     // Add Watchers to each added element
-                    addCollectionWatchersToSubitemsOf(addedElements, $scope, resourceName);
+                    addCollectionWatchersToSubitemsOf(addedElements, $scope, resourceName,prefix);
                 });
             };
 
@@ -124,7 +146,7 @@ app.factory('$sailsBind', [
          * @param scope is the scope where the model belongs to
          * @param resourceName is the "singular" version of the model as used by sailsjs
          */
-        var addCollectionWatchersToSubitemsOf = function (model, scope, resourceName) {
+        var addCollectionWatchersToSubitemsOf = function (model, scope, resourceName, prefix) {
             model.forEach(function (item) {
                 scope.$watchCollection(
                         resourceName + 's' + '[' + scope[resourceName + "s"].indexOf(item) + ']',
@@ -134,7 +156,8 @@ app.factory('$sailsBind', [
                             if (!angular.equals(oldValue, newValue) && // is in the database and is not new
                                 oldValue.id == newValue.id && //not a shift
                                 oldValue.updatedAt === newValue.updatedAt) { //is not an update FROM backend
-                                io.socket.post('/' + resourceName + '/update/' + oldValue.id,
+                                $rootScope.$broadcast(resourceName, { id: oldValue.id, verb: 'updated', scope: scope.$id, data: angular.extend(angular.copy(newValue),{ updatedAt: (new Date()).toISOString() }) });
+                                io.socket.post("/" + prefix  + resourceName + '/update/' + oldValue.id,
                                     angular.copy(newValue));
                             }
                         }

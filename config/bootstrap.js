@@ -10,20 +10,28 @@
  */
 
 module.exports.bootstrap = function (cb) {
-	
-	// This callback is run after all of our Users are created.
-	// It takes the returned User and stores it in our storeUsers array for later.
-	var afterPdf = function(err,newUsers){
-	  return 1
-	};
 
-	Pdf.create([{id:'AB344',nombre:'pdf1_example',ruta:'../assets/pdf/pdf1'}]).exec(afterPdf);
-    Pdf.create([{id:'DKH73',nombre:'pdf2_example',ruta:'../assets/pdf/pdf2'}]).exec(afterPdf);
-    Pdf.create([{id:'WSDH8',nombre:'pdf2_example',ruta:'../assets/pdf/pdf3'}]).exec(afterPdf);
-    Pdf.create([{id:'K3883',nombre:'pdf3_example',ruta:'../assets/pdf/pdf4'}]).exec(afterPdf);
-    Pdf.create([{id:'ADKGK',nombre:'pdf4_example',ruta:'../assets/pdf/pdf5'}]).exec(afterPdf);
+    // This callback is run after all of our Users are created.
+    // It takes the returned User and stores it in our storeUsers array for later.
+    var afterPdf = function (err, newUsers) {
+        return 1;
+    };
+
 
     sails.services.passport.loadStrategies();
 
-   cb();
+    Pdf.find({id: 'AB344'}).exec(function (err, pdf) {
+        if(pdf.length > 0) { return  }
+            Pdf.create([
+                {id: 'AB344', nombre: 'pdf1_example', ruta: '/pdf/pdf1.pdf'},
+                {id: 'DKH73', nombre: 'pdf2_example', ruta: '/pdf/pdf1.pdf'},
+                {id: 'WSDH8', nombre: 'pdf2_example', ruta: '/pdf/pdf1.pdf'}
+            ]).exec(afterPdf);
+
+            Live_class_student.create([
+                {id: 'AB344', pdf_activo: 'false', pdf_ruta: '/pdf/pdf1.pdf', pdf_numeroPagina: '2'},
+                {id: 'WSDH8', pdf_activo: 'false', pdf_ruta: '/pdf/pdf1.pdf', pdf_numeroPagina: '2'}
+            ]).exec(afterPdf);
+    });
+    cb();
 };
