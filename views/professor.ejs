@@ -1,8 +1,6 @@
 <div class="bkd" ng-app="app_getPdfs">
-<<<<<<< HEAD
     <div class="container bkdW" ng-controller="update_PdfsController">
-        <div class="container bkdW" ng-controller="share_PdfsController">
-            <table class="table table-striped table-hover">
+            <table class="table table-striped table-hover table-condensed">
                 <caption> Archivos Subidos</caption>
                 <thead>
                 <tr>
@@ -12,14 +10,12 @@
                 </tr>
                 </thead>
                 <tbody>
-
                 <tr ng-repeat="pdf in pdfs">
                     <td>{{ pdf.id }}</td>
                     <td>{{ pdf.nombre }}</td>
-                    <td>
-                            <label>
-                                <input type="radio" name="comp" id="rad2" value="2" ng-model="radioButtonState" ng-click="share(pdf.id,pdf.ruta)">
-                            </label>
+                    <td class="text-center">
+                        <span class="glyphicon glyphicon-list-alt" ng-click="share(pdf.id,pdf.ruta)"></span>
+
                     </td>
                 </tr>
                 </tbody>
@@ -27,36 +23,4 @@
             <p> Compartiendo Archivo: {{radioButtonState}} </p>
             <p> Ruta para mostrar PDF: {{pdf_route}} </p>
         </div>
-    </div>
-
-
-=======
-    <div class="container bkdW" ng-controller="PdfsController">
-
-        <table class="table table-striped table-hover table-condensed">
-            <caption> <font class="h2"> Archivos Subidos </font></caption>
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>Nombre del Archivo</th>
-                <th> Compartido </th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="pdf in pdfs">
-                <td>{{ pdf.id }}</td>
-                <td>{{ pdf.nombre }}</td>
-                <td class="text-center">
-                    <span class="glyphicon glyphicon-list-alt"></span>
-                    <!--div class="radio">
-                        <label>
-                            <!--input type="radio" name="comp" id="rad2" value="2" checked-->
-                            <!--span class="glyphicon glyphicon-eye-close"></span-->
-                        </label>
-                    </div-->
-                </td>
-            </tr>
->>>>>>> 232a1d418dabdfb96b4b362ea9719c76c0441acb
-
-
- </div>
+</div>
