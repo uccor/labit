@@ -1,12 +1,16 @@
 <div >
     <div>
 
+        <div class="container bkdW" ng-app="myApp"  ng-controller = "update_PdfsController1">
+                    <ul ng-repeat="live_class_student in live_class_students">
+                        <li> {{live_class_student.id}} </li>
+                        <li> {{live_class_student.pdf_ruta}} </li>
+                        <li> {{live_class_student.pdf_activo }}</li>
+                    </ul>
+        </div>
+
     </div>
-    <div ng-controller="studentScreen">
-        {{pdf.nombre}}<br>
-        <canvas id="the-canvas" style="border:1px solid black;"></canvas>
-    </div>
+
+
+
 </div>
-
-
-

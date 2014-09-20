@@ -1,3 +1,6 @@
+
+
+
 var pdfDoc = null,
     pageNum = 1,
     pageRendering = false,
@@ -78,9 +81,18 @@ function onNextPage() {
 
 
 
-var myApp = angular.module('labit-app',[]);
 
-myApp.controller('studentScreen', ['$scope', function($scope) {
+var app_getPdfs1 = angular.module('labit-app',['ngSailsBind']);
+
+app_getPdfs1.controller('update_PdfsController1', ['$scope', "$sailsBind",function($scope, $sailsBind) {
+
+    $sailsBind.bind("live_class_student", $scope);
+}]);
+
+
+
+
+app_getPdfs1.controller('studentScreen', ['$scope', function($scope) {
     $scope.pdf = {nombre:"PDF1",ruta:'/pdf/pdf1.pdf'};
 
     $scope.loadPdf = function (url){
@@ -94,3 +106,6 @@ myApp.controller('studentScreen', ['$scope', function($scope) {
     }
     $scope.loadPdf($scope.pdf.ruta);
 }]);
+
+
+
