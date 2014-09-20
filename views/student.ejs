@@ -1,16 +1,16 @@
-<div >
+<div>
     <div>
 
-        <div class="container bkdW" ng-app="myApp"  ng-controller = "update_PdfsController1">
-                    <ul ng-repeat="live_class_student in live_class_students">
-                        <li> {{live_class_student.id}} </li>
-                        <li> {{live_class_student.pdf_ruta}} </li>
-                        <li> {{live_class_student.pdf_activo }}</li>
-                    </ul>
+        <div class="container bkdW" ng-controller="contentShared">
+            <table class="table table-striped table-hover table-condensed">
+            <tr ng-repeat="live_class_student in live_class_students" ng-click="subscribeToLiveClass(live_class_student.id)">
+                <td> {{live_class_student.id}}</td>
+                <td> {{live_class_student.pdf_ruta}}</td>
+                <td> {{live_class_student.pdf_activo }}</td>
+            </tr>
+            </table>
         </div>
 
+        <canvas id="contentShareCanvas" style="border:1px solid black;"></canvas>
     </div>
-
-
-
 </div>
