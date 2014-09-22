@@ -27,13 +27,5 @@ app.controller('contentShared', ['$scope', "$sailsBind", function ($scope, $sail
 
     $sailsBind.bind("api/live_class_student", $scope);
 
-    $scope.$watch(live_class_student, function (newValue, oldValue) {
-        // If this happend, a new file is shared
-        console.log(newValue);
-    },true);
 
-
-    $scope.subscribeToLiveClass = function (id) {
-        $sailsBind.bind("api/live_class_student", $scope, {"id": {"contains": id}});
-    }
 }]);
