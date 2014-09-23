@@ -25,6 +25,13 @@ $(document).ready(function () {
 	$("#emit1").click(function(){
     	io.socket.emit('messageName', {userID : '1222'});
 	});
+
+	io.socket.on('currentUser',function (socket) {
+		console.log(socket.users);
+	});
+	// io.socket.get('http://localhost:1337/getCurrentUsers', function (body, response) {
+	// 	console.log('Sails responded with: ', body);
+	// });
 	
 	// // Socket_io is your front-end library you included before
 	// var Socket = io.connect('http://localhost:8080');

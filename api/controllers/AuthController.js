@@ -67,6 +67,9 @@ var AuthController = {
    * @param {Object} res
    */
   logout: function (req, res) {
+    
+    var currentUsers = require('./CurrentUsersController.js');
+    currentUsers.remove(req,res);
     req.logout();
     res.redirect('/');
   },
@@ -152,7 +155,8 @@ var AuthController = {
         // Upon successful login, send the user to the homepage were req.user
         // will available.
         
-        
+        var currentUsers = require('./CurrentUsersController.js');
+        currentUsers.join(req,res);
         res.redirect('/');
       });
     });
