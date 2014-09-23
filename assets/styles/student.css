@@ -1,0 +1,12 @@
+.h1 {
+    color: #15b7ff;
+}
+
+.canvasStudent{
+    border:1px solid black;
+    background-color: white;
+}
+
+.bodyStudent{
+    background: url("images/wood.png");
+}
