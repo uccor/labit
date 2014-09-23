@@ -1,16 +1,42 @@
-<div>
-    <div>
 
+<div>
+    <div class="page-header">
+        <h2 align="center">Archivo PDF</h2>
+    </div>
+    <div>
+        <!---
         <div class="container bkdW" ng-controller="contentShared">
+
             <table class="table table-striped table-hover table-condensed">
-            <tr ng-repeat="live_class_student in live_class_students" ng-click="subscribeToLiveClass(live_class_student.id)">
+            <tr ng-repeat="live_class_student in live_class_students"
+                ng-click="subscribeToLiveClass(live_class_student.id)">
                 <td> {{live_class_student.id}}</td>
                 <td> {{live_class_student.pdf_ruta}}</td>
                 <td> {{live_class_student.pdf_activo }}</td>
             </tr>
             </table>
         </div>
+        --->
 
-        <canvas id="contentShareCanvas" style="border:1px solid black;"></canvas>
+        <div align="center">
+            <div type="button" class="btn-group">
+                <button type="button" class="btn btn-info btn-sm">Anterior</button>
+            </div>
+            <div type="button" class="btn-group">
+                <button type="button" class="btn btn-info btn-sm">Siguiente</button>
+            </div>
+            <span>
+                Página
+            <span id="page_num">1</span>
+                /
+            <span id="page_count">2</span>
+            </span>
+        </div>
+
+        <div align="center">
+        <canvas id="contentShareCanvas" style="border:1px solid black"
+                height="633" width="489"></canvas>
+        </div>
+
     </div>
 </div>
