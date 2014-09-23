@@ -1,0 +1,17 @@
+	<!---
+	<style type="text/css" src="/style/index.css"></style>
+	<script src="js/model/register.js"></script>
+	-->
+	<section class="registerForm">
+		<form role="form" action="/auth/local/register" method="post">
+		<!-- <form role="form" action="/auth/twitter" method="post"> -->
+			<h4 id="message" ></h4>
+			<input id="name" type="text" name="name" placeholder="Name" required>
+			<input id="lastName" type="text" name="lastName" placeholder="Last Name" required>
+			<input id="username" type="text" name="username" placeholder="Username" required>
+			<input id="email" type="email" name="email" placeholder="Email" required>
+			<input id="pass" type="password" name="password" placeholder="Password" required>
+			<input id="pass2" type="password" name="password2" placeholder="Confirm Password" required>
+			<input id="submit" type="submit" value="Sign Up">
+		</form>
+	</section>

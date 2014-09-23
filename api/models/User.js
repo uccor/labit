@@ -7,25 +7,26 @@
 
 module.exports = {
 
-  attributes: {
+  schema: true, 
+  attributes: { 
 
-      name:{
-          type: 'string',
-          required: true
-      },
-      lastName:{
-          type: 'string',
-          required: true
-      },
-      userName:{
-          type: 'string',
-          required: true
-      },
-      password:{
-          type: 'string',
-          required: true
-      }
-
+    name: { type: 'string' },
+    lastName:{ type: 'string' },
+    // username:{
+    //   type: 'string',
+    //   required: true,
+    //   unique: true
+    // },
+    // password:{
+    //   type: 'string',
+    //   required: true
+    // },
+    // email: {
+    // 	type: 'string'
+    // }
+	username  : { type: 'string', unique: true },
+    email     : { type: 'email',  unique: true },
+    passports : { collection: 'Passport', via: 'user' }
   }
 };
 

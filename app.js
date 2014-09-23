@@ -52,4 +52,23 @@
 
   // Start server
   sails.lift(rc('sails'));
+  var app = require('http').createServer(handler);
+  var io = require('socket.io').listen(app);
+  app.listen(1337);
+  console.log ('actuale"');
+  io.sockets.on('connection', function (socket) {
+    console.log ('actual id', socket.id);
+    socket.emit('news','world');
+  })
+  
+  
+
+   console.log('emit');
+          //console.log(io.socket.id);
+          io.socket.emit('news' , 'world!');
+          console.log('emit dsp');
+          // consolog('(this app is running in development mode - log messages will be displayed)');
+          io.socket.on('news2', function () {
+            console.log('recibi desde el cliente');
+          })
 })();

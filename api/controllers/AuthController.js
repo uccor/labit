@@ -30,24 +30,24 @@ var AuthController = {
    * @param {Object} req
    * @param {Object} res
    */
-  login: function (req, res) {
-    var strategies = sails.config.passport
-      , providers  = {};
 
+   login: function (req, res) {
+    var strategies = sails.config.passport, providers  = {};
+    
     // Get a list of available providers for use in your templates.
     Object.keys(strategies).forEach(function (key) {
       if (key === 'local') return;
 
       providers[key] = {
-        name : strategies[key].name
-      , slug : key
+        name : strategies[key].name, 
+        slug : key
       };
     });
 
     // Render the `auth/login.ext` view
     res.view({
-      providers : providers
-    , errors    : req.flash('error')
+      providers : providers,
+      errors    : req.flash('error')
     });
   },
 
@@ -86,6 +86,13 @@ var AuthController = {
    * @param {Object} res
    */
   register: function (req, res) {
+    // var student = require('./StudentController');
+   // console.log(Student)
+    // var created = student.createNew(req);
+
+    // if (created == true) {
+    //   console.log("user created successfully")
+    // }
     res.view({
       errors: req.flash('error')
     });
@@ -125,7 +132,19 @@ var AuthController = {
       res.redirect(req.param('action') === 'register' ? '/register' : '/login');
     }
 
+    //---------====--------------==============------------
+    // var io = require('sails.io');
+    // io.socket = new TmpSocket();
+    //var actualSocket = io.connect(io.sails.url);
+    // Replay event bindings from the existing TmpSocket
+    //io.socket = io.socket.become(actualSocket);
+    // io.socket.on("user", function(event){console.log(event);})
+    //--------================---------------==============
+
     passport.callback(req, res, function (err, user) {
+      console.log('------====------')
+      console.log('callback error', err);
+      console.log('callback user', user);
       if (err) return tryAgain();
 
       req.login(user, function (loginErr) {
