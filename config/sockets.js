@@ -24,6 +24,43 @@ module.exports.sockets = {
   onConnect: function(session, socket) {
 
     // By default, do nothing.
+    
+    //console.log('antes id join', session.user.id);
+    // try {
+    //   console.log('users in session: ', session.passport);
+    //   //console.log(' id join _', session.passport["user"]);
+    //   var idUser = session.passport.user; 
+      // sails.sockets.join(socket, idUser);
+      // sails.sockets.subscribeToFirehose(socket, idUser);
+
+
+      // console.log('----------sails.sockets----------');
+      // console.log(sails.sockets.emit('messageName', {thisIs: 'theMessage'}));
+      // console.log('-------------');
+
+      // console.log('--------sails.io----------');
+      // console.log(sails.io.emit('messageName', {thisIs: 'theMessage'}));
+      // console.log('-------------');
+
+      // console.log('--------sails----------');
+      // console.log(sails.emit('messageName', {thisIs: 'theMessage'}));
+      // console.log('-------------');
+
+      
+
+      // console.log('--------sails.io.sockets----------');
+      // console.log(sails.io.sockets.emit('messageName', {thisIs: 'theMessage'}));
+      // console.log('-------------');
+
+      // var a = sails.io.on('messageName', function () {
+      //   console.log('recibi emision!!');
+      // });
+      // console.log('on ok?',a);
+
+    // }
+    // catch (ex) { console.log("error: ",ex)}
+
+    
 
   },
 

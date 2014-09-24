@@ -727,6 +727,13 @@ var io="undefined"==typeof module?{}:module.exports;(function(){(function(a,b){v
             // '`io.socket.get("/foo", function serverRespondedWith (body, jwr) { console.log(body); })`'+ '\n' +
             //' (for help, see: http://sailsjs.org/#!documentation/reference/BrowserSDK/BrowserSDK.html)'
           );
+
+			// io1=io;
+			// io1.socket.on("connection", function (sock) {
+			// console.log('emit')
+			// sock.emit("welcomeMessage", { hello: "world" });
+			// });
+			// io1.listen(1337);
          
 
           if (!io.socket.$events.disconnect) {
