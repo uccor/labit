@@ -6,19 +6,36 @@ app.controller('pdfViewer', ['$scope', '$rootScope', "$sailsBind", function ($sc
 
     $scope.pdf = {}
 
+    $scope.pageNum = 0;
+    $scope.pageRendering = false;
+    $scope.pageNumPending = null;
+    $scope.pageTotal = 0;
+
     $scope.getpdf = function(file){
+        $scope.pageNum = 1;
         PDFJS.getDocument(file).then(function(pdf){
         $scope.pdf = pdf;
-
         $scope.changePage(1);
+
         });
+
     }
 
 
     $scope.changePage = function (pagina) {
 
+        $scope.pageTotal = $scope.pdf.numPages;
+
+        if ($scope.pageRendering) {
+            $scope.pageNumPending = pagina;
+            return;
+        }
+
+        $scope.pageRendering = true;
+
         $scope.pdf.getPage(pagina).then(function (page) {
-            var scale = 1.5;
+
+            var scale = 1;
             var viewport = page.getViewport(scale);
 
             // Prepare canvas using PDF page dimensions
@@ -32,7 +49,17 @@ app.controller('pdfViewer', ['$scope', '$rootScope', "$sailsBind", function ($sc
                 canvasContext: context,
                 viewport: viewport
             };
-            page.render(renderContext);
+            var renderTask = page.render(renderContext);
+
+            renderTask.promise.then(function () {
+
+                $scope.pageRendering = false;
+                if ($scope.pageNumPending !== null) {
+                    // New page rendering is pending
+                    $scope.changePage($scope.pageNumPending);
+                    $scope.pageNumPending = null;
+                }
+            });
         });
     };
 
@@ -44,6 +71,21 @@ app.controller('pdfViewer', ['$scope', '$rootScope', "$sailsBind", function ($sc
         $scope.getpdf(args);
     });
 
+    $scope.prevPage = function() {
+        if ($scope.pageNum <= 1) {
+            return;
+        }
+        $scope.pageNum--;
+        $scope.changePage($scope.pageNum);
+    };
+
+    $scope.nextPage = function() {
+        if ($scope.pageNum >= $scope.pageTotal) {
+            return;
+        }
+        $scope.pageNum++;
+        $scope.changePage($scope.pageNum);
+    };
 }]);
 
 

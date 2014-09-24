@@ -21,11 +21,16 @@
                 </tbody>
             </table>
 
-            <div>
-                <div> Ingrese el ID de la clase a la cual desea compartir:
-                    <input type="text" ng- model="id_class_to_share" value="CLASS1">
-                </div>
-
+        <div>
+            <div> Ingrese el ID de la clase a la cual desea compartir:
+                <select class="form-control" ng-model="id_class_to_share" style="width: 300px" value="CLASS1">
+                    <option>CLASS1</option>
+                    <option>CLASS2</option>
+                    <option></option>
+                    <option></option>
+                    <option></option>
+                </select>
+                <!--input type="text" ng-model="id_class_to_share" value="CLASS1"-->
                 <br> <br> <br>
                 <p> ID Archivo compartido: {{pdf_id}} </p>
                 <p> Nombre Archivo compartido: {{pdf_nombre}} </p>

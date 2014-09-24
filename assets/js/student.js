@@ -12,6 +12,10 @@ app.controller('contentShared', ['$scope', '$rootScope', "$sailsBind", function 
             })
         };
 
+        io.socket.get('/api/live_class_student/',function messageReceived(jsonObject){
+
+        })
+
         // Subscription
         io.socket.get('/api/live_class_student/'+ $scope.id_subscribedClass,function messageReceived(jsonObject) {
 
