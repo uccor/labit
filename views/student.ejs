@@ -33,16 +33,16 @@
     <div ng-controller="pdfViewer">
         <div align="center">
             <div type="button" class="btn-group">
-                <button type="button" class="btn btn-info btn-sm"><b>Anterior</b></button>
+                <button type="button" class="btn btn-info btn-sm" ng-click="prevPage()"><b>Anterior</b></button>
             </div>
             <div type="button" class="btn-group">
-                <button type="button" class="btn btn-info btn-sm"><b>Siguiente</b></button>
+                <button type="button" class="btn btn-info btn-sm" ng-click="nextPage()"><b>Siguiente</b></button>
             </div>
                 <span><b>
                         Página
-                        <span id="page_num">1</span>
+                        <span id="page_num">{{pageNum}}</span>
                         /
-                        <span id="page_count">2</span>
+                        <span id="page_count">{{pageTotal}}</span>
                     </b></span>
         </div>
 
