@@ -20,7 +20,7 @@ module.exports.bootstrap = function (cb) {
 
     sails.services.passport.loadStrategies();
 
-    Pdf.find({id: 'AB344'}).exec(function (err, pdf) {
+    Pdf.find({id: 'PDF1'}).exec(function (err, pdf) {
         if(pdf.length > 0) { return  }
             Pdf.create([
                 {id: 'PDF1', nombre: 'pdf1_example', ruta: '/pdf/pdf1.pdf'},
@@ -29,8 +29,8 @@ module.exports.bootstrap = function (cb) {
             ]).exec(afterPdf);
 
             Live_class_student.create([
-                {id: 'CLASS1', pdf_activo: 'false', pdf_ruta: '/pdf/pdf1.pdf', pdf_numeroPagina: '2'},
-                {id: 'CLASS2', pdf_activo: 'false', pdf_ruta: '/pdf/pdf1.pdf', pdf_numeroPagina: '2'}
+                {id: 'CLASS1', pdf_activo: 'false', pdf_ruta: '', pdf_numeroPagina: '2'},
+                {id: 'CLASS2', pdf_activo: 'false', pdf_ruta: '', pdf_numeroPagina: '2'}
             ]).exec(afterPdf);
     });
     cb();

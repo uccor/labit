@@ -1,5 +1,5 @@
-<body class="bodyStudent" ng-app="app" ng-controller="contentShared">
-    <div>
+<div class="bodyStudent" ng-app="app" >
+    <div ng-controller="contentShared">
 
         <br><br>
         <div> Ingrese la ID Clase a la cual desea suscribirse:
@@ -28,27 +28,27 @@
             <!--- en h2 debería ir el nombre del archivo que se compartio--->
         </div>
 
-        <div>
-            <div align="center">
-                <div type="button" class="btn-group">
-                    <button type="button" class="btn btn-info btn-sm"><b>Anterior</b></button>
-                </div>
-                <div type="button" class="btn-group">
-                    <button type="button" class="btn btn-info btn-sm"><b>Siguiente</b></button>
-                </div>
+    </div>
+
+    <div ng-controller="pdfViewer">
+        <div align="center">
+            <div type="button" class="btn-group">
+                <button type="button" class="btn btn-info btn-sm"><b>Anterior</b></button>
+            </div>
+            <div type="button" class="btn-group">
+                <button type="button" class="btn btn-info btn-sm"><b>Siguiente</b></button>
+            </div>
                 <span><b>
-                    Página
-                    <span id="page_num">1</span>
-                    /
-                    <span id="page_count">2</span>
+                        Página
+                        <span id="page_num">1</span>
+                        /
+                        <span id="page_count">2</span>
                     </b></span>
-            </div>
+        </div>
 
-            <div align="center">
-                 <canvas id="contentShareCanvas" class="canvasStudent"
-                        height="633" width="490"></canvas>
-            </div>
-
+        <div align="center">
+            <canvas id="contentShareCanvas" class="canvasStudent"
+                    height="633" width="490"></canvas>
         </div>
     </div>
-</body>
+</div>

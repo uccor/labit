@@ -16,3 +16,9 @@
     width: 350px;
     float: left;
 }
+
+.tituloPDF{
+    font-size: 16px;
+    color: navy;
+    font-weight: bold;
+}
