@@ -25,7 +25,6 @@ app.controller('contentShared', ['$scope', '$rootScope', "$sailsBind", function 
         });
     };
 
-
     // Listen to incoming Updates from Live_class_student we just suscribed to
     io.socket.on('live_class_student',function messageReceived(jsonObject) {
 

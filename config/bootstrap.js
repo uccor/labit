@@ -29,8 +29,8 @@ module.exports.bootstrap = function (cb) {
             ]).exec(afterPdf);
 
             Live_class_student.create([
-                {id: 'CLASS1', pdf_activo: 'false', pdf_ruta: '/pdf/pdf1.pdf', pdf_numeroPagina: '2'},
-                {id: 'CLASS2', pdf_activo: 'false', pdf_ruta: '/pdf/pdf1.pdf', pdf_numeroPagina: '2'}
+                {id: 'CLASS1', pdf_activo: 'false', pdf_ruta: '', pdf_numeroPagina: '2'},
+                {id: 'CLASS2', pdf_activo: 'false', pdf_ruta: '', pdf_numeroPagina: '2'}
             ]).exec(afterPdf);
     });
     cb();
