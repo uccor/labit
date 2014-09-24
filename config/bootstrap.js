@@ -23,14 +23,14 @@ module.exports.bootstrap = function (cb) {
     Pdf.find({id: 'AB344'}).exec(function (err, pdf) {
         if(pdf.length > 0) { return  }
             Pdf.create([
-                {id: 'AB344', nombre: 'pdf1_example', ruta: '/pdf/pdf1.pdf'},
-                {id: 'DKH73', nombre: 'pdf2_example', ruta: '/pdf/pdf1.pdf'},
-                {id: 'WSDH8', nombre: 'pdf2_example', ruta: '/pdf/pdf1.pdf'}
+                {id: 'PDF1', nombre: 'pdf1_example', ruta: '/pdf/pdf1.pdf'},
+                {id: 'PDF2', nombre: 'pdf2_example', ruta: '/pdf/pdf2.pdf'},
+                {id: 'PDF3', nombre: 'pdf3_example', ruta: '/pdf/pdf3.pdf'}
             ]).exec(afterPdf);
 
             Live_class_student.create([
-                {id: 'AB344', pdf_activo: 'false', pdf_ruta: '/pdf/pdf1.pdf', pdf_numeroPagina: '2'},
-                {id: 'WSDH8', pdf_activo: 'false', pdf_ruta: '/pdf/pdf1.pdf', pdf_numeroPagina: '2'}
+                {id: 'CLASS1', pdf_activo: 'false', pdf_ruta: '/pdf/pdf1.pdf', pdf_numeroPagina: '2'},
+                {id: 'CLASS2', pdf_activo: 'false', pdf_ruta: '/pdf/pdf1.pdf', pdf_numeroPagina: '2'}
             ]).exec(afterPdf);
     });
     cb();

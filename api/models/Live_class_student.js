@@ -7,6 +7,7 @@
 
 module.exports = {
 
+    autosubscribe:['update'],
     attributes: {
 
         id: {
