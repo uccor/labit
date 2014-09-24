@@ -21,26 +21,29 @@
                 </tbody>
             </table>
 
-        <div>
-            <div> Ingrese el ID de la clase a la cual desea compartir:
-                <select class="form-control" ng-model="id_class_to_share" style="width: 300px" value="CLASS1">
-                    <option>CLASS1</option>
-                    <option>CLASS2</option>
-                    <option></option>
-                    <option></option>
-                    <option></option>
-                </select>
-                <!--input type="text" ng-model="id_class_to_share" value="CLASS1"-->
-                <br> <br> <br>
-                <p> ID Archivo compartido: {{pdf_id}} </p>
-                <p> Nombre Archivo compartido: {{pdf_nombre}} </p>
-                <p> Ruta para mostrar PDF: {{pdf_route}} </p>
-                <br> <br>
-                <button ng-click="stopSharing()">Dejar de Compartir</button>
+            <div>
+                <div> Ingrese el ID de la clase a la cual desea compartir:
+                    <select class="form-control" ng-model="id_class_to_share" style="width: 300px" value="CLASS1">
+                        <option>CLASS1</option>
+                        <option>CLASS2</option>
+                        <option></option>
+                        <option></option>
+                        <option></option>
+                    </select>
+                    <!--input type="text" ng-model="id_class_to_share" value="CLASS1"-->
+                    <br> <br> <br>
 
+                    <p> ID Archivo compartido: {{pdf_id}} </p>
+
+                    <p> Nombre Archivo compartido: {{pdf_nombre}} </p>
+
+                    <p> Ruta para mostrar PDF: {{pdf_route}} </p>
+                    <br> <br>
+                    <button ng-click="stopSharing()">Dejar de Compartir</button>
+
+                </div>
             </div>
         </div>
-
         <div class="col-md-9" ng-controller="pdfViewer">
             <div align="center">
                 <div type="button" class="btn-group">
@@ -58,7 +61,8 @@
             </div>
 
             <div align="center">
-                <canvas id="contentShareCanvas" class="canvasStudent" height="633" width="490" style="width: 100%"></canvas>
+                <canvas id="contentShareCanvas" class="canvasStudent" height="633" width="490"
+                        style="width: 100%"></canvas>
             </div>
         </div>
     </div>
