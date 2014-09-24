@@ -65,6 +65,7 @@ app.controller('pdfViewer', ['$scope', '$rootScope', "$sailsBind", function ($sc
 
     $scope.$on('pdfPageChange', function(event, args) {
         $scope.changePage(args);
+        $scope.pageNum = args;
     });
 
     $scope.$on('pdfChange', function(event, args) {
