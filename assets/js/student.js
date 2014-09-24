@@ -1,5 +1,12 @@
 
 app.controller('contentShared', ['$scope', '$rootScope', "$sailsBind", function ($scope, $rootScope, $sailsBind) {
+    $scope.avaibleClasses ={};
+    io.socket.get('/api/live_class_student/',function messageReceived(jsonObject){
+        $scope.avaibleClasses =jsonObject;
+        if(!$scope.$$phase) {
+            $scope.$apply();
+        }
+    })
 
     //Subscribe to live_class_student  :
     $scope.subscribe_to_class = function () {
@@ -12,9 +19,7 @@ app.controller('contentShared', ['$scope', '$rootScope', "$sailsBind", function 
             })
         };
 
-        io.socket.get('/api/live_class_student/',function messageReceived(jsonObject){
 
-        })
 
         // Subscription
         io.socket.get('/api/live_class_student/'+ $scope.id_subscribedClass,function messageReceived(jsonObject) {

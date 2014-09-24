@@ -5,11 +5,7 @@
 
         <div> Ingrese la ID Clase a la cual desea suscribirse:
             <select class="form-control" ng-model="id_subscribedClass" style="width: 400px">
-                <option>CLASS1</option>
-                <option>CLASS2</option>
-                <option></option>
-                <option></option>
-                <option></option>
+                <option ng-repeat="class in avaibleClasses">{{ class.id }}</option>
             </select>
             <!--input type="text" ng-model="id_subscribedClass"-->
             <button ng-click="subscribe_to_class()">Suscribirse</button>

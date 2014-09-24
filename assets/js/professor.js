@@ -6,6 +6,14 @@ var app = angular.module('labit-app', ['ngSailsBind']);
 
 app.controller('update_PdfsController', ['$scope', '$rootScope', "$sailsBind",function($scope, $rootScope, $sailsBind) {
 
+    $scope.avaibleClasses ={};
+    io.socket.get('/api/live_class_student/',function messageReceived(jsonObject){
+        $scope.avaibleClasses =jsonObject;
+        if(!$scope.$$phase) {
+            $scope.$apply();
+        }
+    })
+
     $scope.share = function(id,route,nombre){
 
         $scope.pdf_id       = id;
