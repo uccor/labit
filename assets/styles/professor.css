@@ -12,7 +12,9 @@
 }
 
 .bkdW{
-    background-color: #ffffff;
+    background: url("images/wood.png");;
     width: 350px;
     float: left;
+
 }
+

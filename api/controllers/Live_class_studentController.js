@@ -6,6 +6,16 @@
  */
 
 module.exports = {
+
+    unsubscribe: function (req, res) {
+
+        var id = req.param('id');
+        Live_class_student.find().exec(function(err, Live_class_student_Instance) {
+            Live_class_student.unsubscribe(req.socket, Live_class_student_Instance);
+            return res.send(Live_class_student_Instance);
+        });
+
+}
 	
 };
 

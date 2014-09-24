@@ -29,8 +29,6 @@ module.exports = {
             type: 'integer'
         }
 
-
-
     }
 };
 
