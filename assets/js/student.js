@@ -24,6 +24,10 @@ app.controller('contentShared', ['$scope', "$sailsBind", function ($scope, $sail
         });
     }
 
+    io.socket.get('/api/live_class_student/',function messageReceived(jsonObject){
+
+    });
+
     //Subscribe to live_class_student  :
     $scope.subscribe_to_class = function () {
 
