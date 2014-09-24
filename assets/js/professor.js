@@ -4,7 +4,7 @@
 
 var app = angular.module('labit-app', ['ngSailsBind']);
 
-app.controller('update_PdfsController', ['$scope', "$sailsBind",function($scope, $sailsBind) {
+app.controller('update_PdfsController', ['$scope', '$rootScope', "$sailsBind",function($scope, $rootScope, $sailsBind) {
 
     $scope.share = function(id,route,nombre){
 
@@ -13,6 +13,7 @@ app.controller('update_PdfsController', ['$scope', "$sailsBind",function($scope,
         $scope.pdf_route    = route;
 
         io.socket.put('/api/live_class_student/'+ $scope.id_class_to_share, {pdf_activo: 'true', pdf_ruta: route});
+        $rootScope.$broadcast('pdfChange', route);
     };
 
     $scope.stopSharing = function(){
@@ -24,7 +25,15 @@ app.controller('update_PdfsController', ['$scope', "$sailsBind",function($scope,
         io.socket.put('/api/live_class_student/'+ $scope.id_class_to_share, {pdf_activo: 'false'});
     };
 
-    $sailsBind.bind("api/pdf", $scope);
+    $scope.pageChange = function(numeroPagina){
 
+        $scope.pdf_numeroPagina = numeroPagina;
+
+        io.socket.put('/api/live_class_student/'+ $scope.id_class_to_share, {pdf_numeroPagina: 'true', pdf_ruta: route});
+
+        $rootScope.$broadcast('pdfPageChange', pdf_numeroPagina);
+    };
+
+    $sailsBind.bind("api/pdf", $scope);
 
 }]);
