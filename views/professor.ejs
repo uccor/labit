@@ -22,7 +22,7 @@
             </table>
 
             <div>
-                <div> Ingrese el ID de la clase a la cual desea compartir:
+                <div> Clase a la cual desea compartir:
                     <select class="form-control" ng-model="id_class_to_share" style="width: 300px" value="CLASS1">
                         <option ng-repeat="class in avaibleClasses">{{ class.id }}</option>
                     </select>
@@ -43,10 +43,10 @@
         <div class="col-md-9" ng-controller="pdfViewer">
             <div align="center">
                 <div type="button" class="btn-group">
-                    <button type="button" class="btn btn-info btn-sm"><b>Anterior</b></button>
+                    <button type="button" class="btn btn-info btn-sm" ng-click="prevPage()"><b>Anterior</b></button>
                 </div>
                 <div type="button" class="btn-group">
-                    <button type="button" class="btn btn-info btn-sm"><b>Siguiente</b></button>
+                    <button type="button" class="btn btn-info btn-sm" ng-click="nextPage()"><b>Siguiente</b></button>
                 </div>
                 <span><b>
                                 Página

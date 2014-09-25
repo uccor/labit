@@ -11,14 +11,14 @@ app.controller('pdfViewer', ['$scope', '$rootScope', "$sailsBind", function ($sc
     $scope.pageNumPending = null;
     $scope.pageTotal = 0;
 
-    $scope.getpdf = function(file){
+    $scope.getpdf = function(file, pag){
+        pag = typeof pag !== 'undefined' ? pag : 1;
+
         $scope.pageNum = 1;
         PDFJS.getDocument(file).then(function(pdf){
         $scope.pdf = pdf;
-        $scope.changePage(1);
-
+        $scope.changePage(pag);
         });
-
     }
 
 
@@ -63,13 +63,13 @@ app.controller('pdfViewer', ['$scope', '$rootScope', "$sailsBind", function ($sc
         });
     };
 
-    $scope.$on('pdfPageChange', function(event, args) {
+    $scope.$on('pdfChangePage', function(event, args) {
         $scope.changePage(args);
         $scope.pageNum = args;
     });
 
     $scope.$on('pdfChange', function(event, args) {
-        $scope.getpdf(args);
+        $scope.getpdf(args.file, args.pag);
     });
 
     $scope.prevPage = function() {
@@ -78,6 +78,7 @@ app.controller('pdfViewer', ['$scope', '$rootScope', "$sailsBind", function ($sc
         }
         $scope.pageNum--;
         $scope.changePage($scope.pageNum);
+        $rootScope.$broadcast('pdfPageChanged', $scope.pageNum);
     };
 
     $scope.nextPage = function() {
@@ -86,6 +87,7 @@ app.controller('pdfViewer', ['$scope', '$rootScope', "$sailsBind", function ($sc
         }
         $scope.pageNum++;
         $scope.changePage($scope.pageNum);
+        $rootScope.$broadcast('pdfPageChanged', $scope.pageNum);
     };
 }]);
 

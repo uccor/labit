@@ -25,7 +25,9 @@ module.exports.bootstrap = function (cb) {
             Pdf.create([
                 {id: 'PDF1', nombre: 'pdf1_example', ruta: '/pdf/pdf1.pdf'},
                 {id: 'PDF2', nombre: 'pdf2_example', ruta: '/pdf/pdf2.pdf'},
-                {id: 'PDF3', nombre: 'pdf3_example', ruta: '/pdf/pdf3.pdf'}
+                {id: 'PDF3', nombre: 'pdf3_example', ruta: '/pdf/pdf3.pdf'},
+                {id: '4', nombre: 'DerechoPenal', ruta: '/pdf/DerechoPenal.pdf'},
+                {id: '5', nombre: 'Scrum', ruta: '/pdf/Scrum.pdf'}
             ]).exec(afterPdf);
 
             Live_class_student.create([

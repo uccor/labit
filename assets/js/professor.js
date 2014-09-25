@@ -21,7 +21,7 @@ app.controller('update_PdfsController', ['$scope', '$rootScope', "$sailsBind",fu
         $scope.pdf_route    = route;
 
         io.socket.put('/api/live_class_student/'+ $scope.id_class_to_share, {pdf_activo: 'true', pdf_ruta: route});
-        $rootScope.$broadcast('pdfChange', route);
+        $rootScope.$broadcast('pdfChange', {file: route, pag: 1});
     };
 
     $scope.stopSharing = function(){
@@ -33,15 +33,18 @@ app.controller('update_PdfsController', ['$scope', '$rootScope', "$sailsBind",fu
         io.socket.put('/api/live_class_student/'+ $scope.id_class_to_share, {pdf_activo: 'false'});
     };
 
-    $scope.pageChange = function(numeroPagina){
+ /*   $scope.pageChange = function(numeroPagina){
 
         $scope.pdf_numeroPagina = numeroPagina;
 
         io.socket.put('/api/live_class_student/'+ $scope.id_class_to_share, {pdf_numeroPagina: 'true', pdf_ruta: route});
 
-        $rootScope.$broadcast('pdfPageChange', pdf_numeroPagina);
-    };
+        $rootScope.$broadcast('pdfChangePage', pdf_numeroPagina);
+    };*/
 
     $sailsBind.bind("api/pdf", $scope);
 
+    $scope.$on('pdfPageChanged', function(event, args) {
+        io.socket.put('/api/live_class_student/'+ $scope.id_class_to_share, {pdf_numeroPagina: args});
+    });
 }]);
