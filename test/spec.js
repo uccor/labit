@@ -1,4 +1,32 @@
 
+var loginPage = require('./model/loginPage');
+describe('login page', function() { 
+  it('should login', function() {
+      //var loginPage = LoginPage;
+      loginPage.get();
+      loginPage.fill('pepe','12');
+      loginPage.login();
+      loginPage.check();
+      loginPage.close();
+  });
+});
+
+var registerPage = require('./model/registerPage');
+describe('register page', function() { 
+  it('should register new user', function() {
+      registerPage.get();
+      // Parametros de fill: name, lastName, username, email, pass, pass2
+      registerPage.fill('luciano','leusi','pere3uis','pu90o@p.com','por','por');
+      //------como se hace esto porque cuando querramos pasar muchos test hay que - 
+      //cambiar estos datos siempre??
+      registerPage.register();
+      registerPage.check();
+  });
+});
+
+
+
+
 // describe('liverabbit homepage', function() { 
 //   it('should have a title', function() {
 //   	browser.get('http://localhost:1337');
@@ -27,17 +55,4 @@
 //   });
 // });
 
-var loginPage = require('./model/loginPage');
 
-describe('homepage', function() { 
-  it('should have a title', function() {
-  	browser.get('http://localhost:1337/index');
-    expect(browser.getTitle()).toEqual('Hi!!!');
-  });
-  it('should login ', function() {
-      //var loginPage = LoginPage;
-      loginPage.get();
-      loginPage.fill('ani@g.com','aniiiii');
-      loginPage.login();
-  });
-});

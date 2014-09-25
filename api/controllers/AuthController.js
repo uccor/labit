@@ -33,7 +33,7 @@ var AuthController = {
 
    login: function (req, res) {
     var strategies = sails.config.passport, providers  = {};
-    console.log('login auth')
+    
     // Get a list of available providers for use in your templates.
     Object.keys(strategies).forEach(function (key) {
       if (key === 'local') return;
@@ -44,6 +44,7 @@ var AuthController = {
       };
     });
 
+    
     // Render the `auth/login.ext` view
     res.view({
       providers : providers,
@@ -66,6 +67,9 @@ var AuthController = {
    * @param {Object} res
    */
   logout: function (req, res) {
+    
+    var currentUsers = require('./CurrentUsersController.js');
+    currentUsers.remove(req,res);
     req.logout();
     res.redirect('/');
   },
@@ -93,6 +97,7 @@ var AuthController = {
     // if (created == true) {
     //   console.log("user created successfully")
     // }
+
     res.view({
       errors: req.flash('error')
     });
@@ -132,16 +137,26 @@ var AuthController = {
       res.redirect(req.param('action') === 'register' ? '/register' : '/login');
     }
 
+    //---------====--------------==============------------
+    // var io = require('sails.io');
+    // io.socket = new TmpSocket();
+    //var actualSocket = io.connect(io.sails.url);
+    // Replay event bindings from the existing TmpSocket
+    //io.socket = io.socket.become(actualSocket);
+    // io.socket.on("user", function(event){console.log(event);})
+    //--------================---------------==============
+
     passport.callback(req, res, function (err, user) {
-      // console.log('callback error', err);
-      // console.log('callback user', user);
       if (err) return tryAgain();
 
       req.login(user, function (loginErr) {
         if (loginErr) return tryAgain();
-
+        
         // Upon successful login, send the user to the homepage were req.user
         // will available.
+        
+        var currentUsers = require('./CurrentUsersController.js');
+        currentUsers.join(req,res);
         res.redirect('/');
       });
     });
