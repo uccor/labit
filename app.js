@@ -21,7 +21,6 @@
 // Ensure a "sails" can be located:
 (function() {
   var sails;
-  var passport = require('passport');
   try {
     sails = require('sails');
   } catch (e) {

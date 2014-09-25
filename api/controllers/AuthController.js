@@ -133,18 +133,16 @@ var AuthController = {
     }
 
     passport.callback(req, res, function (err, user) {
-      console.log('callback error', err);
-      console.log('callback user', user);
+      // console.log('callback error', err);
+      // console.log('callback user', user);
       if (err) return tryAgain();
 
       req.login(user, function (loginErr) {
         if (loginErr) return tryAgain();
-          console.log('login');
+
         // Upon successful login, send the user to the homepage were req.user
         // will available.
-
-
-        //res.redirect('index');
+        res.redirect('/');
       });
     });
   }
