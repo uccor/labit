@@ -39,7 +39,10 @@ module.exports.routes = {
   '/index': {
     view: 'index'
   },
-  
+
+  'get /chat': {
+      view: 'chat'
+  },
   'get /login': 'AuthController.login',
   'get /logout': 'AuthController.logout',
   'get /register': 'AuthController.register',
