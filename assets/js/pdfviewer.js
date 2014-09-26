@@ -34,15 +34,16 @@ app.controller('pdfViewer', ['$scope', '$rootScope', "$sailsBind", function ($sc
         $scope.pageRendering = true;
 
         $scope.pdf.getPage(pagina).then(function (page) {
-
-            var scale = 1;
-            var viewport = page.getViewport(scale);
-
             // Prepare canvas using PDF page dimensions
             var canvas = document.getElementById('contentShareCanvas');
             var context = canvas.getContext('2d');
+            var scale = 1;
+            canvas.width  = canvas.offsetWidth;
+
+            var viewport = page.getViewport(canvas.width / page.getViewport(1.0).width);
+
+
             canvas.height = viewport.height;
-            canvas.width = viewport.width;
 
             // Render PDF page into canvas context
             var renderContext = {

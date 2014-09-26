@@ -1,49 +1,40 @@
-<div class="bodyStudent" ng-app="app">
-    <div ng-controller="contentShared">
+<div class="bodyStudent container-fluid">
+    <div class="row">
+        <div ng-controller="contentShared" class="col-md-3" style="background: white;">
 
-        <br><br>
+            <br><br>
 
-        <div> Ingrese la ID Clase a la cual desea suscribirse:
-            <select class="form-control" ng-model="id_subscribedClass" style="width: 400px">
-                <option ng-repeat="class in avaibleClasses">{{ class.id }}</option>
-            </select>
-            <!--input type="text" ng-model="id_subscribedClass"-->
-            <button class="btn" id="subcribeBTN" ng-click="subscribe_to_class()">Suscribirse</button>
-        </div>
-        <br><br><br>
+            <div> Seleccione ID Clase a la cual desea suscribirse:
+                <select class="form-control" ng-model="id_subscribedClass" >
+                    <option ng-repeat="class in avaibleClasses">{{ class.id }}</option>
+                </select>
+                <!--input type="text" ng-model="id_subscribedClass"-->
+                <button class="btn" id="subcribeBTN" ng-click="subscribe_to_class()">Suscribirse</button>
+            </div>
+            <br><br><br>
 
-        <!--div> ID Clase Suscripto: {{idClase}}</div>
-        <div> Estado PDF Compartido: {{estadoPDF}}</div>
-        <div> Ruta PDF Compartido: {{rutaPDF}}</div>
-        <div> Pagina Actual PDF Compartido: {{paginaActualPDF}}</div-->
-
-
-        <div class="page-header" align="center">
-            <h1 align="center" class="h1"><b>Archivo PDF</b></h1>
-            <!--- en h2 debería ir el nombre del archivo que se compartio--->
         </div>
 
-    </div>
-
-    <div ng-controller="pdfViewer">
-        <div align="center">
-            <div id="pdfPrev" type="button" class="btn-group">
-                <button type="button" class="btn btn-info btn-sm" ng-click="prevPage()"><b>Anterior</b></button>
-            </div>
-            <div id="pdfNext" type="button" class="btn-group">
-                <button type="button" class="btn btn-info btn-sm" ng-click="nextPage()"><b>Siguiente</b></button>
-            </div>
+        <div ng-controller="pdfViewer" class="col-md-9">
+            <div align="center">
+                <div id="pdfPrev" type="button" class="btn-group">
+                    <button type="button" class="btn btn-info btn-sm" ng-click="prevPage()"><b>Anterior</b></button>
+                </div>
+                <div id="pdfNext" type="button" class="btn-group">
+                    <button type="button" class="btn btn-info btn-sm" ng-click="nextPage()"><b>Siguiente</b></button>
+                </div>
                 <span><b>
                         Página
                         <span id="page_num">{{pageNum}}</span>
                         /
                         <span id="page_count">{{pageTotal}}</span>
                     </b></span>
-        </div>
+            </div>
 
-        <div align="center">
-            <canvas id="contentShareCanvas" class="canvasStudent"
-                    height="633" width="490"></canvas>
+            <div align="center">
+                <canvas id="contentShareCanvas" class="canvasStudent"
+                        height="633" width="490" style="width:100%; height: 100%;" ></canvas>
+            </div>
         </div>
     </div>
 </div>
