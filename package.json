@@ -30,6 +30,7 @@
     "sails": "^0.10.5",
     "sails-disk": "^0.10.2",
     "sails-generate-auth": "^0.1.6",
+    "socket.io": "^1.1.0",
     "validator": "^3.18.0"
   },
   "scripts": {

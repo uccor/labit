@@ -6,8 +6,8 @@ var ProfessorPage= function() {
         browser.get('http://localhost:1337/professor');
     }
 
-    this.select_pdf= function() {
-
+    this.getListItem= function() {
+        protractor.By.repeater('pdf in pdfs').column('id')
     }
     this.pdf_box_change = function(){
 

@@ -8,14 +8,14 @@
                 <option ng-repeat="class in avaibleClasses">{{ class.id }}</option>
             </select>
             <!--input type="text" ng-model="id_subscribedClass"-->
-            <button ng-click="subscribe_to_class()">Suscribirse</button>
+            <button class="btn" id="subcribeBTN" ng-click="subscribe_to_class()">Suscribirse</button>
         </div>
         <br><br><br>
 
-        <div> ID Clase Suscripto: {{idClase}}</div>
+        <!--div> ID Clase Suscripto: {{idClase}}</div>
         <div> Estado PDF Compartido: {{estadoPDF}}</div>
         <div> Ruta PDF Compartido: {{rutaPDF}}</div>
-        <div> Pagina Actual PDF Compartido: {{paginaActualPDF}}</div>
+        <div> Pagina Actual PDF Compartido: {{paginaActualPDF}}</div-->
 
 
         <div class="page-header" align="center">
@@ -27,10 +27,10 @@
 
     <div ng-controller="pdfViewer">
         <div align="center">
-            <div type="button" class="btn-group">
+            <div id="pdfPrev" type="button" class="btn-group">
                 <button type="button" class="btn btn-info btn-sm" ng-click="prevPage()"><b>Anterior</b></button>
             </div>
-            <div type="button" class="btn-group">
+            <div id="pdfNext" type="button" class="btn-group">
                 <button type="button" class="btn btn-info btn-sm" ng-click="nextPage()"><b>Siguiente</b></button>
             </div>
                 <span><b>
