@@ -15,7 +15,8 @@
                     <td>{{ pdf.id }}</td>
                     <td>{{ pdf.nombre }}</td>
                     <td class="text-center">
-                        <img src="images/ico_pdf.png" ng-click="share(pdf.id,pdf.ruta,pdf.nombre)">
+                        <img id="img_{{ pdf.id }}" src="images/ico_pdf.png"
+                             ng-click="share(pdf.id,pdf.ruta,pdf.nombre)">
                     </td>
                 </tr>
                 </tbody>
@@ -42,18 +43,18 @@
         </div>
         <div class="col-md-9" ng-controller="pdfViewer">
             <div align="center">
-                <div type="button" class="btn-group">
+                <div id="pdfPrev" type="button" class="btn-group">
                     <button type="button" class="btn btn-info btn-sm" ng-click="prevPage()"><b>Anterior</b></button>
                 </div>
-                <div type="button" class="btn-group">
+                <div id="pdfNext" type="button" class="btn-group">
                     <button type="button" class="btn btn-info btn-sm" ng-click="nextPage()"><b>Siguiente</b></button>
                 </div>
                 <span><b>
-                                Página
-                                <span id="page_num">{{pageNum}}</span>
-                                /
-                                <span id="page_count">{{pageTotal}}</span>
-                            </b></span>
+                        Página
+                        <span id="page_num">{{pageNum}}</span>
+                        /
+                        <span id="page_count">{{pageTotal}}</span>
+                    </b></span>
             </div>
 
             <div align="center">

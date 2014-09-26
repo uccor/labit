@@ -26,10 +26,10 @@ var StudentPage= function() {
         browser.executeScript("io.socket.put('/api/live_class_student/"+classToShare+"', {pdf_numeroPagina: "+page+"});  ");
     }
 
-    this.getCurrentPage = function(){
+    this.getCurrentPage = function () {
         return element(by.id('page_num')).getText();
     }
-    this.getTotalPages = function(){
+    this.getTotalPages = function () {
         return element(by.id('page_count')).getText();
     }
 
