@@ -7,7 +7,7 @@ var ProfessorPage = function () {
     }
 
     this.getFirtListItem = function () {
-        return element(By.repeater('pdf in pdfs').column('id')).getText();
+        return element(By.repeater('pdf in pdfs').row(0).column('id')).getText();
     }
 
     this.selectClass = function (classToSelect) {

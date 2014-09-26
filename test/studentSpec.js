@@ -10,7 +10,7 @@ describe('Student page', function () {
         browser.sleep(1000);
         studentPage.nextPdfPage();
 
-        expect(studentPage.getTotalPages()).getText()).toEqual('3');
+        expect(studentPage.getTotalPages().getText()).toEqual('3');
     });
 
     it('shoud change the page when the professor change the page', function (){
