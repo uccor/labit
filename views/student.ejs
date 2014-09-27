@@ -1,0 +1,40 @@
+<div class="bodyStudent container-fluid">
+    <div class="row">
+        <div ng-controller="contentShared" class="col-md-3" style="background: white;">
+
+            <br><br>
+
+            <div> Seleccione ID Clase a la cual desea suscribirse:
+                <select class="form-control" ng-model="id_subscribedClass" >
+                    <option ng-repeat="class in avaibleClasses">{{ class.id }}</option>
+                </select>
+                <!--input type="text" ng-model="id_subscribedClass"-->
+                <button class="btn" id="subcribeBTN" ng-click="subscribe_to_class()">Suscribirse</button>
+            </div>
+            <br><br><br>
+
+        </div>
+
+        <div ng-controller="pdfViewer" class="col-md-9">
+            <div align="center">
+                <div id="pdfPrev" type="button" class="btn-group">
+                    <button type="button" class="btn btn-info btn-sm" ng-click="prevPage()"><b>Anterior</b></button>
+                </div>
+                <div id="pdfNext" type="button" class="btn-group">
+                    <button type="button" class="btn btn-info btn-sm" ng-click="nextPage()"><b>Siguiente</b></button>
+                </div>
+                <span><b>
+                        Página
+                        <span id="page_num">{{pageNum}}</span>
+                        /
+                        <span id="page_count">{{pageTotal}}</span>
+                    </b></span>
+            </div>
+
+            <div align="center">
+                <canvas id="contentShareCanvas" class="canvasStudent"
+                        height="633" width="490" style="width:100%; height: 100%;" ></canvas>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+<div class="container-fluid">
+    <div class="bkd row">
+        <div class="bkdW col-md-3" ng-controller="update_PdfsController">
+            <table class="table table-striped table-hover table-condensed">
+                <caption><p class="tituloPDF"> Archivos Subidos </p></caption>
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nombre del Archivo</th>
+                    <th> Compartido</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="pdf in pdfs">
+                    <td>{{ pdf.id }}</td>
+                    <td>{{ pdf.nombre }}</td>
+                    <td class="text-center">
+                        <img id="img_{{ pdf.id }}" src="images/ico_pdf.png"
+                             ng-click="share(pdf.id,pdf.ruta,pdf.nombre)">
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div>
+                <div> Clase a la cual desea compartir:
+                    <select class="form-control" ng-model="id_class_to_share" style="width: 300px" value="CLASS1">
+                        <option ng-repeat="class in avaibleClasses">{{ class.id }}</option>
+                    </select>
+                    <!--input type="text" ng-model="id_class_to_share" value="CLASS1"-->
+                    <br> <br> <br>
+
+                    <p> ID Archivo compartido: {{pdf_id}} </p>
+
+                    <p> Nombre Archivo compartido: {{pdf_nombre}} </p>
+
+                    <p> Ruta para mostrar PDF: {{pdf_route}} </p>
+                    <br> <br>
+                    <button class="btn" ng-click="stopSharing()">Dejar de Compartir</button>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9" ng-controller="pdfViewer">
+            <div align="center">
+                <div id="pdfPrev" type="button" class="btn-group">
+                    <button type="button" class="btn btn-info btn-sm" ng-click="prevPage()"><b>Anterior</b></button>
+                </div>
+                <div id="pdfNext" type="button" class="btn-group">
+                    <button type="button" class="btn btn-info btn-sm" ng-click="nextPage()"><b>Siguiente</b></button>
+                </div>
+                <span><b>
+                        Página
+                        <span id="page_num">{{pageNum}}</span>
+                        /
+                        <span id="page_count">{{pageTotal}}</span>
+                    </b></span>
+            </div>
+
+            <div align="center">
+                <canvas id="contentShareCanvas" class="canvasStudent" height="633" width="490"
+                        style="width: 100%"></canvas>
+            </div>
+        </div>
+    </div>
+</div>

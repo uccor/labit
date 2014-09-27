@@ -39,7 +39,12 @@ module.exports.routes = {
   '/index': {
     view: 'index'
   },
-  
+  '/professor': {
+        view: 'professor'
+  },
+  '/student': {
+    view: 'student'
+  },
   'get /login': 'AuthController.login',
   'get /logout': 'AuthController.logout',
   'get /register': 'AuthController.register',

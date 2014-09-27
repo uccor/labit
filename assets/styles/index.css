@@ -1,7 +1,5 @@
-html {
+body {
 	background: url('/images/wood.png');
-	font-size: 20pt;
-
 }
 .loginform ul {
 	padding: 0;
@@ -65,3 +63,4 @@ label {
 .registerForm button{
     
 }
+

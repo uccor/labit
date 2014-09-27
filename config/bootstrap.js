@@ -9,10 +9,31 @@
  * http://sailsjs.org/#/documentation/reference/sails.config/sails.config.bootstrap.html
  */
 
-module.exports.bootstrap = function(cb) {
+module.exports.bootstrap = function (cb) {
 
-  // It's very important to trigger this callback method when you are finished
-  // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
-  sails.services.passport.loadStrategies();
-  cb();
+    // This callback is run after all of our Users are created.
+    // It takes the returned User and stores it in our storeUsers array for later.
+    var afterPdf = function (err, newUsers) {
+        return 1;
+    };
+
+
+    sails.services.passport.loadStrategies();
+
+    Pdf.find({id: 'PDF1'}).exec(function (err, pdf) {
+        if(pdf.length > 0) { return  }
+            Pdf.create([
+                {id: 'PDF1', nombre: 'pdf1_example', ruta: '/pdf/pdf1.pdf'},
+                {id: 'PDF2', nombre: 'pdf2_example', ruta: '/pdf/pdf2.pdf'},
+                {id: 'PDF3', nombre: 'pdf3_example', ruta: '/pdf/pdf3.pdf'},
+                {id: '4', nombre: 'DerechoPenal', ruta: '/pdf/DerechoPenal.pdf'},
+                {id: '5', nombre: 'Scrum', ruta: '/pdf/Scrum.pdf'}
+            ]).exec(afterPdf);
+
+            Live_class_student.create([
+                {id: 'CLASS1', pdf_activo: 'false', pdf_ruta: '', pdf_numeroPagina: '2'},
+                {id: 'CLASS2', pdf_activo: 'false', pdf_ruta: '', pdf_numeroPagina: '2'}
+            ]).exec(afterPdf);
+    });
+    cb();
 };

@@ -1,0 +1,22 @@
+.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+    background-color: #CEECF5;
+}
+
+.table-hover > tbody > tr:hover > td,
+.table-hover > tbody > tr:hover > th {
+    background-color: #81BEF7;
+}
+
+.bkd{
+    background: url("/images/wood.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+
+.bkdW{
+    background-color: #ffffff;
+}
+
+.tituloPDF{
+    font-size: 16px;
+    color: navy;
+    font-weight: bold;
+}
