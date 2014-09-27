@@ -26,13 +26,17 @@
             + Use a different or additional preprocessor, like SASS, SCSS or Stylus
     -->
 
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
     <!--STYLES-->
     <link rel="stylesheet" href="/styles/importer.css">
     <link rel="stylesheet" href="/styles/index.css">
     <!--STYLES END-->
   </head>
 
-  <body ng-app>
+  <body ng-app="labitApp">
     <%- body %>
 
 
@@ -85,9 +89,11 @@
           + Use a different preprocessor, like TypeScript
 
     -->
-   
+
+    <script src="/js/dependencies/angular.min.js"></script>
     <!--SCRIPTS-->
     <script src="/js/dependencies/sails.io.js"></script>
+    <script src="/js/dependencies/angular-sails-bind.js"></script>
     <script src="/js/dependencies/angular.min.js"></script>
     <script src="/js/dependencies/jquery.js"></script>
     <script src="/js/model/index.js"></script>

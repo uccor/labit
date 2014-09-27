@@ -3,6 +3,11 @@ html {
 	font-size: 20pt;
 
 }
+
+body {
+    background: transparent !important;
+}
+
 .loginform ul {
 	padding: 0;
 	margin: 0;

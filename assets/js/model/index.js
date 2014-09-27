@@ -50,3 +50,12 @@ $(document).ready(function () {
 	// 	//Socket.emit('hey', {message: "digo hey cliente."});
 	// });
 });
+
+var app = angular.module("labitApp", ['ngSailsBind']);
+app.controller("AsistentesCtrl", function ($scope, $sailsBind) {
+    $sailsBind.bind("user", $scope);
+    $scope.colorFor = {
+        'Online': 'success',
+        'Offline': 'danger'
+    };
+});

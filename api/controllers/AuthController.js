@@ -67,9 +67,8 @@ var AuthController = {
    * @param {Object} res
    */
   logout: function (req, res) {
-    
-    var currentUsers = require('./CurrentUsersController.js');
-    currentUsers.remove(req,res);
+    req.user.status = "Offline";
+    req.user.save();
     req.logout();
     res.redirect('/');
   },
@@ -154,9 +153,8 @@ var AuthController = {
         
         // Upon successful login, send the user to the homepage were req.user
         // will available.
-        
-        var currentUsers = require('./CurrentUsersController.js');
-        currentUsers.join(req,res);
+        user.status = "Online";
+        user.save();
         res.redirect('/');
       });
     });
