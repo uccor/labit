@@ -24,7 +24,13 @@ var self = {
 	},
 
 	get: function (req,res) {
-		res.send(arrayUsers);
+		var a = []
+		for (user = 0 ; user < arrayUsers.length; user++) {
+			var b = {"usuario": arrayUsers[user].username}
+			a.push(b);
+		}
+		// res.send(arrayUsers);
+		res.send(a);
 	},
 
 	remove: function (req,res) {

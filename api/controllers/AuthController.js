@@ -147,11 +147,12 @@ var AuthController = {
     //--------================---------------==============
 
     passport.callback(req, res, function (err, user) {
+      console.log('Error: ',err);
       if (err) return tryAgain();
 
       req.login(user, function (loginErr) {
         if (loginErr) return tryAgain();
-        
+          
         // Upon successful login, send the user to the homepage were req.user
         // will available.
         

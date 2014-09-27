@@ -29,6 +29,16 @@ $(document).ready(function () {
 	io.socket.on('currentUser',function (socket) {
 		console.log(socket.users);
 	});
+
+
+
+	angular.module('labitApp', []).controller('CurrentUserController', ['$scope', function($scope) {
+    $scope.currentUsers = [
+      {text:'learn angular', done:true},
+      {text:'build an angular app', done:false}];
+
+  }]);
+
 	// io.socket.get('http://localhost:1337/getCurrentUsers', function (body, response) {
 	// 	console.log('Sails responded with: ', body);
 	// });

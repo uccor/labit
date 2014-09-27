@@ -16,7 +16,7 @@ describe('register page', function() {
   it('should register new user', function() {
       registerPage.get();
       // Parametros de fill: name, lastName, username, email, pass, pass2
-      registerPage.fill('luciano','leusi','pere3uis','pu90o@p.com','por','por');
+      registerPage.fill('lucia44no','leu3si','per2e3uis','pu590o@p.com','12','12');
       //------como se hace esto porque cuando querramos pasar muchos test hay que - 
       //cambiar estos datos siempre??
       registerPage.register();
