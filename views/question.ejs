@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html ng-app>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Cuestionario con AngularJS</title>
+    
+    <script scr="js/question.js"></script>
+
+</head>
+<body>
+<div id="test" ng-controller="TestController">
+    <h1>Ejemplo de cuestionario utilizando AngularJS</h1>
+    <div class="questions">
+        <div class="question" ng-repeat="question in questions">
+            <p class="status-{{question.status}}">{{question.text}}</p>
+            <div class="answers" ng-repeat="answer in question.answers">
+                <input type="radio" ng-model="question.userAnswer" value="{{answer.id}}"
+                       name="question-{{question.id}}" id="answer-{{question.id}}-{{answer.id}}"
+                       ng-change="validate(question)"/>
+                <label for="answer-{{question.id}}-{{answer.id}}">{{answer.text}}</label>
+            </div>
+        </div>
+    </div>
+    <div class="userStatus {{userStatus}}">
+        <span>Has acertado {{validAnswers}} de {{questions.length}}</span>
+    </div>
+</div>
+</body>
+</html>

@@ -59,8 +59,8 @@ module.exports.routes = {
   'get /show': 'ConnectController.show',
   'get /getCurrentUsers': 'CurrentUsersController.get',
   
-  '/chat': {
-    view: 'chatPrueba'
+  '/question': {
+    view: 'question'
   },
   
   
