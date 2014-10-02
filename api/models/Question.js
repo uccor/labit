@@ -11,7 +11,8 @@ module.exports = {
 		text: { type: 'string' , required:true},
 		userAnswer: { type: 'integer', required:true },
 		status: {type: 'string', required:true, defaultsTo: 'not answered'},
-		user: {type : "User"}
+		user: {type : "User"},
+		answers: {type : "array", required:true}
 	}
 };
 
