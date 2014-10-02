@@ -1,9 +1,33 @@
 
 	<title>Hi!!!</title>
-	
-	<style type="text/css" src="/style/index.css"></style>
-	Bienvenido al sistema!!!
-	<!-- <section class="loginform cf">  
+
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Bienvenido al Sistema!</h1>
+            <p>Este es el lugar desde el cual podrás ir a todas partes del sitio.</p>
+            <!--p><a class="btn btn-primary btn-lg" role="button">Learn more</a></p-->
+        </div>
+
+        <div class="container col-md-4">
+            <div class="panel panel-info">
+                <!-- Default panel contents -->
+                <div class="panel-heading">Lista de Alumnos</div>
+                <div class="panel-body">
+                    <p>Esta es la lista de alumnos y su estado</p>
+                </div>
+                <table class="table" ng-controller="AsistentesCtrl">
+
+                    <tr ng-repeat="user in users">
+                        <td>{{user.username}}</td>
+                        <td><span class="label label-{{colorFor[user.status]}}">{{user.status}}</span></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+	<!-- <section class="loginform cf">
 	<form name="login" action="index_submit" method="get" accept-charset="utf-8">  
 	    <ul>  
 	        <li><label for="usermail">Email</label>  

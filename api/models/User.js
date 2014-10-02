@@ -27,6 +27,7 @@ module.exports = {
     status: {type: 'string', required:true, defaultsTo:'offline'},
 	username  : { type: 'string', unique: true },
     email     : { type: 'email',  unique: true },
+    status    : { type: 'string', unique: false, defaultsTo: 'Offline', required: 'true'},
     passports : { collection: 'Passport', via: 'user' }
   }
 };
