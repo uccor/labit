@@ -3,7 +3,7 @@
 
 var RegisterPage= function() {
     this.get = function() {
-         browser.get('http://localhost:1337/register'); 
+         browser.get('http://localhost:'+process.env.PORT+'/register');
     }
 
     this.fill= function(name, lastName, username, email, pass, pass2) {

@@ -3,7 +3,7 @@
  */
 var ProfessorPage = function () {
     this.get = function () {
-        browser.get('http://localhost:1337/professor');
+        browser.get('http://localhost:'+process.env.PORT+'/professor');
     }
 
     this.getFirtListItem = function () {

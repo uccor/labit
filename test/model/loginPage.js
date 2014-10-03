@@ -3,7 +3,7 @@
 
 var LoginPage= function() {
     this.get = function() {
-         browser.get('http://localhost:1337/login'); 
+        browser.get('http://localhost:'+process.env.PORT+'/login');
     }
 
     this.fill= function(user, pass) {

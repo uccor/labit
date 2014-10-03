@@ -3,7 +3,7 @@
 
 var StudentPage= function() {
     this.get = function() {
-        browser.get('http://localhost:1337/student');
+        browser.get('http://localhost:'+process.env.PORT+'/student');
     }
 
     this.suscribeToClass= function(classToSelect) {
