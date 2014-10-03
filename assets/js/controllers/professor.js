@@ -2,17 +2,17 @@
  * Created by guille on 13/09/14.
  */
 
-var app = angular.module('labit-app', ['ngSailsBind']);
 
 app.controller('update_PdfsController', ['$scope', '$rootScope', "$sailsBind",function($scope, $rootScope, $sailsBind) {
 
-    $scope.avaibleClasses ={};
-    io.socket.get('/api/live_class_student/',function messageReceived(jsonObject){
+    $scope.live_class_students ={};
+    /*io.socket.get('/api/live_class_student/',function messageReceived(jsonObject){
         $scope.avaibleClasses =jsonObject;
         if(!$scope.$$phase) {
             $scope.$apply();
         }
-    })
+    })*/
+    $sailsBind.bind("api/live_class_student", $scope);
 
     $scope.share = function(id,route,nombre){
 
@@ -43,8 +43,9 @@ app.controller('update_PdfsController', ['$scope', '$rootScope', "$sailsBind",fu
     };*/
 
     $sailsBind.bind("api/pdf", $scope);
-
+/*
     $scope.$on('pdfPageChanged', function(event, args) {
         io.socket.put('/api/live_class_student/'+ $scope.id_class_to_share, {pdf_numeroPagina: args});
     });
+    */
 }]);

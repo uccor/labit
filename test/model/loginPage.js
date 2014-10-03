@@ -25,7 +25,7 @@ var LoginPage= function() {
 
     }
     this.close = function () {
-        browser.get('http://localhost:1337/logout'); 
+        browser.get('http://localhost:'+process.env.PORT+'/logout');
     }
 }
 module.exports = new LoginPage();
