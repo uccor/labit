@@ -8,11 +8,11 @@
 module.exports = {
 
 	attributes: {
-		text: { type: 'string' , required: true},
-		
-		status: {type: 'string', required: true, defaultsTo: 'not answered'},
-		
-		answers: {type : "array", required: true}
+		text: { type: 'string' , required:true},
+		userAnswer: { type: 'integer', required:true },
+		status: {type: 'string', required:true, defaultsTo: 'not answered'},
+		user: {type : "User"},
+		answers: {type : "array", required:true}
 	}
 };
 
