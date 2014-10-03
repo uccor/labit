@@ -1,39 +1,31 @@
-<!DOCTYPE HTML>
-<html ng-app='question'>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>Cuestionario con AngularJS</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.4/angular.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  
+    <script src="js/dependencies/jquery.js"></script>
     <script>
-    
-    angular.module('question', [])
-        .controller('TestController', ['$scope', function ($scope) {
-            $.ajax({
-                    url: 'localhost:1337/api/question',
-                    dataType: 'json',
-                    success: function (data) {
-                        console.log(data);
-                    }
-                    
-                });
+        $(document).ready(function() {
+            var ques;
+            io.socket.get('/api/question', function (resData) {
+                console.log(resData);
+                ques = resData;
+                
+                //resData; // => {id:9, name: 'Timmy Mendez'}
+                
+                app.controller('TestController', ['$scope', function ($scope) {
+                    $scope.questions = ques;
+                    $scope.userStatus = '';
+                    $scope.validAnswers = 0;     
+                }]);
+            });   
             
-            $scope.questions = [
-                            
-                        ];
-                  
-            $scope.userStatus = '';
-         
-            $scope.validAnswers = 0;
-         
-        }])
+            
+
+        });
+        
+
     </script>
    
-</head>
 
-<body>
-<div id="test" ng-controller="TestController">
-    <h1>Ejemplo de cuestionario utilizando AngularJS</h1>
+<div ng-controller="TestController">
+    <h1>Preguntas:</h1>
     
     <div class="questions">
         <div class="question" ng-repeat="question in questions">
@@ -46,9 +38,6 @@
             </div>
         </div>
     </div>
-    <div class="userStatus {{userStatus}}">
-        <span>Has acertado {{validAnswers}} de {{questions.length}}</span>
-    </div>
+
+   
 </div>
-</body>
-</html>
