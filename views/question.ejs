@@ -4,24 +4,35 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Cuestionario con AngularJS</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.4/angular.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script>
-    
     angular.module('question', [])
         .controller('TestController', ['$scope', function ($scope) {
-            $.ajax({
-                    url: 'localhost:1337/api/question',
-                    dataType: 'json',
-                    success: function (data) {
-                        console.log(data);
-                    }
-                    
-                });
-            
             $scope.questions = [
-                            
-                        ];
-                  
+                {
+                    id : 1,
+                    text:'',
+                    validAnswer : 1,
+                    userAnswer : null,
+                    status : '',
+                    answers: [
+                        {id : 1, text : 'Respuesta 1.1'},
+                        {id : 2, text : 'Respuesta 1.2'},
+                        {id : 3, text : 'Respuesta 1.3'}
+                    ]
+                },
+                {
+                    id : 2,
+                    text:'Otra pregunta',
+                    validAnswer : 2,
+                    userAnswer : null,
+                    status : '',
+                    answers: [
+                        {id : 1, text : 'Respuesta 2.1'},
+                        {id : 2, text : 'Respuesta 2.2'}
+                    ]
+                }
+            ];
+         
             $scope.userStatus = '';
          
             $scope.validAnswers = 0;
