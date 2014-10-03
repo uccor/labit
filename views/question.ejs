@@ -1,37 +1,11 @@
 
-  
-    <script src="js/dependencies/jquery.js"></script>
-    <script>
-        $(document).ready(function() {
-            var ques;
-            io.socket.get('/api/question', function (resData) {
-                console.log(resData);
-                ques = resData;
-                
-                //resData; // => {id:9, name: 'Timmy Mendez'}
-                
-                app.controller('TestController', ['$scope', function ($scope) {
-                    $scope.questions = ques;
-                    $scope.userStatus = '';
-                    $scope.validAnswers = 0;     
-                }]);
-            });   
-            
-            
-
-        });
-        
-
-
-    </script>
-   
-
 <div ng-controller="TestController">
     <h1>Preguntas:</h1>
     
     <div class="questions">
         <div class="question" ng-repeat="question in questions">
-            <p class="status-{{question.status}}">{{question.text}}</p>
+           
+    
             <div class="answers" ng-repeat="answer in question.answers">
                 <input type="radio" ng-model="question.userAnswer" value="{{answer.id}}"
                        name="question-{{question.id}}" id="answer-{{question.id}}-{{answer.id}}"
