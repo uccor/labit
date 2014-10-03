@@ -37,7 +37,8 @@ var configurationByEnvironment = {
                 version: 11
             },genericCapability)
 
-        ]
+        ],
+        baseUrl:'http://127.0.0.1:8080'
     }, genericConfig),
 
     dev: extend({
