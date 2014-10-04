@@ -122,3 +122,4 @@ batch-afk.bat
 start-afk.bat
 end-afk.bat
 *.gypi
+assets/js/dependencies
