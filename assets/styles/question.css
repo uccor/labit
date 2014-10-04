@@ -1,0 +1,9 @@
+.question {
+	font-size: 50px;
+}
+.questions .answers {
+	font-size: 30px;
+}
+.questions .answers label.question {
+	display: inline-block;
+}

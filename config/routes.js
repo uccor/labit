@@ -62,6 +62,7 @@ module.exports.routes = {
   '/question': {
     view: 'question'
   },
+  'post /answer/send': 'AnswerController.sendAnswer'
   
   
   /***************************************************************************

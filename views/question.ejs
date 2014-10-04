@@ -1,16 +1,15 @@
 
-<div ng-controller="TestController">
+<div ng-controller="QuestionController">
     <h1>Preguntas:</h1>
     
     <div class="questions">
         <div class="question" ng-repeat="question in questions">
            
-            <p class="status-{{question.status}}">{{question.text}}</p>
+            <p class="status-{{question.status}}" id="{{question.id}}" >{{question.text}}</p>
+
             <div class="answers" ng-repeat="answer in question.answers">
-                <input type="radio" ng-model="question.userAnswer" value="{{answer.id}}"
-                       name="question-{{question.id}}" id="answer-{{question.id}}-{{answer.id}}"
-                       ng-change="validate(question)"/>
-                <label for="answer-{{question.id}}-{{answer.id}}">{{answer.text}}</label>
+                <input type="radio" id="{{$index}}" name="question-{{question.id}}" ng-click="sendResult(this)"/>
+                <label class="question" for="{{$index}}">{{answer}}</label>
             </div>
         </div>
     </div>
