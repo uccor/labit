@@ -5,7 +5,7 @@
     <div class="questions">
         <div class="question" ng-repeat="question in questions">
            
-    
+            <p class="status-{{question.status}}">{{question.text}}</p>
             <div class="answers" ng-repeat="answer in question.answers">
                 <input type="radio" ng-model="question.userAnswer" value="{{answer.id}}"
                        name="question-{{question.id}}" id="answer-{{question.id}}-{{answer.id}}"
