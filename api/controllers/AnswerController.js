@@ -20,18 +20,18 @@ module.exports = {
 			
 		// });
 		try {
-			var userSelected = req.user;
+			var userSelected = req.user["id"];
 			var questionSelected = req.param('question');
 			var answerSelected = req.param('answer');
 			console.log ('user:', userSelected["id"], ' question: ', questionSelected, ' ans: ', answerSelected);
 		} 
 		catch (err) {
-			console.error('Error in AnswerController: ',err); 
+			console.error('Error in AnswerController: user is login?'); 
 		}
 		
 
 		Answer.create({
-			user : userSelected["id"],
+			user : userSelected,
 			question : questionSelected,
 			userAnswer : answerSelected
 		}).exec(function(err, ans) {
