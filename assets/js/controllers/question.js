@@ -21,3 +21,7 @@ app.controller('QuestionController', ['$scope',"$sailsBind", function ($scope, $
     	);
     }
 }]);
+
+io.socket.get('/question/getAll', function (data, e) {
+	console.log (data);
+});
