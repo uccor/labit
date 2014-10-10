@@ -21,20 +21,17 @@ app.controller('QuestionController', ['$scope',"$sailsBind", function ($scope, $
     		}
     	);
     };
+    $sailsBind.bind("api/answer", $scope);
+    // $sailsBind.bind("api/answer", $scope, {"question": {"id": "13"}});
     $scope.searchAnswers = function(ques){
-    	io.socket.get(
-    		'/answer/responses', 
-    		{
-	    		id: ques.question.id
-    		}, 
-    		function (data, jwres) {
+    	io.socket.get('/answer/responses', { id: ques.question.id }, function (data, jwres) {
     			// $scope.responses = [];
-    			ques.$parent.responses = [];
+    			// ques.$parent.responses = [];
     			console.log(data);
     			$(data.responsesArray).each(function(ind, ans) {
     				// $scope.responses.push(ans);
     				ques.$parent.responses.push(ans);
-    				// no me carga la primera vez...
+    				//TENGO QUE HACER DOBLE CLICK... :S
     			});
     			console.log($scope.responses);
     		}

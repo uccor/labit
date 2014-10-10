@@ -55,14 +55,14 @@ module.exports = {
 
 		Answer.find({
 			or : [
-    			{question : questionId},
-    			{}
+    			{question : questionId}
+    			// ,{}
   			],limit: 3})
 		.populate('user')
 		.populate('question')
 		.exec(function(err, ans) {
-			// console.log('ans: ',ans );
-			// console.log('questionId', questionId);
+			console.log('ans: ',ans );
+			console.log('questionId', questionId);
 			var answers = [];
 			ans.forEach(function(an) {
 				a = {
@@ -74,6 +74,7 @@ module.exports = {
 
 			if(questionId) {
 				var quest = Question.findOne({id:questionId}).exec(function(err, ques) {
+
 					// res.view('answerRealTime', {"answers": answers, "question": ques.text});
 					res.json({"responsesArray": answers});
 				});	

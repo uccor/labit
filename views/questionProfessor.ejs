@@ -9,8 +9,8 @@
         </div>
     </div>
     <div id="answers"> 
-    {{responses.length}}
-        <div ng-repeat="response in responses">dd -
+    <p>Cantidad de Respuestas: {{responses.length}}</p>
+        <div ng-repeat="response in answers">
             <p id="{{response.id}}" >{{response.user}} --> {{response.answer}}</p>
         </div>
     </div>
