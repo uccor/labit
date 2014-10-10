@@ -20,28 +20,69 @@ module.exports = {
 			
 		// });
 		try {
-			var userSelected = req.user["id"];
-			var questionSelected = req.param('question');
+			// var userSelected = req.user["id"];
+			var userSelected = req.user;
 			var answerSelected = req.param('answer');
-			console.log ('user:', userSelected["id"], ' question: ', questionSelected, ' ans: ', answerSelected);
+			var questionSelectedId = req.param('question');
+			
+			if (userSelected) {
+				Question.findOne({id: questionSelectedId}).exec(function(err, ques) {
+					var questionSelected = ques;
+					Answer.create({
+						user : userSelected,
+						question : questionSelected,
+						userAnswer : answerSelected
+					}).exec(function(err, ans) {
+						if (ans) {
+							status = 'ok';
+						}
+						res.json({"status": status});
+					});	
+				});
+			}
+			else {console.error('user is login?');}
+			// console.log ('user:', userSelected["id"], ' question: ', questionSelected, ' ans: ', answerSelected);
 		} 
 		catch (err) {
 			console.error('Error in AnswerController: user is login?'); 
-		}
-		
+		}		
+	},
 
-		Answer.create({
-			user : userSelected,
-			question : questionSelected,
-			userAnswer : answerSelected
-		}).exec(function(err, ans) {
-			if (ans) {
-				status = 'ok';
-				
+	getResponses: function (req, res) {
+		var questionId = req.param('id');
+
+		var result = [];
+
+		Answer.find({
+			or : [
+    			{question : questionId},
+    			{}
+  			],limit: 3})
+		.populate('user')
+		.populate('question')
+		.exec(function(err, ans) {
+			// console.log('ans: ',ans );
+			// console.log('questionId', questionId);
+			var answers = [];
+			ans.forEach(function(an) {
+				a = {
+					"user": an.user.username,
+					"answer": an.question.answers[an.userAnswer]
+				};	
+				answers.push(a);
+			});
+
+			if(questionId) {
+				var quest = Question.findOne({id:questionId}).exec(function(err, ques) {
+					// res.view('answerRealTime', {"answers": answers, "question": ques.text});
+					res.json({"responsesArray": answers});
+				});	
 			}
-			res.json({"status": status});
-		});	
-
+			// else {
+			// 	res.view('answerRealTime', {"answers": answers,"question": "Todas las respuestas:"});
+			// };
+			
+		});
 		
 	}
 };

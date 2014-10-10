@@ -11,8 +11,8 @@ module.exports = {
 	// user: {type : "User", required: true, via: 'user'},
  // 	question: {type : "Question", required: true, via: 'question'},
  //  	userAnswer: { type: 'integer', required: true }
- 	user: { required: true, via: 'user'},
- 	question: { required: true, via: 'question'},
+ 	user: { required: true, model: 'user'},
+ 	question: { required: true, model: 'question'},
   	userAnswer: { type: 'integer', required: true }
   }
 };

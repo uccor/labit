@@ -2,6 +2,7 @@
 app.controller('QuestionController', ['$scope',"$sailsBind", function ($scope, $sailsBind) {
 	$sailsBind.bind("api/question", $scope);
     $scope.userStatus = '';
+   	$scope.responses = [];
     $scope.validAnswers = 0;     
     $scope.sendResult = function(answer){
     	var questionId = answer.$parent.question.id;
@@ -19,9 +20,33 @@ app.controller('QuestionController', ['$scope',"$sailsBind", function ($scope, $
     			} 
     		}
     	);
+    };
+    $scope.searchAnswers = function(ques){
+    	io.socket.get(
+    		'/answer/responses', 
+    		{
+	    		id: ques.question.id
+    		}, 
+    		function (data, jwres) {
+    			// $scope.responses = [];
+    			ques.$parent.responses = [];
+    			console.log(data);
+    			$(data.responsesArray).each(function(ind, ans) {
+    				// $scope.responses.push(ans);
+    				ques.$parent.responses.push(ans);
+    				// no me carga la primera vez...
+    			});
+    			console.log($scope.responses);
+    		}
+    	);
     }
+    
+    // $scope.$on('pdfChangePage', function(event, args) {
+    //     $scope.changePage(args);
+    //     $scope.pageNum = args;
+    // });
 }]);
 
-io.socket.get('/question/getAll', function (data, e) {
-	console.log (data);
-});
+// io.socket.get('/question/getAll', function (data, e) {
+// 	console.log (data);
+// });

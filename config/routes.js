@@ -63,7 +63,9 @@ module.exports.routes = {
     view: 'question'
   },
   'post /answer/send': 'AnswerController.sendAnswer',
-  'get /question/getAll': 'QuestionController.getAll'
+  'get /answer/responses': 'AnswerController.getResponses',
+  '/question_professor': { view: 'questionProfessor' }
+
   
   
   /***************************************************************************

@@ -9,9 +9,7 @@ module.exports = {
 
 	attributes: {
 		text: { type: 'string' , required: true},
-		
 		status: {type: 'string', required: true, defaultsTo: 'not answered'},
-		
 		answers: {type : "array", required: true}
 	}
 };

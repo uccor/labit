@@ -1,5 +1,5 @@
 
-
+<!-- 
 <div ng-controller="QuestionController">
     <h1>Respuestas:</h1>
     
@@ -15,5 +15,10 @@
         </div>
     </div>
 
-   
-</div>
+    
+</div> -->
+<h2><%= question %></h2>
+    <label id="textA"></label>
+    <% _.each(answers, function (answer) { %>
+        <li><%= answer.user %> <b>--></b> <%= answer.answer %> </li>
+    <% }) %>
