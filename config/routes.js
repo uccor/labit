@@ -66,6 +66,8 @@ module.exports.routes = {
   'get /answer/responses': 'AnswerController.getResponses',
   '/question_professor': { view: 'questionProfessor' },
   'get /question/visible': 'QuestionController.getVisible',
+  '/make_question': { view: 'makeQuestion' }
+
 
   
   
