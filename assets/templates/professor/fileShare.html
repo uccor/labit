@@ -1,10 +1,43 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+<div class="bkd row">
+    <div class="bkdW col-md-3" ng-controller="update_PdfsController">
+        <table class="table table-striped table-hover table-condensed">
+            <caption><p class="tituloPDF"> Archivos Subidos </p></caption>
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Nombre del Archivo</th>
+                <th> Compartido</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="pdf in pdfs">
+                <td>{{ pdf.id }}</td>
+                <td>{{ pdf.nombre }}</td>
+                <td class="text-center">
+                    <img id="img_{{ pdf.id }}" src="images/ico_pdf.png"
+                         ng-click="share(pdf.id,pdf.ruta,pdf.nombre)">
+                </td>
+            </tr>
+            </tbody>
+        </table>
 
-</body>
-</html>
+        <div>
+            <div> Clase a la cual desea compartir:
+                <select class="form-control" ng-model="id_class_to_share" style="width: 300px" value="CLASS1">
+                    <option ng-repeat="class in live_class_students">{{ class.id }}</option>
+                </select>
+                <br> <br> <br>
+
+                <p> ID Archivo compartido: {{pdf_id}} </p>
+
+                <p> Nombre Archivo compartido: {{pdf_nombre}} </p>
+
+                <p> Ruta para mostrar PDF: {{pdf_route}} </p>
+                <br> <br>
+                <button class="btn" ng-click="stopSharing()">Dejar de Compartir</button>
+
+            </div>
+
+        </div>
+    </div>
+</div>
