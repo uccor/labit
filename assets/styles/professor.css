@@ -12,11 +12,37 @@
 }
 
 .bkdW{
+    background: url("/images/wood.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+
+.bkdA{
     background-color: #ffffff;
 }
 
 .tituloPDF{
     font-size: 16px;
+    color: navy;
+    font-weight: bold;
+}
+
+.logo{
+    width: 190px;
+    height: 185px;
+    float: left;
+}
+
+.buscar{
+    width: 190px;
+    height: 300px;
+}
+
+.titulo {
+    color: #5682de;
+    font-size: 50px;
+}
+
+.cbox{
+    font-size: 14px;
     color: navy;
     font-weight: bold;
 }

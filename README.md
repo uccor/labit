@@ -1,4 +1,6 @@
-liverabbit2
+Labit
+=====
 
-[ ![Codeship Status for stefanoantonel/liverabbit2](https://www.codeship.io/projects/9d3a5340-fbf4-0131-c83b-72157ffddf87/status)](https://www.codeship.io/projects/29288)
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/MEugeC.svg)](https://saucelabs.com/u/MEugeC)
+[ ![Codeship Status for uccor/labit](https://codeship.io/projects/61daf690-1a8d-0132-406f-7ada615c984a/status?branch=master)](https://codeship.io/projects/34704)
 
