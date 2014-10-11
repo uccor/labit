@@ -5,7 +5,7 @@
   "license": "MIT",
   "dependencies": {
     "angular": "~1.2.26",
-    "angular-sails-bind": "~1.0.3",
+    "angular-sails-bind": "~1.0.5",
     "jquery": "~2.1.1",
     "pdfjs-bower": "~1.0.233",
     "sails.io.js": "~0.10.3",
