@@ -1,12 +1,12 @@
 
-<div ng-controller="QuestionController">
+<div ng-controller="QuestionControllerStudent">
     <h1>Preguntas:</h1>
     
     <div class="questions">
         <div class="question" ng-repeat="question in questions">
            
             <p class="status-{{question.status}}" id="{{question.id}}" >{{question.text}}</p>
-
+            
             <div class="answers" ng-repeat="answer in question.answers">
                 <input type="radio" id="{{$index}}" name="question-{{question.id}}" ng-click="sendResult(this)"/>
                 <label class="question" for="{{$index}}">{{answer}}</label>
