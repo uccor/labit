@@ -36,8 +36,43 @@ app.controller('QuestionController', ['$scope',"$sailsBind", function ($scope, $
     			console.log($scope.responses);
     		}
     	);
-    }
-    
+    };
+
+
+    $scope.addQuestion = function() {
+        if ($scope.text === '') {
+            return;
+        }
+        var ans = [];
+        var  answares = $("li > input");
+
+        angular.forEach(answares, function(val, key) {
+            ans.push(val.value);
+            val.value="";
+        });
+        $scope.questions.push({
+            text: $scope.text,
+            status: $scope.status,
+            answers: ans
+        });
+        $scope.text = '';
+        $scope.status = '';
+        $scope.answer = '';
+
+    };
+
+    $scope.addAnswer = function() {
+
+        var template = $("#template");
+        var clone= template.clone();
+        clone.removeClass("hidden");
+        clone.removeAttr("id");
+
+        $("#allAnswers").append(clone);
+
+    };
+
+
     // $scope.$on('pdfChangePage', function(event, args) {
     //     $scope.changePage(args);
     //     $scope.pageNum = args;

@@ -1,4 +1,19 @@
+<script>
+
+</script>
+
 <div ng-controller="QuestionController">
-    <p>Hace tu pregunta</p>
-    <input type="text">
+        <form ng-submit="addQuestion()">
+            <input type="text" placeholder="text" ng-model="text">
+            <br>
+            <input type="text" placeholder="status" ng-model="status">
+            <br>
+            <ul id="allAnswers">
+                <li><input type="text" placeholder="Respuesta"></li>
+                <li id="template" class="hidden"><input type="text" placeholder="Respuesta"></li>
+            </ul>
+            <button ng-click="addAnswer()">Otra</button>
+            <br>
+            <button type="submit">Post</button>
+        </form>
 </div>
