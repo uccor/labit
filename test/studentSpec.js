@@ -9,7 +9,7 @@ describe('Student page', function () {
             return  studentPage.getTotalPages().then(function (txt) {
                 return (txt == '4');
             });
-        }, 20000);
+        }, 30000);
 
         expect(studentPage.getTotalPages().getText()).toEqual('4');
     });
@@ -32,7 +32,7 @@ describe('Student page', function () {
             return  studentPage.getTotalPages().then(function (txt) {
                 return (txt == '3');
             });
-        }, 20000);
+        }, 30000);
         expect(studentPage.getTotalPages()).toEqual('3');
     });
 

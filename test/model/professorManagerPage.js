@@ -12,7 +12,7 @@ var ProfessorManagerPage = function () {
                 }
                 return false;
             });
-        }, 5000);
+        }, 30000);
     }
 
     this.getPdfElement = function (pdf) {
@@ -83,7 +83,7 @@ var ProfessorManagerPage = function () {
                 }
                 return false;
             });
-        }, 5000);
+        }, 30000);
     }
 
     this.getSailsClassData = function (que) {

@@ -14,7 +14,7 @@ var StudentPage = function () {
                 }
                 return false;
             });
-        }, 20000);
+        }, 30000);
     }
 
     this.suscribeToClass = function (classToSelect) {
@@ -30,7 +30,7 @@ var StudentPage = function () {
 
 
     this.mockProfesorShare = function (classToShare, file) {
-        tiempo = typeof tiempo !== 'undefined' ? tiempo : 20000;
+        tiempo = typeof tiempo !== 'undefined' ? tiempo : 30000;
         browser.executeScript("io.socket.put('/api/live_class_student/" + classToShare + "', {pdf_sharing: 'true', pdf_url: '" + file + "' });  ");
 
         browser.wait(function () {
@@ -45,7 +45,7 @@ var StudentPage = function () {
         }, tiempo);
     }
     this.mockProfesorAllowNavigation = function (classToShare, allow) {
-        tiempo = typeof tiempo !== 'undefined' ? tiempo : 20000;
+        tiempo = typeof tiempo !== 'undefined' ? tiempo : 30000;
         browser.executeScript("io.socket.put('/api/live_class_student/" + classToShare + "', {pdf_allowNavigation: '" + allow + "' });  ");
 
         browser.wait(function () {
@@ -61,7 +61,7 @@ var StudentPage = function () {
     }
 
     this.mockProfesorChangePage = function (classToShare, page) {
-        tiempo = typeof tiempo !== 'undefined' ? tiempo : 20000;
+        tiempo = typeof tiempo !== 'undefined' ? tiempo : 30000;
         browser.executeScript("io.socket.put('/api/live_class_student/" + classToShare + "', {pdf_studentPageNumber: " + page + "});  ");
 
         browser.wait(function () {
