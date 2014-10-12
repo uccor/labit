@@ -39,14 +39,14 @@ module.exports.bootstrap = function (cb) {
                 pdf_allowNavigation: false,
                 pdf_url: '',
                 pdf_studentPageNumber: 0,
-                pdf_screenPageNumber: 0,
+                pdf_screenPageNumber: 0
             },
             {  id: 'CLASS2', pdf_sharing: 'false',
                 pdf_synchronize: false,
                 pdf_allowNavigation: false,
                 pdf_url: '',
                 pdf_studentPageNumber: 0,
-                pdf_screenPageNumber: 0,
+                pdf_screenPageNumber: 0
             }
         ]).exec(afterPdf);
     });

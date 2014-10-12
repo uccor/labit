@@ -25,7 +25,7 @@ app.controller('pdfViewer', ['$scope', '$rootScope', "$sailsBind", function ($sc
             // Limpio el canvas
             var canvas = document.getElementById('contentShareCanvas');
             var ctx = canvas.getContext('2d');
-                // Store the current transformation matrix
+            // Store the current transformation matrix
             ctx.save();
 
             // Use the identity matrix while clearing the canvas
@@ -33,7 +33,7 @@ app.controller('pdfViewer', ['$scope', '$rootScope', "$sailsBind", function ($sc
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
             // Restore the transform
-                            ctx.restore();
+            ctx.restore();
 
         } else {
             $scope.navigation = navigation;
@@ -102,7 +102,21 @@ app.controller('pdfViewer', ['$scope', '$rootScope', "$sailsBind", function ($sc
             });
         });
     };
+    $scope.prevPage = function () {
+        if ($scope.pageNum <= 1) {
+            return;
+        }
+        $scope.pageNum--;
+        $scope.changePage($scope.pageNum);
+    };
 
+    $scope.nextPage = function () {
+        if ($scope.pageNum >= $scope.pageTotal) {
+            return;
+        }
+        $scope.pageNum++;
+        $scope.changePage($scope.pageNum);
+    };
     $scope.$on('pdfChange', function (event, args) {
         $scope.getpdf(args.file, args.pag, args.nav);
     });
