@@ -111,6 +111,6 @@ app.controller('professorManagerFooter', ['$scope', '$rootScope', "$sailsBind", 
 
 
 app.controller('professorManager', ['$scope', '$rootScope', "$sailsBind", function ($scope, $rootScope, $sailsBind) {
-
+    $scope.nada = {};
     $sailsBind.bind("api/live_class_student", $scope);
 }]);

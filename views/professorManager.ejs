@@ -1,4 +1,4 @@
-<div ng-controller="professorManager">
+<div ng-controller="professorManager" id="professorManager">
     <div class="page-header" align="center">
 
         <b class="titulo">
@@ -22,7 +22,6 @@
 
             <div class="col-md-2">
                 <select class="form-control" ng-model="id_class_to_share">
-                    <option value=""></option>
                     <option ng-repeat="class in live_class_students">{{ class.id }}</option>
                 </select>
             </div>
@@ -86,7 +85,7 @@
                     </div>
                 </div>
                 <div class="col-md-2">
-                    <button class="btn" ng-click="stopSharing()" ng-disabled="!sharing">Dejar de Compartir</button>
+                    <button id="stopSharing" class="btn" ng-click="stopSharing()" ng-disabled="!sharing">Dejar de Compartir</button>
                 </div>
             </div>
         </div>
