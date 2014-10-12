@@ -56,26 +56,30 @@ module.exports.routes = {
     'post /auth/local': 'AuthController.callback',
     'post /auth/local/:action': 'AuthController.callback',
 
-    'get /auth/:provider': 'AuthController.provider',
-    'get /auth/:provider/callback': 'AuthController.callback',
-
     'get /show': 'ConnectController.show',
     'get /getCurrentUsers': 'CurrentUsersController.get',
 
     '/question': {
-        view: 'question'
+      view: 'question'
     },
-    'post /answer/send': 'AnswerController.sendAnswer'
+    'post /answer/send': 'AnswerController.sendAnswer',
+    'get /answer/responses': 'AnswerController.getResponses',
+    '/question_professor': { view: 'questionProfessor' },
+    'get /question/visible': 'QuestionController.getVisible',
+    '/make_question': { view: 'makeQuestion' }
 
 
-    /***************************************************************************
-     *                                                                          *
-     * Custom routes here...                                                    *
-     *                                                                          *
-     *  If a request to a URL doesn't match any of the custom routes above, it  *
-     * is matched against Sails route blueprints. See `config/blueprints.js`    *
-     * for configuration options and examples.                                  *
-     *                                                                          *
-     ***************************************************************************/
+  
+  
+  /***************************************************************************
+  *                                                                          *
+  * Custom routes here...                                                    *
+  *                                                                          *
+  *  If a request to a URL doesn't match any of the custom routes above, it  *
+  * is matched against Sails route blueprints. See `config/blueprints.js`    *
+  * for configuration options and examples.                                  *
+  *                                                                          *
+  ***************************************************************************/
+
 
 };
