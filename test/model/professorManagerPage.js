@@ -1,6 +1,18 @@
 var ProfessorManagerPage = function () {
     this.get = function () {
         browser.get('http://localhost:' + process.env.PORT + '/professorManager#/fileShare');
+        browser.wait(function () {
+            return browser.executeScript(function () {
+                return angular.element($('#professorManager')).scope()['live_class_students'];
+            }).then(function (dat) {
+                if (dat != null) {
+                    if (typeof dat[0] != 'undefined') {
+                        return dat[0]['id'] == 'CLASS1';
+                    }
+                }
+                return false;
+            });
+        }, 5000);
     }
 
     this.getPdfElement = function (pdf) {
@@ -34,7 +46,7 @@ var ProfessorManagerPage = function () {
         }
         element(By.repeater('pdf in pdfs').row(row).column('id')).click();
     }
-    this.stopSharing= function () {
+    this.stopSharing = function () {
         element(By.id('stopSharing')).click();
     }
 
@@ -59,10 +71,27 @@ var ProfessorManagerPage = function () {
         return element(By.id('img_' + id)).click();
     }
 
-    this.getSailsClassData = function () {
+    this.waitForRemote = function (index, value) {
+        browser.wait(function () {
+            return browser.executeScript(function () {
+                return angular.element($('#professorManager')).scope()['live_class_students'];
+            }).then(function (dat) {
+                if (dat != null) {
+                    if (typeof dat[0] != 'undefined') {
+                        return dat[0][index] == value;
+                    }
+                }
+                return false;
+            });
+        }, 5000);
+    }
+
+    this.getSailsClassData = function (que) {
         //TODO: Ver si es la mejor forma ver si sails-bind respondio.
         return browser.executeScript(function () {
             return angular.element($('#professorManager')).scope()['live_class_students'];
+        }).then(function (cla) {
+            return cla[0][que];
         });
     }
 

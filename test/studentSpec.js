@@ -1,7 +1,7 @@
 var studentPage = require('./model/studentPage');
 
 describe('Student page', function () {
-    it('should subscribe to a class and have 3 pages in the pdf1.pdf being shared.', function () {
+    it('should subscribe to a class and have 4 pages in the pdf1.pdf being shared.', function () {
         studentPage.get();
         studentPage.suscribeToClass('CLASS2');
         studentPage.mockProfesorShare('CLASS2', '/pdf/pdf1.pdf');
@@ -14,12 +14,12 @@ describe('Student page', function () {
         expect(studentPage.getTotalPages().getText()).toEqual('4');
     });
 
-    it('shoud change the page when the professor change the page', function (){
-        studentPage.mockProfesorChangePage('CLASS2',1);
+    it('shoud change the page when the professor change the page', function () {
+        studentPage.mockProfesorChangePage('CLASS2', 1);
         expect(element(by.id('page_num')).getText()).toEqual('1');
-        studentPage.mockProfesorChangePage('CLASS2',3);
+        studentPage.mockProfesorChangePage('CLASS2', 3);
         expect(element(by.id('page_num')).getText()).toEqual('3');
-        studentPage.mockProfesorChangePage('CLASS2',2);
+        studentPage.mockProfesorChangePage('CLASS2', 2);
         expect(element(by.id('page_num')).getText()).toEqual('2');
     });
 
@@ -38,7 +38,7 @@ describe('Student page', function () {
 
     it('should change the page with the next and prev buttons when allowed', function () {
         studentPage.mockProfesorAllowNavigation('CLASS2', true);
-        studentPage.mockProfesorChangePage('CLASS2',1);
+        studentPage.mockProfesorChangePage('CLASS2', 1);
         expect(studentPage.getCurrentPage()).toEqual('1');
         studentPage.nextPdfPage();
         expect(studentPage.getCurrentPage()).toEqual('2');
