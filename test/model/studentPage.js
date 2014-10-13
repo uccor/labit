@@ -32,6 +32,7 @@ var StudentPage = function () {
     this.mockProfesorShare = function (classToShare, file) {
         tiempo = typeof tiempo !== 'undefined' ? tiempo : 30000;
         browser.executeScript("io.socket.put('/api/live_class_student/" + classToShare + "', {pdf_sharing: 'true', pdf_url: '" + file + "' });  ");
+        browser.executeScript("io.socket.put('/api/live_class_student/" + classToShare + "', {pdf_sharing: 'true', pdf_url: '" + file + "' });  ");
 
         browser.wait(function () {
             return browser.executeScript(function () {
@@ -47,6 +48,7 @@ var StudentPage = function () {
     this.mockProfesorAllowNavigation = function (classToShare, allow) {
         tiempo = typeof tiempo !== 'undefined' ? tiempo : 30000;
         browser.executeScript("io.socket.put('/api/live_class_student/" + classToShare + "', {pdf_allowNavigation: '" + allow + "' });  ");
+        browser.executeScript("io.socket.put('/api/live_class_student/" + classToShare + "', {pdf_allowNavigation: '" + allow + "' });  ");
 
         browser.wait(function () {
             return browser.executeScript(function () {
@@ -61,10 +63,16 @@ var StudentPage = function () {
     }
 
     this.mockProfesorChangePage = function (classToShare, page) {
-        tiempo = typeof tiempo !== 'undefined' ? tiempo : 30000;
+        tiempo = typeof tiempo !== 'undefined' ? tiempo : 10000;
+        browser.executeScript("io.socket.put('/api/live_class_student/" + classToShare + "', {pdf_studentPageNumber: " + page + "});  ");
         browser.executeScript("io.socket.put('/api/live_class_student/" + classToShare + "', {pdf_studentPageNumber: " + page + "});  ");
 
         browser.wait(function () {
+            return element(by.id('page_num')).getText().then(function (txt){
+                console.log(txt+' '+page);
+                return txt == page;
+            });
+            /*
             return browser.executeScript(function () {
                 return angular.element($('#contentShared')).scope()['actClass'];
             }).then(function (dat) {
@@ -73,6 +81,7 @@ var StudentPage = function () {
                 }
                 return false;
             });
+            */
         }, tiempo);
     }
 
