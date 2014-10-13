@@ -5,14 +5,14 @@ app.config(['$routeProvider',
     function ($routeProvider) {
 
         $routeProvider.when('/', {
-            template: JST["assets/templates/professor/fileUpload.html"],
+            template: JST["assets/templates/professor/uploadPDF.html"],
             //controller : 'AlumnoCreateCtl'
         });
-        $routeProvider.when('/fileUpload', {
+        $routeProvider.when('/fileShare', {
             template: JST["assets/templates/professor/fileShare.html"],
         });
         $routeProvider.when('/fileUpload', {
-            template: JST["assets/templates/professor/fileUpload.html"],
+            template: JST["assets/templates/professor/uploadPDF.html"],
         });
         $routeProvider.otherwise({
             template: JST["assets/templates/professor/fileShare.html"],

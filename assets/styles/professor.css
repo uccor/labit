@@ -7,18 +7,18 @@
     background-color: #81BEF7;
 }
 
-.tituloPDF{
+.tituloPDF {
     font-size: 16px;
     color: navy;
     font-weight: bold;
 }
 
-.logo{
+.logo {
     width: 140px;
     height: 135px;
 }
 
-.buscar{
+.buscar {
     width: 190px;
     height: 300px;
 }
@@ -28,18 +28,34 @@
     font-size: 50px;
 }
 
-.cbox{
+.cbox {
     font-size: 14px;
     color: navy;
     font-weight: bold;
 }
 
-.pestanas{
+.pestanas {
     font-size: 14px;
     color: navy;
     font-weight: bold;
 }
 
-.bdk{
+.bdk {
     background-image: url("/images/wood.png");
 }
+
+.page-header {
+    margin: 0px 0 20px;
+}
+
+@font-face {
+    font-family: "Gorditas-Regular";
+    font-style: normal;
+    font-weight: normal;
+    src: local("?"), url("../fonts/Gorditas-Regular.ttf") format("ttf"), url("../fonts/Gorditas-Regular.ttf") format("truetype");
+}
+
+.titulos {
+    font-family: Gorditas-Regular;
+}
+
