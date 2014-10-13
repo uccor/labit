@@ -72,7 +72,7 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind", function (
     			// ques.$parent.responses = [];
     			//console.log('recieve:', "newAnswerFromQuestion",ques.question.id);
     			//console.log(data);
-    			$scope.responses.splice(0, $scope.responses.length);
+    			// $scope.responses.splice(0, $scope.responses.length);
     			//pepe.responses = [];
     			$(data.responsesArray).each(function(ind, ans) {
     				// $scope.responses.push(ans);
