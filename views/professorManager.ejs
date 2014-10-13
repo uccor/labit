@@ -10,89 +10,96 @@
             Página de Administración del Profesor
         </b>
         <img src="/images/logo_labit.png" alt="..." class="logo">
-    </div>
 
-    <div class="container-fluid">
-        <!-- Navigation Bar -->
-        <div class="row">
-            <div class="col-md-10">
-                <ul class="nav nav-tabs pestanas" role="tablist" ng-controller="professorTab">
-                    <li ng-class="{active:isActive('/')}"><a href="#">Subir Archivo</a></li>
-                    <li ng-class="{active:isActive('/fileShare')}"><a href="#fileShare">Compartir Archivo</a></li>
-                    <li ng-class="{active:isActive('/dashboard')}"><a href="#">Hacer Pregunta</a></li>
-                    <li ng-class="{active:isActive('/dashboard')}"><a href="#">Asistencia</a></li>
-                </ul>
-            </div>
-
-            <div class="col-md-2">
-                <label for="form-control" class="col-sm-2 pestanas">Clase</label>
-                <select class="form-control col-sm-10" ng-model="id_class_to_share">
-                    <option ng-repeat="class in live_class_students">{{ class.id }}</option>
-                    <br>
-                </select>
-            </div>
-        </div>
-
-        <div style="background: white;">
-
-            <!-- All the content that can be selected -->
-            <div class=" row">
-                <div class="col-md-8" align="center" ng-view style="background: white;min-height: 100%;">
-                    <!-- Variable content-->
+        <div class="container-fluid">
+            <!-- Navigation Bar -->
+            <div class="row">
+                <div class="col-md-10">
+                    <ul class="nav nav-tabs pestanas" role="tablist" ng-controller="professorTab">
+                        <li ng-class="{active:isActive('/')}"><a href="#">Subir Archivo</a></li>
+                        <li ng-class="{active:isActive('/fileShare')}"><a href="#fileShare">Compartir Archivo</a></li>
+                        <li ng-class="{active:isActive('/dashboard')}"><a href="#">Hacer Pregunta</a></li>
+                        <li ng-class="{active:isActive('/dashboard')}"><a href="#">Asistencia</a></li>
+                    </ul>
                 </div>
-                <div class="col-md-4">
-                    <!--Right content-->
+
+                <div class="col-md-2">
+                    <label for="form-control" class="col-sm-2 pestanas">Clase</label>
+                    <select class="form-control col-sm-10 cbox" ng-model="id_class_to_share">
+                        <option ng-repeat="class in live_class_students">{{ class.id }}</option>
+
+                    </select>
                 </div>
             </div>
 
-        </div>
+            <div style="background: white;">
 
+                <!-- All the content that can be selected -->
+                <div class=" row">
+                    <div class="col-md-8" align="center" ng-view style="background: white;min-height: 100%;">
+                        <!-- Variable content-->
+                    </div>
+                    <div class="col-md-4">
+                        <!--Right content-->
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
     </div>
+
+
     <!-- Footer Controls (mostly content sharing controls)-->
-    <div class="navbar navbar-default navbar-fixed-bottom" ng-controller="professorManagerFooter">
+    <div class="navbar navbar-default navbar-fixed-bottom " ng-controller="professorManagerFooter">
         <div class="container">
             <div class="row">
 
-                <div class="col-md-4 cbox">
-                    <br>
-                    Presentacion: {{pdfName}}
+                <div class="col-md-3 cb">
+                    Presentación: {{pdfName}}
                 </div>
-                <div class="col-md-3">
-                    <div class="checkbox">
+                <div class="col-md-1 " align="center">
+
+                    <div class="checkbox-inline">
+
                         <label class="cbox">
                             <input type="checkbox" ng-model="synchronize" ng-change="pageStageChange(true)"> Sincronizar
                         </label>
                     </div>
-                    <div class="checkbox">
+                </div>
+                <div class="col-md-2" align="center">
+                    <div class="checkbox-inline">
+
                         <label class="cbox">
                             <input type="checkbox" ng-model="allowNavigation" ng-change="pageStageChange(true)">
                             Permitir Navegación
                         </label>
                     </div>
                 </div>
-                <div class="col-md-3" align="center">
-                    <br>
+                <div class="col-md-2" align="center">
+
                     <div id="pdfPrev" type="button" class="btn-group">
-                        <button type="button" class="btn btn-info btn-sm" ng-click="prevPage()" ng-disabled="!sharing">
+                        <button type="button" class="btn btn-info btn-xs" ng-click="prevPage()" ng-disabled="!sharing">
                             <b>Anterior</b>
                         </button>
                     </div>
                     <div id="pdfNext" type="button" class="btn-group">
-                        <button type="button" class="btn btn-info btn-sm" ng-click="nextPage()" ng-disabled="!sharing">
+                        <button type="button" class="btn btn-info btn-xs" ng-click="nextPage()" ng-disabled="!sharing">
                             <b>Siguiente</b>
                         </button>
                     </div>
-                    <div><b>
+                <div class="btn-as">
+                       <b>
                             Página
                             <span id="page_num">{{pageNum}}</span>
                             /
                             <span id="page_count">{{pageTotal}}</span>
-                        </b>
+                       </b>
                     </div>
                 </div>
-                <div class="col-md-2">
-                    <br>
-                    <button id="stopSharing" class="btn" ng-click="stopSharing()" ng-disabled="!sharing">Dejar de Compartir</button>
+                <div class="col-md-1" align="center">
+
+                    <button id="stopSharing" class="btn btn-xs" ng-click="stopSharing()" ng-disabled="!sharing">Dejar de Compartir</button>
                 </div>
             </div>
         </div>

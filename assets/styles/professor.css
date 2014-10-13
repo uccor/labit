@@ -14,8 +14,8 @@
 }
 
 .logo{
-    width: 140px;
-    height: 135px;
+    width: 120px;
+    height: 115px;
 }
 
 .buscar{
@@ -24,18 +24,22 @@
 }
 
 .titulo {
-    color: #5682de;
-    font-size: 50px;
+    color: #1071de;
+    font-size: 30px;
 }
 
 .cbox{
-    font-size: 14px;
+    font-size: 13px;
     color: navy;
-    font-weight: bold;
+    font-weight: normal;
 }
 
+.cb{
+    font-size: 15px;
+    color: navy;
+}
 .pestanas{
-    font-size: 14px;
+    font-size: 12px;
     color: navy;
     font-weight: bold;
 }
@@ -43,3 +47,24 @@
 .bdk{
     background-image: url("/images/wood.png");
 }
+
+.navbar-xs  {
+    min-height:39px;
+    height: 39px;
+}
+
+.btn-as{
+    font-size: 12px;
+    color: navy;
+    font-weight: normal;
+}
+
+#professorManager {
+    margin-bottom: 50px;
+}
+
+    @media (max-width: 800px) {
+        #professorManager {
+            margin-bottom: 128px;
+        }
+    }
