@@ -7,16 +7,18 @@
            
             <input type="button" class="status-{{question.status}}" id="{{question.id}}" ng-click="searchAnswers(this)" value="{{question.text}}"/>
             <!-- <input type="checkbox" ng-model="checkButton" ng-false-value="false" ng-true-value="true" ng-click="changeStatus(this)"/> -->
-            <input type="checkbox" class="checkButton" id="{{question.id}}" checked="'{{question.visible}}'" /> {{question.visible}}
-
-            
-             
+            <input type="checkbox" class="checkButton" id="{{question.id}}" checked="'{{question.visible}}'" /> Visible: {{question.visible}}
 
         </div>
         <input type="button"  ng-click="changeStatus()" value="Finalizar"/>
     </div>
     <div id="answers"> 
-    <p>Cantidad de Respuestas: {{responses.length}}</p>
+    <h3>Cantidad de Respuestas: {{responses.length}}</h3>
+        <p> Resumen: ----------------- </p>
+        <div ng-repeat="(key, data) in summaryAnswers">
+            <p  >{{key}} --> {{data}}</p>
+        </div>
+        <p> Respuestas completas: ----------------- </p>
         <div ng-repeat="response in responses">
             <p id="{{response.id}}" >{{response.user}} --> {{response.answer}}</p>
         </div>

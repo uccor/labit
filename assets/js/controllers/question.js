@@ -37,6 +37,7 @@ app.controller('QuestionControllerStudent', ['$scope',"$sailsBind", function ($s
 app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind", function ($scope, $sailsBind) {
 	$sailsBind.bind("api/question", $scope);
 	$scope.responses = [];
+    $scope.summaryAnswers = [];
 	$scope.changeStatus = function (question) {
     	/*tengo que saber si esta click el check o no para pasarle distintos status...*/
    		//var questionId = ques.question.id;
@@ -52,38 +53,18 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind", function (
 
 
     };
-	
-    
-    //var pepe = $scope;
+
     // $sailsBind.bind("api/answer", $scope);
     // $sailsBind.bind("api/answer", $scope, {"question" : {"id": {"equal": "13"}}});
     $scope.searchAnswers = function (ques) {
 
     	io.socket.get('/answer/responses', { id: ques.question.id }, function (data, jwres) {
-    	// io.socket.on("newAnswerFromQuestion"+ques.question.id, function onServerSentEvent (data) {
-    			// $scope.responses = [];
-    			// ques.$parent.responses = [];
-    			//console.log('recieve:', "newAnswerFromQuestion",ques.question.id);
-    			//console.log(data);
-    			// $scope.responses.splice(0, $scope.responses.length);
-    			//pepe.responses = [];
-    			
-    			// $scope.responses = [];
-			    // if (!$scope.$$phase) {
-			    //     $scope.$apply();
-			    // }
-			    var resp = [];
-    			$(data.responsesArray).each(function(ind, ans) {
-    				// $scope.responses.push(ans);
-    				resp.push(ans);
-
-    				//TENGO QUE HACER DOBLE CLICK... :S
-    			});
-    			$scope.responses = resp;
+    			$scope.responses = data.responsesArray;
+                $scope.summaryAnswers = data.summary;   
 			    if (!$scope.$$phase) {
 			        $scope.$apply();
 			    }
-    			// console.log($scope.responses);
+
     		}
     	);
     };
@@ -150,10 +131,6 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind", function (
         $($event.target).parent("li").remove();
     }
 
-    // $scope.$on('pdfChangePage', function(event, args) {
-    //     $scope.changePage(args);
-    //     $scope.pageNum = args;
-    // });
 
 }]);
 
