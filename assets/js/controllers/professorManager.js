@@ -5,17 +5,17 @@ app.config(['$routeProvider',
     function ($routeProvider) {
 
         $routeProvider.when('/', {
-            template: JST["assets/templates/professor/fileUpload.html"],
+            template: JST["assets/templates/professor/fileUpload.html"]
             //controller : 'AlumnoCreateCtl'
         });
         $routeProvider.when('/fileUpload', {
-            template: JST["assets/templates/professor/fileShare.html"],
+            template: JST["assets/templates/professor/fileShare.html"]
         });
         $routeProvider.when('/fileUpload', {
-            template: JST["assets/templates/professor/fileUpload.html"],
+            template: JST["assets/templates/professor/fileUpload.html"]
         });
         $routeProvider.otherwise({
-            template: JST["assets/templates/professor/fileShare.html"],
+            template: JST["assets/templates/professor/fileShare.html"]
         });
     }]);
 
@@ -55,11 +55,12 @@ app.controller('professorManagerFooter', ['$scope', '$rootScope', "$sailsBind", 
         }
     }
 
-    $scope.pageStageChange = function (sharing, file) {
+    $scope.pageStageChange = function (sharing, file, page) {
 
         var data = {};
         data['pdf_sharing'] = sharing;
         $scope.sharing = sharing;
+        $scope.pageNum = page;
 
         data['pdf_screenPageNumber'] = $scope.pageNum;
 
