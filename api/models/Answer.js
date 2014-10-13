@@ -8,8 +8,11 @@
 module.exports = {
 
   attributes: {
-	user: {type : "User", required: true, via: 'user'},
- 	questionFather: {type : "Question", required: true, via: 'question'},
+	// user: {type : "User", required: true, via: 'user'},
+ // 	question: {type : "Question", required: true, via: 'question'},
+ //  	userAnswer: { type: 'integer', required: true }
+ 	user: { required: true, model: 'user'},
+ 	question: { required: true, model: 'question'},
   	userAnswer: { type: 'integer', required: true }
   }
 };

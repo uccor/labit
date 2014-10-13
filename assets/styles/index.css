@@ -1,9 +1,5 @@
 body {
-	background: url('/images/wood.png');
-}
-
-body {
-    background: transparent !important;
+    background: url("/images/wood.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
 }
 
 .loginform ul {

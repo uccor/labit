@@ -22,46 +22,53 @@
 
 module.exports.routes = {
 
-  /***************************************************************************
-  *                                                                          *
-  * Make the view located at `views/homepage.ejs` (or `views/homepage.jade`, *
-  * etc. depending on your default view engine) your home page.              *
-  *                                                                          *
-  * (Alternatively, remove this and add an `index.html` file in your         *
-  * `assets` directory)                                                      *
-  *                                                                          *
-  ***************************************************************************/
-  
+    /***************************************************************************
+     *                                                                          *
+     * Make the view located at `views/homepage.ejs` (or `views/homepage.jade`, *
+     * etc. depending on your default view engine) your home page.              *
+     *                                                                          *
+     * (Alternatively, remove this and add an `index.html` file in your         *
+     * `assets` directory)                                                      *
+     *                                                                          *
+     ***************************************************************************/
 
-  '/': {
-    view: 'homepage'
-  },
-  '/index': {
-    view: 'index'
-  },
-  '/professor': {
-        view: 'professor'
-  },
-  '/student': {
-    view: 'student'
-  },
-  'get /login': 'AuthController.login',
-  'get /logout': 'AuthController.logout',
-  'get /register': 'AuthController.register',
 
-  'post /register': 'AuthController.register',
-  'post /auth/local': 'AuthController.callback',
-  'post /auth/local/:action': 'AuthController.callback',
+    '/': {
+        view: 'homepage'
+    },
+    '/index': {
+        view: 'index'
+    },
+    '/professorManager': {
+        view: 'professorManager'
+    },
+    '/professorScreen': {
+        view: 'professorScreen'
+    },
+    '/student': {
+        view: 'student'
+    },
+    'get /login': 'AuthController.login',
+    'get /logout': 'AuthController.logout',
+    'get /register': 'AuthController.register',
 
-  'get /auth/:provider': 'AuthController.provider',
-  'get /auth/:provider/callback': 'AuthController.callback',
+    'post /register': 'AuthController.register',
+    'post /auth/local': 'AuthController.callback',
+    'post /auth/local/:action': 'AuthController.callback',
 
-  'get /show': 'ConnectController.show',
-  'get /getCurrentUsers': 'CurrentUsersController.get',
-  
-  '/question': {
-    view: 'question'
-  },
+    'get /show': 'ConnectController.show',
+    'get /getCurrentUsers': 'CurrentUsersController.get',
+
+    '/question': {
+      view: 'question'
+    },
+    'post /answer/send': 'AnswerController.sendAnswer',
+    'get /answer/responses': 'AnswerController.getResponses',
+    '/question_professor': { view: 'questionProfessor' },
+    'get /question/visible': 'QuestionController.getVisible',
+    '/make_question': { view: 'makeQuestion' }
+
+
   
   
   /***************************************************************************
@@ -73,5 +80,6 @@ module.exports.routes = {
   * for configuration options and examples.                                  *
   *                                                                          *
   ***************************************************************************/
+
 
 };

@@ -1,0 +1,16 @@
+<h1>Arme sus preguntas:</h1>
+
+<div class="center" ng-controller="QuestionController">
+        <form ng-submit="addQuestion()">
+            <input type="text" placeholder="text" ng-model="text">
+            <br>
+            <input type="text" placeholder="status" ng-model="status">
+            <br>
+            <ul id="allAnswers">
+                <li><input type="text" placeholder="Respuesta"></li>
+                <li id="template" class="hidden"><input type="text" placeholder="Respuesta"></li>
+            </ul>
+            <button class="web_button" ng-click="addAnswer()">Otra Opcion</button>
+            <button class="web_button" type="submit">Enviar</button>
+        </form>
+</div>

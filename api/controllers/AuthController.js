@@ -146,7 +146,7 @@ var AuthController = {
     //--------================---------------==============
 
     passport.callback(req, res, function (err, user) {
-      console.log('Error: ',err);
+      // console.log('Error: ',err);
       if (err) return tryAgain();
 
       req.login(user, function (loginErr) {
