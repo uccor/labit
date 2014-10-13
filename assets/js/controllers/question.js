@@ -2,9 +2,15 @@
 app.controller('QuestionControllerStudent', ['$scope',"$sailsBind", function ($scope, $sailsBind) {
 	// $sailsBind.bind("api/question", $scope, {"visible": {"equals": "true"}});
 	$scope.questions = [];
+	
 	io.socket.get('/question/visible', function (data, jwres) {
 		// data.questions;
-		console.log();
+		// console.log();
+		$scope.questions = data.questions;
+        if (!$scope.$$phase) {
+            $scope.$apply();
+        }
+		
 	});
    
     $scope.validAnswers = 0;     
@@ -25,20 +31,8 @@ app.controller('QuestionControllerStudent', ['$scope',"$sailsBind", function ($s
     		}
     	);
     };
-    
-    
-    
-    // $scope.$on('pdfChangePage', function(event, args) {
-    //     $scope.changePage(args);
-    //     $scope.pageNum = args;
-    // });
 	
 }]);
-
-
-// io.socket.get('/question/getAll', function (data, e) {
-// 	console.log (data);
-// });
 
 app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind", function ($scope, $sailsBind) {
 	$sailsBind.bind("api/question", $scope);
@@ -47,7 +41,6 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind", function (
     	/*tengo que saber si esta click el check o no para pasarle distintos status...*/
    		//var questionId = ques.question.id;
    		
-		
 		$( "input:checkbox.checkButton" ).each(function(ind,element) {
 			var questionId = $(element).attr("id");
 			var isVisible = $(element).prop("checked");
@@ -116,14 +109,6 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind", function (
         $("#allAnswers").append(clone);
 
     };
-
-
-    // $scope.$on('pdfChangePage', function(event, args) {
-    //     $scope.changePage(args);
-    //     $scope.pageNum = args;
-    // });
 }]);
 
-// io.socket.get('/question/getAll', function (data, e) {
-// 	console.log (data);
-// });
+
