@@ -120,7 +120,7 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind", function (
 
 
     $scope.addAnswer = function() {
-
+        
         //var template = '<li answerDynamic="ans" id="template" class="hidden"><input type="text" placeholder="Respuesta"><button ng-click="removeAnswer($event)">X</button></li>';
         var template = $("#template");
         var newAns= template.clone();
