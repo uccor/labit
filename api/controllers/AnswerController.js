@@ -45,13 +45,14 @@ module.exports = {
 		var questionId = req.param('id');
 		var answersArray = [];
 		//var result = [];
-		console.log('questionId', questionId);
+		// console.log('questionId', questionId);
 		if(questionId) {
 			Answer.find({question : questionId})
 			.populate('user')
 			.populate('question')
 			.exec(function(err, ans) {
-
+				// console.log('err:',err);
+				// console.log('ans:',ans);
 				if(ans[0]) { //if exist answer..
 					
 			
@@ -59,8 +60,8 @@ module.exports = {
 					var questionAnswersLength = questionSelected.answers.length;
 					/* Generate array to save answers summary */
 					var summary = new Array(questionAnswersLength + 1).join(0).split('').map(parseFloat);		
-					console.log('questionId', questionId);
-					console.log('answerLength: ',questionAnswersLength );
+					// console.log('questionId', questionId);
+					// console.log('answerLength: ',questionAnswersLength );
 					ans.forEach(function(an) {
 						var a = {
 							"user": an.user.username,
@@ -81,17 +82,21 @@ module.exports = {
 					// console.log('summ: ',summaryArray);
 				
 					res.json({"responsesArray": answersArray, "summary": summaryArray});
+					return;
+				}
+				else {
+					
+					Question.findOne({id: questionId}).exec(function(err, ques) {
+						var summary = new Array(ques.answers.length + 1).join(0).split('').map(parseFloat);		
+						var summaryArray = {};
+						(ques.answers).forEach(function( answ, ind) {
+							summaryArray[answ] = summary[ind]; 
+						})
+						res.json({"responsesArray": "", "summary": summaryArray});
+					});
 				}
 			});
 			
-			Question.findOne({id: questionId}).exec(function(err, ques) {
-				var summary = new Array(ques.answers.length + 1).join(0).split('').map(parseFloat);		
-				var summaryArray = {};
-				(ques.answers).forEach(function( answ, ind) {
-					summaryArray[answ] = summary[ind]; 
-				})
-				res.json({"responsesArray": "", "summary": summaryArray});
-			});
 		
 		}
 		
