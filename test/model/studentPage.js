@@ -22,10 +22,22 @@ var StudentPage = function () {
         element(by.id('subcribeBTN')).click();
     }
     this.nextPdfPage = function () {
-        e = element(by.id('pdfNext')).click();
+        return element(by.id('pdfNext')).click().then(function(){
+            return;
+        });
     }
     this.prevPdfPage = function () {
-        e = element(by.id('pdfPrev')).click();
+        return element(by.id('pdfPrev')).click().then(function(){
+            return;
+        });
+    }
+    this.navigationEnabled = function () {
+        return element(By.id('pdfPrev')).getAttribute('disabled').then(function (att) {
+            return att.split(' ').indexOf('true') === -1;
+        });
+        return element(By.id('pdfNext')).getAttribute('disabled').then(function (att) {
+            return att.split(' ').indexOf('true') === -1;
+        });
     }
 
 
@@ -69,7 +81,6 @@ var StudentPage = function () {
 
         browser.wait(function () {
             return element(by.id('page_num')).getText().then(function (txt){
-                console.log(txt+' '+page);
                 return txt == page;
             });
             /*
