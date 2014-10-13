@@ -28,7 +28,8 @@ module.exports = {
             Pdf.create({id: name[name.length-1].toLowerCase().replace(".pdf",""), nombre: req.body.nombreArchivo, ruta: '/pdf/' + name[name.length - 1]}).exec(function (err, ans) {
             });
             //console.log(files);
-            res.json({status: 200, file: files});
+           //res.json({status: 200, file: files});
+            res.redirect('/professorManager');
         });
     }
 };

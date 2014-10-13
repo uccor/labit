@@ -23,11 +23,6 @@
     height: 300px;
 }
 
-.titulo {
-    color: #1071de;
-    font-size: 30px;
-}
-
 .cbox{
     font-size: 13px;
     color: navy;
@@ -78,4 +73,6 @@
 
 .titulos {
     font-family: Gorditas-Regular;
+    font-size: 40px;
+    color: #1071de;
 }
