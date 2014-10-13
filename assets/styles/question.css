@@ -1,5 +1,5 @@
 .question {
-	font-size: 50px;
+	font-size: 2em;
 }
 .questions .answers {
 	font-size: 30px;
@@ -55,5 +55,6 @@
 input[type=text] {padding:5px; border:2px solid #ccc;
     -webkit-border-radius: 5px;
     border-radius: 5px;
+    margin: 0.2em;
 }
 input[type=text]:focus {border-color:#6E6E6E; }

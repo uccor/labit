@@ -12,7 +12,7 @@ module.exports = {
 		text: { type: 'string' , required: true},
 		status: {type: 'string', required: true, defaultsTo: ''},
 		answers: {type : "array", required: true},
-		visible: {type: 'string', required: true, defaultsTo: 'true'},
+		visible: {type: 'string', required: true, defaultsTo: 'true'}
 	}
 };
 

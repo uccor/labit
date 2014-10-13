@@ -89,34 +89,64 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind", function (
             return;
         }
         var ans = [];
-        var  answares = $("li > input");
+        var  answares = $("li > input.visible");
 
         angular.forEach(answares, function(val, key) {
-            ans.push(val.value);
-            val.value="";
+            if(val.value != '') {
+                ans.push(val.value);
+                val.value = "";
+            }
         });
         $scope.questions.push({
             text: $scope.text,
-            status: $scope.status,
+            status: "si",
             answers: ans
         });
         $scope.text = '';
-        $scope.status = '';
-        $scope.answer = '';
 
     };
+    app.directive("answerDynamic",  ['$compile',function($compile) {
+
+        var base = $("#template");
+        var template= base.clone();
+        template.removeClass("hidden");
+        template.removeAttr("id");
+
+        return{
+            link: function(scope, element){
+                element.on("click", function() {
+                    scope.$apply(function() {
+                        var content = $compile(template)(scope);
+                        element.append(content);
+                    })
+                });
+            }
+        }
+    }]);
+
 
     $scope.addAnswer = function() {
 
+        //var template = '<li answerDynamic="ans" id="template" class="hidden"><input type="text" placeholder="Respuesta"><button ng-click="removeAnswer($event)">X</button></li>';
         var template = $("#template");
-        var clone= template.clone();
-        clone.removeClass("hidden");
-        clone.removeAttr("id");
+        var newAns= template.clone();
+        newAns.removeClass("hidden");
+        newAns.removeAttr("id");
+        newAns.find("input").addClass("visible");
+        //var element = $compile(angular.element(clone))(scope);
 
-        $("#allAnswers").append(clone);
+
+        //var new_ans = angular.element($compile(newAns)($scope));
+        //elem_0.append(a_input);
+        $("#allAnswers").append(newAns);
 
     };
 
+
+
+    $scope.removeAnswer = function($event) {
+        $($event.target).parent("li").remove();
+    }
 
     // $scope.$on('pdfChangePage', function(event, args) {
     //     $scope.changePage(args);
