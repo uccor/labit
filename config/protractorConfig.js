@@ -8,7 +8,7 @@ var environment = process.env.NODE_ENV || "dev";
 
 var genericConfig = {
     suites: {
-        //login: ['../test/loginSpec.js'],
+        login: ['../test/loginSpec.js'],
         //student: ['../test/studentSpec.js'],
         //proffesor: ['../test/proffesorSpec.js'],
         makeQuestion: ['../test/questionSpec.js']
