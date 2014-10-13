@@ -1,5 +1,5 @@
 
-app.controller('QuestionControllerStudent', ['$scope',"$sailsBind", function ($scope, $sailsBind) {
+app.controller('QuestionControllerStudent', ['$scope',"$sailsBind","$compile", function ($scope, $sailsBind, $compile) {
 	// $sailsBind.bind("api/question", $scope, {"visible": {"equals": "true"}});
 	$scope.questions = [];
 	
@@ -77,6 +77,7 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind", function (
     	);
     };
 
+    $scope.saveOk = "";
     $scope.addQuestion = function() {
         if ($scope.text === '') {
             return;

@@ -2,7 +2,7 @@
 	font-size: 1.5em;
 }
 .questions .answers {
-	font-size: 30px;
+	font-size: 1.3em;
 }
 .questions .answers label.question {
 	display: inline-block;
@@ -42,8 +42,6 @@
 }
 
 .web_button:hover{
-    max-width: 200%;
-    float: left;
     text-decoration:none;
     background: #8dc025; /* Old browsers */
     background: -moz-linear-gradient(top,  #8dc025 0%, #8dc025 100%); /* FF3.6+ */
