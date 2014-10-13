@@ -1,0 +1,27 @@
+<form class="form-horizontal" role="form"
+      id="uploadForm"
+      enctype="multipart/form-data"
+      action="api/file/upload"
+      method="post">
+    <br><br>
+    <div class="form-group">
+        <label class="col-sm-3" for="nombreArchivo">Nombre del Archivo</label>
+
+        <div class="col-sm-9">
+            <input type="text" class="form-control" name="nombreArchivo" placeholder="Nombre del Archivo">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-3" for="subirArchivo">Examinar</label>
+
+        <div class="col-sm-9">
+            <input type="file" id="subirArchivo" name="uploadFile">
+        </div>
+    </div>
+
+
+    <button type="submit" class="btn btn-default">Subir</button>
+    <br><br>
+
+</form>
