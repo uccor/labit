@@ -156,6 +156,7 @@ var AuthController = {
           
         // Upon successful login, send the user to the homepage were req.user
         // will available.
+          console.log("user: ",user);
         user.status = "Online";
         user.save();
         res.redirect('/index');

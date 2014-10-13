@@ -88,7 +88,7 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind", function (
             answers: ans
         });
         $scope.text = '';
-
+        $scope.saveOk="true";
     };
     app.directive("answerDynamic",  ['$compile',function($compile) {
 

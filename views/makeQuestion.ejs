@@ -1,12 +1,13 @@
 <h1>Arme sus preguntas:</h1>
 <div class="center" ng-controller="QuestionControllerProfessor">
     <form ng-submit="addQuestion()">
-            <input type="text" placeholder="Preguntas" ng-model="text">
+            <input id="text" type="text" placeholder="Preguntas" ng-model="text">
             <ul id="allAnswers">
                 <li><input type="text" placeholder="Respuesta" class="visible"><button ng-click="removeAnswer($event)">X</button></li>
                 <li answerDynamic="ans" id="template" class="hidden"><input type="text" placeholder="Respuesta"><button ng-click="removeAnswer($event)">X</button></li>
             </ul>
             <button class="web_button" ng-click="addAnswer()">Otra Opcion</button>
-            <button class="web_button" type="submit">Enviar</button>
-        </form>
+            <button class="web_button" id="send" type="submit">Enviar</button>
+    </form>
+    <p ng-model="saveOk">{{saveOk}}</p>
 </div>

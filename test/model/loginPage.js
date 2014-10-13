@@ -21,7 +21,7 @@ var LoginPage= function() {
         browser.getTitle().then(function (text) {
             console.log(text)
         });
-        expect(browser.getTitle()).toEqual('Main');
+        expect(browser.getTitle()).toEqual('Labit');
 
     }
     this.close = function () {
