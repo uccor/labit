@@ -146,8 +146,10 @@ var AuthController = {
     //--------================---------------==============
 
     passport.callback(req, res, function (err, user) {
-      // console.log('Error: ',err);
-      if (err) return tryAgain();
+
+      if (err){
+          console.log('Error: ',err);
+          return tryAgain();}
 
       req.login(user, function (loginErr) {
         if (loginErr) return tryAgain();
@@ -156,7 +158,7 @@ var AuthController = {
         // will available.
         user.status = "Online";
         user.save();
-        res.redirect('/');
+        res.redirect('/index');
       });
     });
   }

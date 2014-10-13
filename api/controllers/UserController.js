@@ -6,6 +6,23 @@
  */
 
 module.exports = {
-	
+	redirectHomeByRole: function (req, res) {
+        var user = req.user;
+
+        if (user) {
+            user_role = user.role;
+            if (user_role=="student") {
+                console.log("student");
+                return res.view('indexStudent');
+
+            } else if (user_role=="professor") {
+                console.log("prof");
+                return res.view('index');
+            }
+        }
+        else {
+                res.redirect('/login');
+            }
+    }
 };
 

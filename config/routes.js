@@ -36,9 +36,12 @@ module.exports.routes = {
     '/': {
         view: 'homepage'
     },
-    '/index': {
-        view: 'index'
-    },
+    //'/index': {
+    //    view: 'index'
+    //},
+
+    '/index': 'UserController.redirectHomeByRole',
+
     '/professorManager': {
         view: 'professorManager'
     },
