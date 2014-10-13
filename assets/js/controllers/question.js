@@ -99,24 +99,27 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind", function (
         $scope.text = '';
         $scope.saveOk="true";
     };
-    app.directive("answerDynamic",  ['$compile',function($compile) {
 
-        var base = $("#template");
-        var template= base.clone();
-        template.removeClass("hidden");
-        template.removeAttr("id");
 
-        return{
-            link: function(scope, element){
-                element.on("click", function() {
-                    scope.$apply(function() {
-                        var content = $compile(template)(scope);
-                        element.append(content);
-                    })
-                });
-            }
-        }
-    }]);
+
+//    app.directive("answerDynamic",  ['$compile',function($compile) {
+//
+//        var base = $("#template");
+//        var template= base.clone();
+//        template.removeClass("hidden");
+//        template.removeAttr("id");
+//
+//        return{
+//            link: function(scope, element){
+//                element.on("click", function() {
+//                    scope.$apply(function() {
+//                        var content = $compile(template)(scope);
+//                        element.append(content);
+//                    })
+//                });
+//            }
+//        }
+//    }]);
 
 
     $scope.addAnswer = function() {
@@ -141,6 +144,16 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind", function (
     }
 
 
-}]);
+}]).directive('answerDynamic', function($compile) {
+    return {
+        //template: '<li><input type="text" placeholder="Respuesta"><button ng-click="removeAnswer($event)">X</button></li>',
+        replace: true,
+        link: function($scope, element) {
+            var el = angular.element('<ul>');
+            el.append('<li><input type="text" placeholder="Respuesta"><button ng-click="removeAnswer($event)">X</button></li>');
+            $compile(el)($scope);
+        }
+    }
+});
 
 
