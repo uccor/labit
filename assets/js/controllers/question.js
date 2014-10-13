@@ -67,11 +67,22 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind", function (
     			//console.log(data);
     			// $scope.responses.splice(0, $scope.responses.length);
     			//pepe.responses = [];
+    			
+    			// $scope.responses = [];
+			    // if (!$scope.$$phase) {
+			    //     $scope.$apply();
+			    // }
+			    var resp = [];
     			$(data.responsesArray).each(function(ind, ans) {
     				// $scope.responses.push(ans);
-    				$scope.responses.push(ans);
+    				resp.push(ans);
+
     				//TENGO QUE HACER DOBLE CLICK... :S
     			});
+    			$scope.responses = resp;
+			    if (!$scope.$$phase) {
+			        $scope.$apply();
+			    }
     			// console.log($scope.responses);
     		}
     	);
