@@ -1,8 +1,13 @@
+<head>
+    <title>Página Administración</title>
+    <!--<link rel="shortcut icon" href="/images/Logo_labit.ico">-->
+</head>
+
 <div ng-controller="professorManager" id="professorManager">
     <div class="page-header" align="center">
 
         <b class="titulo">
-            Pagina de Administración del Profesor
+            Página de Administración del Profesor
         </b>
         <img src="/images/logo_labit.png" alt="..." class="logo">
     </div>
@@ -11,7 +16,7 @@
         <!-- Navigation Bar -->
         <div class="row">
             <div class="col-md-10">
-                <ul class="nav nav-tabs" role="tablist" ng-controller="professorTab">
+                <ul class="nav nav-tabs pestanas" role="tablist" ng-controller="professorTab">
                     <li ng-class="{active:isActive('/')}"><a href="#">Subir Archivo</a></li>
                     <li ng-class="{active:isActive('/fileShare')}"><a href="#fileShare">Compartir Archivo</a></li>
                     <li ng-class="{active:isActive('/dashboard')}"><a href="#">Hacer Pregunta</a></li>
@@ -19,10 +24,11 @@
                 </ul>
             </div>
 
-
             <div class="col-md-2">
-                <select class="form-control" ng-model="id_class_to_share">
+                <label for="form-control" class="col-sm-2 pestanas">Clase</label>
+                <select class="form-control col-sm-10" ng-model="id_class_to_share">
                     <option ng-repeat="class in live_class_students">{{ class.id }}</option>
+                    <br>
                 </select>
             </div>
         </div>
@@ -47,11 +53,11 @@
         <div class="container">
             <div class="row">
 
-                <div class="col-md-4 tituloPDF">
+                <div class="col-md-4 cbox">
                     <br>
                     Presentacion: {{pdfName}}
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="checkbox">
                         <label class="cbox">
                             <input type="checkbox" ng-model="synchronize" ng-change="pageStageChange(true)"> Sincronizar
@@ -60,12 +66,12 @@
                     <div class="checkbox">
                         <label class="cbox">
                             <input type="checkbox" ng-model="allowNavigation" ng-change="pageStageChange(true)">
-                            Permitir
-                            Navegación
+                            Permitir Navegación
                         </label>
                     </div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3" align="center">
+                    <br>
                     <div id="pdfPrev" type="button" class="btn-group">
                         <button type="button" class="btn btn-info btn-sm" ng-click="prevPage()" ng-disabled="!sharing">
                             <b>Anterior</b>
@@ -85,6 +91,7 @@
                     </div>
                 </div>
                 <div class="col-md-2">
+                    <br>
                     <button id="stopSharing" class="btn" ng-click="stopSharing()" ng-disabled="!sharing">Dejar de Compartir</button>
                 </div>
             </div>

@@ -14,8 +14,8 @@
 }
 
 .logo{
-    width: 190px;
-    height: 185px;
+    width: 140px;
+    height: 135px;
 }
 
 .buscar{
@@ -32,4 +32,14 @@
     font-size: 14px;
     color: navy;
     font-weight: bold;
+}
+
+.pestanas{
+    font-size: 14px;
+    color: navy;
+    font-weight: bold;
+}
+
+.bdk{
+    background-image: url("/images/wood.png");
 }
