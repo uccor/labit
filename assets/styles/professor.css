@@ -7,7 +7,7 @@
     background-color: #81BEF7;
 }
 
-.tituloPDF{
+.tituloPDF {
     font-size: 16px;
     color: navy;
     font-weight: bold;
@@ -18,7 +18,7 @@
     height: 115px;
 }
 
-.buscar{
+.buscar {
     width: 190px;
     height: 300px;
 }
@@ -44,7 +44,7 @@
     font-weight: bold;
 }
 
-.bdk{
+.bdk {
     background-image: url("/images/wood.png");
 }
 
@@ -68,3 +68,14 @@
             margin-bottom: 128px;
         }
     }
+
+@font-face {
+    font-family: "Gorditas-Regular";
+    font-style: normal;
+    font-weight: normal;
+    src: local("?"), url("../fonts/Gorditas-Regular.ttf") format("ttf"), url("../fonts/Gorditas-Regular.ttf") format("truetype");
+}
+
+.titulos {
+    font-family: Gorditas-Regular;
+}
