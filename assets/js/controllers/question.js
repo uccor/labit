@@ -60,7 +60,8 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind", function (
 
     	io.socket.get('/answer/responses', { id: ques.question.id }, function (data, jwres) {
     			$scope.responses = data.responsesArray;
-                $scope.summaryAnswers = data.summary;   
+                $scope.summaryAnswers = data.summary;
+                console.log($scope.summaryAnswers );
 			    if (!$scope.$$phase) {
 			        $scope.$apply();
 			    }

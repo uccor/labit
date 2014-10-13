@@ -2,26 +2,27 @@
 <div ng-controller="QuestionControllerProfessor">
     <h1>Preguntas:</h1>
     
-    <div class="questions">
+    <div class="questions container font">
         <div class="question" ng-repeat="question in questions">
            
-            <input type="button" class="status-{{question.status}}" id="{{question.id}}" ng-click="searchAnswers(this)" value="{{question.text}}"/>
-            <!-- <input type="checkbox" ng-model="checkButton" ng-false-value="false" ng-true-value="true" ng-click="changeStatus(this)"/> -->
-            <input type="checkbox" class="checkButton" id="{{question.id}}" checked="'{{question.visible}}'" /> Visible: {{question.visible}}
+            <input type="button" class="status-{{question.status}} web_button" id="{{question.id}}" ng-click="searchAnswers(this)" value="{{question.text}}"/>
+            <!-- <input type="checkbox" ng-model="checkButton" ng-false-value="false" ng-true-value="true" ng-click="changeStatus(this)"/>-->
+            <input type="checkbox" class="checkButton" id="{{question.id}}" ng-checked="{{question.visible}}" />
+
 
         </div>
-        <input type="button"  ng-click="changeStatus()" value="Finalizar"/>
+        <input type="button" class="web_button_grey" ng-click="changeStatus()" value="Finalizar"/>
     </div>
-    <div id="answers"> 
+
+    <div id="answers" class="container font">
     <h3>Cantidad de Respuestas: {{responses.length}}</h3>
-        <p> Resumen: ----------------- </p>
-        <div ng-repeat="(key, data) in summaryAnswers">
-            <p  >{{key}} --> {{data}}</p>
+        <p class="subtitle"> Resumen: </p>
+        <div class="summary" ng-repeat="(key, data) in summaryAnswers">
+            <p>{{key}} : {{data}}</p>
         </div>
-        <p> Respuestas completas: ----------------- </p>
-        <div ng-repeat="response in responses">
-            <p id="{{response.id}}" >{{response.user}} --> {{response.answer}}</p>
+        <p class="subtitle"> Respuestas completas: </p>
+        <div class="summary" ng-repeat="response in responses">
+            <p id="{{response.id}}" >{{response.user}} : {{response.answer}}</p>
         </div>
     </div>
-   
 </div>
