@@ -1,9 +1,9 @@
-var AnswerQuestionPage= function() {
+var QuestionStudentPage= function() {
     this.get = function() {
         // browser.get('http://localhost:'+process.env.PORT+'/question').then(function() {
         //     AnswerQuestionPage.select();
         // });
-        browser.get('http://localhost:'+process.env.PORT+'/question')
+        browser.get('http://localhost:'+process.env.PORT+'/question_student')
            
     },
 
@@ -64,5 +64,5 @@ var AnswerQuestionPage= function() {
             sendButton.click();
         }
 }
-module.exports = new AnswerQuestionPage();
+module.exports = new QuestionStudentPage();
 

@@ -11,7 +11,8 @@ var genericConfig = {
         login: ['../test/loginSpec.js'],
         //student: ['../test/studentSpec.js'],
         //proffesor: ['../test/proffesorSpec.js'],
-        makeQuestion: ['../test/questionSpec.js']
+        
+        questionProfessor: ['../test/questionSpec.js']
 
     }
 };
