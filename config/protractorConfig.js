@@ -29,15 +29,15 @@ var configurationByEnvironment = {
         multiCapabilities: [
             extend({
                 browserName:'chrome'
-            },genericCapability),
-            extend({
-                browserName:'firefox'
-            },genericCapability),
-            extend({
-                browserName:'internet explorer',
-                platform: 'windows 8.1',
-                version: 11
             },genericCapability)
+ //           extend({
+ //               browserName:'firefox'
+ //           },genericCapability),
+ //           extend({
+ //               browserName:'internet explorer',
+ //               platform: 'windows 8.1',
+ //               version: 11
+ //           },genericCapability)
 
         ],
         baseUrl:'http://127.0.0.1:8080'
