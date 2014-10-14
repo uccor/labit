@@ -52,7 +52,7 @@ describe('Student page', function () {
     it('should not change the page when not allowed', function () {
 
         studentPage.mockProfesorAllowNavigation('CLASS1', false);
-        expect(studentPage.navigationEnabled()).toEqual(false); 
+        expect(studentPage.navigationEnabled()).toEqual(false);
     });
 });
 
