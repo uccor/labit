@@ -8,29 +8,24 @@
 module.exports = {
 	getVisible : function (req, res) {
 		
-		// var questionId = req.param('id');
-
-		Question.find({visible : true})
-		.exec(function(err, ques) {
-			
-			// console.log('questionId', questionId);
-			// console.log('answerLength: ',ans.length );
-			// var answers = [];
-			// ans.forEach(function(an) {
-			// 	a = {
-			// 		"user": an.user.username,
-			// 		"answer": an.question.answers[an.userAnswer]
-			// 	};	
-			// 	answers.push(a);
-			// });
-
-			// var quest = Question.findOne({id:questionId}).exec(function(err, ques) {
-			// 	res.json({"responsesArray": answers});
-			// });	
-			res.json({"questions": ques});
+		Answer.find({
+			user: req.user.id,
+		})
+		.exec(function(err, ans) {
+			// console.log('ans from user: ',ans);
+			quesAnswered = [];
+			ans.forEach(function(an) {
+				quesAnswered.push(an.question);
+			});
+			// console.log('answered: ',quesAnswered);
+			Question.find({
+				visible : true,
+				id : {"!" : quesAnswered}
+			})
+			.exec(function(err, ques) {	
+				res.json({"questions": ques});
+			});
 		});
-		
-	
 	}
 	
 
