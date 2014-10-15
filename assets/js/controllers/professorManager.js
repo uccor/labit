@@ -49,7 +49,7 @@ app.controller('professorManagerFooter', ['$scope', '$rootScope', "$sailsBind", 
                 $scope.pageTotal = pdf.numPages;
                 $scope.sharing = true;
                 $scope.$apply();
-                $scope.changePage(pag);
+                //$scope.changePage(pag);
             });
 
         }
@@ -60,6 +60,7 @@ app.controller('professorManagerFooter', ['$scope', '$rootScope', "$sailsBind", 
         var data = {};
         data['pdf_sharing'] = sharing;
         $scope.sharing = sharing;
+        if(typeof page !== 'undefined')
         $scope.pageNum = page;
 
         data['pdf_screenPageNumber'] = $scope.pageNum;

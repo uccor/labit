@@ -24,20 +24,20 @@ var genericCapability = {
 
 var configurationByEnvironment = {
     test: extend({
-        sauceUser: 'rmarku',
-        sauceKey: '598942ab-823e-498c-9322-299427d546e3',
+        sauceUser: process.env.SAUCE_USERNAME,
+        sauceKey: process.env.SAUCE_ACCESS_KEY,
         multiCapabilities: [
             extend({
                 browserName:'chrome'
-            },genericCapability),
-            extend({
-                browserName:'firefox'
-            },genericCapability),
-            extend({
-                browserName:'internet explorer',
-                platform: 'windows 8.1',
-                version: 11
             },genericCapability)
+ //           extend({
+ //               browserName:'firefox'
+ //           },genericCapability),
+ //           extend({
+ //               browserName:'internet explorer',
+ //               platform: 'windows 8.1',
+ //               version: 11
+ //           },genericCapability)
 
         ],
         baseUrl:'http://127.0.0.1:8080'

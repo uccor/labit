@@ -27,7 +27,6 @@ describe('Student page', function () {
 
         studentPage.mockProfesorShare('CLASS1', '/pdf/pdf3.pdf');
 
-        studentPage.nextPdfPage();
         browser.wait(function () {
             return  studentPage.getTotalPages().then(function (txt) {
                 return (txt == '3');
@@ -53,14 +52,7 @@ describe('Student page', function () {
     it('should not change the page when not allowed', function () {
 
         studentPage.mockProfesorAllowNavigation('CLASS1', false);
-        studentPage.nextPdfPage();
-        expect(studentPage.getCurrentPage()).toEqual('1');
-        studentPage.nextPdfPage();
-        expect(studentPage.getCurrentPage()).toEqual('1');
-        studentPage.prevPdfPage();
-        expect(studentPage.getCurrentPage()).toEqual('1');
-        studentPage.prevPdfPage();
-        expect(studentPage.getCurrentPage()).toEqual('1');
+        expect(studentPage.navigationEnabled()).toEqual(false);
     });
 });
 
