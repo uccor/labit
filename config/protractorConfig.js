@@ -24,8 +24,8 @@ var genericCapability = {
 
 var configurationByEnvironment = {
     test: extend({
-        sauceUser: 'rmarku_github',
-        sauceKey: '12712637-3aaf-4cd9-91e4-e85884237b05',
+        sauceUser: process.env.SAUCE_USERNAME,
+        sauceKey: process.env.SAUCE_ACCESS_KEY,
         multiCapabilities: [
             extend({
                 browserName:'chrome'
