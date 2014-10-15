@@ -1,3 +1,5 @@
 {
-    "directory": "assets/js/dependencies"
+    "directory": "assets/js/dependencies",
+    "registry": "http://bower.herokuapp.com",
+    "strict-ssl": false
 }
