@@ -1,14 +1,14 @@
 
-// var makeQuestionPage = require('./model/makeQuestionPage');
-// describe('make question page', function() {
-//    it('should make new question', function() {
-//        makeQuestionPage.get();
-//        // Parametros de fill: name, lastName, username, email, pass, pass2
-//        makeQuestionPage.fill('Pregunta?','si');
-//        makeQuestionPage.save();
-//        makeQuestionPage.check();
-//    });
-// });
+var makeQuestionPage = require('./model/makeQuestionPage');
+describe('make question page', function() {
+   it('should make new question', function() {
+       makeQuestionPage.get();
+       // Parametros de fill: name, lastName, username, email, pass, pass2
+       makeQuestionPage.fill('Pregunta?','si');
+       makeQuestionPage.save();
+       makeQuestionPage.check();
+   });
+});
 
 var questionStudentPage = require('./model/questionStudentPage');
 describe('student questions page', function() {
