@@ -44,8 +44,9 @@ var AuthController = {
       };
     });
 
-    
+
     // Render the `auth/login.ext` view
+    // req.flash('error')
     res.view({
       providers : providers,
       errors    : req.flash('error')
@@ -67,10 +68,13 @@ var AuthController = {
    * @param {Object} res
    */
   logout: function (req, res) {
-    req.user.status = "Offline";
-    req.user.save();
-    req.logout();
-    res.redirect('/');
+    if(req.user) {
+      req.user.status = "Offline";
+      req.user.save();
+      req.logout();
+      res.redirect('/');  
+    }
+    
   },
 
   /**
@@ -132,6 +136,9 @@ var AuthController = {
     function tryAgain () {
       // If an error was thrown, redirect the user to the login which should
       // take care of rendering the error messages.
+      // req.flash('msgError','Username or password incorrect!');
+      req.flash('msgError','Usuario o Contrasenia Incorrectas');
+      // console.log('UsernameError');
       req.flash('form', req.body);
       res.redirect(req.param('action') === 'register' ? '/register' : '/login');
     }
@@ -146,16 +153,19 @@ var AuthController = {
     //--------================---------------==============
 
     passport.callback(req, res, function (err, user) {
-
+      
       if (err){
-          console.log('Error: ',err);
-          return tryAgain();}
+        return tryAgain();
+      }
 
       req.login(user, function (loginErr) {
-        if (loginErr) return tryAgain();
+        if (loginErr) {
+          return tryAgain();
+        }
           
         // Upon successful login, send the user to the homepage were req.user
         // will available.
+          // console.log("user: ",user);
         user.status = "Online";
         user.save();
         res.redirect('/index');

@@ -62,8 +62,8 @@ module.exports.routes = {
     'get /show': 'ConnectController.show',
     'get /getCurrentUsers': 'CurrentUsersController.get',
 
-    '/question': {
-      view: 'question'
+    '/question_student': {
+      view: 'questionStudent'
     },
     'post /answer/send': 'AnswerController.sendAnswer',
     'get /answer/responses': 'AnswerController.getResponses',

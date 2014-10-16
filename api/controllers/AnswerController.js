@@ -45,13 +45,14 @@ module.exports = {
 		var questionId = req.param('id');
 		var answersArray = [];
 		//var result = [];
-		
+		// console.log('questionId', questionId);
 		if(questionId) {
 			Answer.find({question : questionId})
 			.populate('user')
 			.populate('question')
 			.exec(function(err, ans) {
-
+				// console.log('err:',err);
+				// console.log('ans:',ans);
 				if(ans[0]) { //if exist answer..
 					
 			
@@ -81,10 +82,24 @@ module.exports = {
 					// console.log('summ: ',summaryArray);
 				
 					res.json({"responsesArray": answersArray, "summary": summaryArray});
+					return;
+				}
+				else {
+					
+					Question.findOne({id: questionId}).exec(function(err, ques) {
+						var summary = new Array(ques.answers.length + 1).join(0).split('').map(parseFloat);		
+						var summaryArray = {};
+						(ques.answers).forEach(function( answ, ind) {
+							summaryArray[answ] = summary[ind]; 
+						})
+						res.json({"responsesArray": "", "summary": summaryArray});
+					});
 				}
 			});
+			
 		
 		}
+		
 	}
 
 	

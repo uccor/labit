@@ -1,5 +1,5 @@
 
-app.controller('QuestionControllerStudent', ['$scope',"$sailsBind", function ($scope, $sailsBind) {
+app.controller('QuestionControllerStudent', ['$scope',"$sailsBind","$compile", function ($scope, $sailsBind, $compile) {
 	// $sailsBind.bind("api/question", $scope, {"visible": {"equals": "true"}});
 	$scope.questions = [];
 	
@@ -16,6 +16,7 @@ app.controller('QuestionControllerStudent', ['$scope',"$sailsBind", function ($s
     $scope.validAnswers = 0;     
     $scope.sendResult = function(answer){
     	var questionId = answer.$parent.question.id;
+        var question = answer.$parent.question;
     	var answerUser = answer.$index;
     	io.socket.post(
     		'/answer/send', 
@@ -26,7 +27,13 @@ app.controller('QuestionControllerStudent', ['$scope',"$sailsBind", function ($s
     		function (data, jwres) {
     			//if the answer was saved, then remove the question only in form..
     			if (data.status == "ok") {
-    				$("#" + answer.$parent.question.id).parents('.question').delay( 100 ).fadeOut( 300 );
+    				// $("#" + answer.$parent.question.id).parents('.question').delay( 100 ).fadeOut( 300 );
+                    //var delQuestion = $scope.questions[questionId];
+
+                    $scope.questions.splice( question, 1 );
+                    if (!$scope.$$phase) {
+                        $scope.$apply();
+                    }
     			} 
     		}
     	);
@@ -60,7 +67,8 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind", function (
 
     	io.socket.get('/answer/responses', { id: ques.question.id }, function (data, jwres) {
     			$scope.responses = data.responsesArray;
-                $scope.summaryAnswers = data.summary;   
+                $scope.summaryAnswers = data.summary;
+                console.log($scope.summaryAnswers );
 			    if (!$scope.$$phase) {
 			        $scope.$apply();
 			    }
@@ -69,6 +77,7 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind", function (
     	);
     };
 
+    $scope.saveOk = "";
     $scope.addQuestion = function() {
         if ($scope.text === '') {
             return;
@@ -88,30 +97,33 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind", function (
             answers: ans
         });
         $scope.text = '';
-
+        $scope.saveOk="true";
     };
-    app.directive("answerDynamic",  ['$compile',function($compile) {
 
-        var base = $("#template");
-        var template= base.clone();
-        template.removeClass("hidden");
-        template.removeAttr("id");
 
-        return{
-            link: function(scope, element){
-                element.on("click", function() {
-                    scope.$apply(function() {
-                        var content = $compile(template)(scope);
-                        element.append(content);
-                    })
-                });
-            }
-        }
-    }]);
+
+//    app.directive("answerDynamic",  ['$compile',function($compile) {
+//
+//        var base = $("#template");
+//        var template= base.clone();
+//        template.removeClass("hidden");
+//        template.removeAttr("id");
+//
+//        return{
+//            link: function(scope, element){
+//                element.on("click", function() {
+//                    scope.$apply(function() {
+//                        var content = $compile(template)(scope);
+//                        element.append(content);
+//                    })
+//                });
+//            }
+//        }
+//    }]);
 
 
     $scope.addAnswer = function() {
-
+        
         //var template = '<li answerDynamic="ans" id="template" class="hidden"><input type="text" placeholder="Respuesta"><button ng-click="removeAnswer($event)">X</button></li>';
         var template = $("#template");
         var newAns= template.clone();
@@ -132,6 +144,16 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind", function (
     }
 
 
-}]);
+}]).directive('answerDynamic', function($compile) {
+    return {
+        //template: '<li><input type="text" placeholder="Respuesta"><button ng-click="removeAnswer($event)">X</button></li>',
+        replace: true,
+        link: function($scope, element) {
+            var el = angular.element('<ul>');
+            el.append('<li><input type="text" placeholder="Respuesta"><button ng-click="removeAnswer($event)">X</button></li>');
+            $compile(el)($scope);
+        }
+    }
+});
 
 
