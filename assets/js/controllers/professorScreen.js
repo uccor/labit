@@ -1,12 +1,12 @@
 /**
  * Created by martin on 11/10/14.
  */
-app.controller('professorScreen', ['$scope', '$rootScope', "$sailsBind", function ($scope, $rootScope, $sailsBind) {
+app.controller('professorScreen', ['$scope', '$rootScope', "$sailsBind","$location", function ($scope, $rootScope, $sailsBind,$location) {
     $scope.idClase = '';
     $scope.actClass = {}
     $scope.paginaActualPDF = 0;
      // Subscription
-    var x_act_class="CLASS1"; //$location.hash();
+    var x_act_class= $location.path();
      $scope.subscribe_to_class = function () {
          io.socket.get('/api/live_class_student' + x_act_class, function messageReceived(jsonObject) {
                  $scope.idClase = jsonObject.id;
@@ -42,7 +42,7 @@ app.controller('professorScreen', ['$scope', '$rootScope', "$sailsBind", functio
         if ($scope.actClass.pdf_sharing) {
             $rootScope.$broadcast('pdfChange',
                 { file: $scope.actClass.pdf_url,
-                    pag: $scope.actClass.pdf_studentPageNumber
+                    pag: $scope.actClass.pdf_screenPageNumber
                 }
             );
         } else {
