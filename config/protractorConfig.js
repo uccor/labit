@@ -10,9 +10,10 @@ var genericConfig = {
     suites: {
    //     login: ['../test/loginSpec.js'],
    //     register: ['../test/registerSpec.js'],
-  //      question: ['../test/questionSpec.js'],
-        student: ['../test/studentSpec.js'],
-        professorMFileShare: ['../test/professorMFileShareSpec.js']
+   //      question: ['../test/questionSpec.js'],
+        //student: ['../test/studentSpec.js'],
+        //professorMFileShare: ['../test/professorMFileShareSpec.js'],
+        professorUploadSpec: ['../test/professorUploadSpec.js']
     }
 };
 

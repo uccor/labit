@@ -14,6 +14,22 @@ var ProfessorManagerPage = function () {
             });
         }, 30000);
     }
+    this.get1 = function () {
+        browser.get('http://localhost:' + process.env.PORT + '/professorManager#/fileShare');
+
+        browser.wait(function () {
+            return browser.executeScript(function () {
+                return angular.element($('#professorFileShare')).scope()['pdfs'];
+            }).then(function (dat) {
+                if (dat != null) {
+                    if (typeof dat[0] != 'undefined') {
+                        return dat[0]['id'] == 'CLASS1';
+                    }
+                }
+                return false;
+            });
+        }, 30000);
+    }
 
     this.getPdfElement = function (pdf) {
         var row = 0;
