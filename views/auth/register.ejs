@@ -2,16 +2,88 @@
 	<style type="text/css" src="/style/index.css"></style>
 	<script src="js/model/register.js"></script>
 	-->
-	<section class="registerForm">
-		<form role="form" action="/auth/local/register" method="post">
-		<!-- <form role="form" action="/auth/twitter" method="post"> -->
-			<h4 id="message" ></h4>
-			<input id="name" type="text" name="name" placeholder="Name" required>
-			<input id="lastName" type="text" name="lastName" placeholder="Last Name" required>
-			<input id="username" type="text" name="username" placeholder="Username" required>
-			<input id="email" type="email" name="email" placeholder="Email" required>
-			<input id="pass" type="password" name="password" placeholder="Password" required>
-			<input id="pass2" type="password" name="password2" placeholder="Confirm Password" required>
-			<input id="submit" type="submit" value="Sign Up">
-		</form>
-	</section>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-sm-6 col-xs-12">
+                <h2>Regístrate en Labit</h2>
+            </div>
+            <form role="form" action="/auth/local/register" method="post">
+                <div class="col-lg-6">
+                    <div class="well well-sm"><strong><span class="glyphicon glyphicon-asterisk"></span>Required Field</strong></div>
+                    <div class="form-group">
+                        <label for="InputName">Ingrese su nombre</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="name" id="name" placeholder="Nombre" required>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="InputLastName">Ingrese su Apellido</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Apellido" required>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="InputUsername">Ingrese su Nombre de Usuario</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="username" id="username" placeholder="Nombre de Usuario" required>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="InputEmail">Ingrese su Email</label>
+                        <div class="input-group">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="InputPassword">Ingrese contraseña</label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="pass" name="password" placeholder="Contraseña" required>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="InputConfirmPassword">Confirme la contraseña</label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="pass2" name="password2" placeholder="Contraseña" required>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="InputRole">Seleccione su rol</label>
+                        <div class="input-group">
+                            <form>
+                                <input type="radio" name="role" value="student">Estudiante<br>
+                                <input type="radio" name="role" value="professor">Profesor
+                            </form>
+                        </div>
+                    </div>
+
+                    <input type="submit" name="submit" id="submit" value="Listo" class="btn btn-info pull-right">
+                </div>
+            </form>
+            <div class="col-lg-5 col-md-push-1">
+                <div class="col-md-12">
+                    <div class="alert alert-success">
+                        <strong><span class="glyphicon glyphicon-ok"></span> Success! Message sent.</strong>
+                    </div>
+                    <div class="alert alert-danger">
+                        <span class="glyphicon glyphicon-remove"></span><strong> Error! </strong>
+                        <td>{{$registrationmessage}}</td>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+

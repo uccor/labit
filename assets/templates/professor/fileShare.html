@@ -4,14 +4,14 @@
             <caption><p class="tituloPDF"> Archivos Subidos </p></caption>
             <thead>
             <tr>
-                <th>#</th>
+                <!--th>#</th-->
                 <th>Nombre del Archivo</th>
-                <th> Compartido</th>
+                <th> Compartir</th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="pdf in pdfs" ng-click="share(pdf.id,pdf.ruta,pdf.nombre)">
-                <td>{{ pdf.id }}</td>
+                <!--td>{{ pdf.id }}</td-->
                 <td>{{ pdf.nombre }}</td>
                 <td class="text-center">
                     <img id="img_{{ pdf.id }}" src="images/ico_pdf.png">

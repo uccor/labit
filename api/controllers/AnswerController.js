@@ -43,31 +43,65 @@ module.exports = {
 
 	getResponses: function (req, res) {
 		var questionId = req.param('id');
-
-		var result = [];
+		var answersArray = [];
+		//var result = [];
+		// console.log('questionId', questionId);
 		if(questionId) {
 			Answer.find({question : questionId})
 			.populate('user')
 			.populate('question')
 			.exec(function(err, ans) {
+				// console.log('err:',err);
+				// console.log('ans:',ans);
+				if(ans[0]) { //if exist answer..
+					
+			
+					var questionSelected = ans[0].question;
+					var questionAnswersLength = questionSelected.answers.length;
+					/* Generate array to save answers summary */
+					var summary = new Array(questionAnswersLength + 1).join(0).split('').map(parseFloat);		
+					// console.log('questionId', questionId);
+					// console.log('answerLength: ',questionAnswersLength );
+					ans.forEach(function(an) {
+						var a = {
+							"user": an.user.username,
+							"answer": an.question.answers[an.userAnswer]
+						};	
+						
+						// console.log('userAnswer: ',an.userAnswer);
+						answersArray.push(a);
+						/* Sum in each respenctive answer to make a summary */
+						summary[an.userAnswer]++;
+					});
+					
+					var summaryArray = {};
+					/* Generate summary with question and number of answers*/
+					(questionSelected.answers).forEach(function( answ, ind) {
+						summaryArray[answ] = summary[ind]; 
+					})
+					// console.log('summ: ',summaryArray);
 				
-				console.log('questionId', questionId);
-				console.log('answerLength: ',ans.length );
-				var answers = [];
-				ans.forEach(function(an) {
-					a = {
-						"user": an.user.username,
-						"answer": an.question.answers[an.userAnswer]
-					};	
-					answers.push(a);
-				});
-
-				var quest = Question.findOne({id:questionId}).exec(function(err, ques) {
-					res.json({"responsesArray": answers});
-				});	
+					res.json({"responsesArray": answersArray, "summary": summaryArray});
+					return;
+				}
+				else {
+					
+					Question.findOne({id: questionId}).exec(function(err, ques) {
+						var summary = new Array(ques.answers.length + 1).join(0).split('').map(parseFloat);		
+						var summaryArray = {};
+						(ques.answers).forEach(function( answ, ind) {
+							summaryArray[answ] = summary[ind]; 
+						})
+						res.json({"responsesArray": "", "summary": summaryArray});
+					});
+				}
 			});
+			
 		
 		}
+		
 	}
+
+	
 };
 

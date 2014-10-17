@@ -1,15 +1,22 @@
 
-app.controller('QuestionControllerStudent', ['$scope',"$sailsBind", function ($scope, $sailsBind) {
+app.controller('QuestionControllerStudent', ['$scope',"$sailsBind","$compile", function ($scope, $sailsBind, $compile) {
 	// $sailsBind.bind("api/question", $scope, {"visible": {"equals": "true"}});
 	$scope.questions = [];
+	
 	io.socket.get('/question/visible', function (data, jwres) {
 		// data.questions;
-		console.log();
+		// console.log();
+		$scope.questions = data.questions;
+        if (!$scope.$$phase) {
+            $scope.$apply();
+        }
+		
 	});
    
     $scope.validAnswers = 0;     
     $scope.sendResult = function(answer){
     	var questionId = answer.$parent.question.id;
+        var question = answer.$parent.question;
     	var answerUser = answer.$index;
     	io.socket.post(
     		'/answer/send', 
@@ -20,34 +27,28 @@ app.controller('QuestionControllerStudent', ['$scope',"$sailsBind", function ($s
     		function (data, jwres) {
     			//if the answer was saved, then remove the question only in form..
     			if (data.status == "ok") {
-    				$("#" + answer.$parent.question.id).parents('.question').delay( 100 ).fadeOut( 300 );
+    				// $("#" + answer.$parent.question.id).parents('.question').delay( 100 ).fadeOut( 300 );
+                    //var delQuestion = $scope.questions[questionId];
+
+                    $scope.questions.splice( question, 1 );
+                    if (!$scope.$$phase) {
+                        $scope.$apply();
+                    }
     			} 
     		}
     	);
     };
-    
-    
-    
-    // $scope.$on('pdfChangePage', function(event, args) {
-    //     $scope.changePage(args);
-    //     $scope.pageNum = args;
-    // });
 	
 }]);
-
-
-// io.socket.get('/question/getAll', function (data, e) {
-// 	console.log (data);
-// });
 
 app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind", function ($scope, $sailsBind) {
 	$sailsBind.bind("api/question", $scope);
 	$scope.responses = [];
+    $scope.summaryAnswers = [];
 	$scope.changeStatus = function (question) {
     	/*tengo que saber si esta click el check o no para pasarle distintos status...*/
    		//var questionId = ques.question.id;
    		
-		
 		$( "input:checkbox.checkButton" ).each(function(ind,element) {
 			var questionId = $(element).attr("id");
 			var isVisible = $(element).prop("checked");
@@ -59,71 +60,100 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind", function (
 
 
     };
-	
-    
-    //var pepe = $scope;
+
     // $sailsBind.bind("api/answer", $scope);
     // $sailsBind.bind("api/answer", $scope, {"question" : {"id": {"equal": "13"}}});
     $scope.searchAnswers = function (ques) {
 
     	io.socket.get('/answer/responses', { id: ques.question.id }, function (data, jwres) {
-    	// io.socket.on("newAnswerFromQuestion"+ques.question.id, function onServerSentEvent (data) {
-    			// $scope.responses = [];
-    			// ques.$parent.responses = [];
-    			//console.log('recieve:', "newAnswerFromQuestion",ques.question.id);
-    			//console.log(data);
-    			$scope.responses.splice(0, $scope.responses.length);
-    			//pepe.responses = [];
-    			$(data.responsesArray).each(function(ind, ans) {
-    				// $scope.responses.push(ans);
-    				$scope.responses.push(ans);
-    				//TENGO QUE HACER DOBLE CLICK... :S
-    			});
-    			// console.log($scope.responses);
+    			$scope.responses = data.responsesArray;
+                $scope.summaryAnswers = data.summary;
+                console.log($scope.summaryAnswers );
+			    if (!$scope.$$phase) {
+			        $scope.$apply();
+			    }
+
     		}
     	);
     };
 
+    $scope.saveOk = "";
     $scope.addQuestion = function() {
         if ($scope.text === '') {
             return;
         }
         var ans = [];
-        var  answares = $("li > input");
+        var  answares = $("li > input.visible");
 
         angular.forEach(answares, function(val, key) {
-            ans.push(val.value);
-            val.value="";
+            if(val.value != '') {
+                ans.push(val.value);
+                val.value = "";
+            }
         });
         $scope.questions.push({
             text: $scope.text,
-            status: $scope.status,
+            status: "si",
             answers: ans
         });
         $scope.text = '';
-        $scope.status = '';
-        $scope.answer = '';
-
+        $scope.saveOk="true";
     };
+
+
+
+//    app.directive("answerDynamic",  ['$compile',function($compile) {
+//
+//        var base = $("#template");
+//        var template= base.clone();
+//        template.removeClass("hidden");
+//        template.removeAttr("id");
+//
+//        return{
+//            link: function(scope, element){
+//                element.on("click", function() {
+//                    scope.$apply(function() {
+//                        var content = $compile(template)(scope);
+//                        element.append(content);
+//                    })
+//                });
+//            }
+//        }
+//    }]);
+
 
     $scope.addAnswer = function() {
-
+        
+        //var template = '<li answerDynamic="ans" id="template" class="hidden"><input type="text" placeholder="Respuesta"><button ng-click="removeAnswer($event)">X</button></li>';
         var template = $("#template");
-        var clone= template.clone();
-        clone.removeClass("hidden");
-        clone.removeAttr("id");
+        var newAns= template.clone();
+        newAns.removeClass("hidden");
+        newAns.removeAttr("id");
+        newAns.find("input").addClass("visible");
+        //var element = $compile(angular.element(clone))(scope);
 
-        $("#allAnswers").append(clone);
+
+        //var new_ans = angular.element($compile(newAns)($scope));
+        //elem_0.append(a_input);
+        $("#allAnswers").append(newAns);
 
     };
 
+    $scope.removeAnswer = function($event) {
+        $($event.target).parent("li").remove();
+    }
 
-    // $scope.$on('pdfChangePage', function(event, args) {
-    //     $scope.changePage(args);
-    //     $scope.pageNum = args;
-    // });
-}]);
 
-// io.socket.get('/question/getAll', function (data, e) {
-// 	console.log (data);
-// });
+}]).directive('answerDynamic', function($compile) {
+    return {
+        //template: '<li><input type="text" placeholder="Respuesta"><button ng-click="removeAnswer($event)">X</button></li>',
+        replace: true,
+        link: function($scope, element) {
+            var el = angular.element('<ul>');
+            el.append('<li><input type="text" placeholder="Respuesta"><button ng-click="removeAnswer($event)">X</button></li>');
+            $compile(el)($scope);
+        }
+    }
+});
+
+

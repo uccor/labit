@@ -7,30 +7,32 @@
 
 module.exports = {
 	getVisible : function (req, res) {
-		
-		// var questionId = req.param('id');
-
-		Question.find({visible : true})
-		.exec(function(err, ques) {
-			
-			// console.log('questionId', questionId);
-			// console.log('answerLength: ',ans.length );
-			// var answers = [];
-			// ans.forEach(function(an) {
-			// 	a = {
-			// 		"user": an.user.username,
-			// 		"answer": an.question.answers[an.userAnswer]
-			// 	};	
-			// 	answers.push(a);
-			// });
-
-			// var quest = Question.findOne({id:questionId}).exec(function(err, ques) {
-			// 	res.json({"responsesArray": answers});
-			// });	
-			res.json({"questions": ques});
-		});
-		
-	
+		//console.log('user QuestionController: ',req.user);
+		try {
+			/* search answered questions from user */
+			Answer.find({
+				user: req.user.id,
+			})
+			.exec(function(err, ans) {
+				
+				quesAnswered = [];
+				ans.forEach(function(an) {
+					quesAnswered.push(an.question);
+				});
+				
+				/* get the questions not answered by user */
+				Question.find({
+					visible : true,
+					id : {"!" : quesAnswered}
+				})
+				.exec(function(err, ques) {	
+					res.json({"questions": ques});
+				});
+			});	
+		}
+		catch (e) {
+			console.error('User Not logined:    ', e);
+		}
 	}
 	
 

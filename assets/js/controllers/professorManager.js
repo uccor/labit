@@ -108,6 +108,11 @@ app.controller('professorManagerFooter', ['$scope', '$rootScope', "$sailsBind", 
         $scope.pdfName = args.name;
         $scope.getPdf(args.file, args.pag);
     });
+
+    $scope.openShare = function (){
+
+        window.open('/professorScreen#/'+$scope.$parent.id_class_to_share, 'Screen', "height=800,width=600");
+    }
 }])
 ;
 

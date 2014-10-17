@@ -19,9 +19,9 @@ var LoginPage= function() {
     this.check = function () {
          // ptor = protractor.getInstance();
         browser.getTitle().then(function (text) {
-            console.log(text)
+            // console.log(text)
         });
-        expect(browser.getTitle()).toEqual('Main');
+        expect(browser.getTitle()).toEqual('Labit');
 
     }
     this.close = function () {

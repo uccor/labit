@@ -1,5 +1,5 @@
 
-	<title>Hi!!!</title>
+<title>Hi!!!</title>
 	
 	<section class="loginform cf">  
 	<!-- <form role="form" action="/auth/local" method="post">
@@ -12,9 +12,14 @@
 	        <input id="submit" type="submit" value="Login"></li>  
 	    </ul>  
 	</form>   -->
+	<h3 id="errorForm"> <%- req.flash('msgError') %> </h3>
+	
+
 	<form role="form" action="/auth/local" method="post">
         <input id='username' type="text" name="identifier" placeholder="Username or Email">
+        
         <input id='pass' type="password" name="password" placeholder="Password">
+
         <button id="submit" type="submit">Sign in</button>
       </form>
 	</section>  
