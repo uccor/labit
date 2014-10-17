@@ -23,7 +23,9 @@ var validator = require('validator');
  * @param {Function} next
  */
 exports.register = function (req, res, next) {
-  var email    = req.param('email')
+  var name = req.param('name')
+    , lastName = req.param ('lastName')
+    , email    = req.param('email')
     , username = req.param('username')
     , password = req.param('password')
     , password2 = req.param('password2')
@@ -35,7 +37,7 @@ exports.register = function (req, res, next) {
   if (password!=password2){
       // console.log("Passwords don't match")
       // registrarionmessage = "NO COINCIDE CONTRASEÑA"
-      req.flash('error', 'Error Contrasenia con coincide');
+      req.flash('error', 'Error Contraseña no coincide');
       // req.setAttribute('registrationerror', "")
 
       /*
@@ -63,6 +65,8 @@ exports.register = function (req, res, next) {
     username : username
   , email    : email
   , role : role
+  , name : name
+  , lastName : lastName
   }, function (err, user) {
     if (err) {
       if (err.code === 'E_VALIDATION') {
