@@ -133,11 +133,12 @@ var AuthController = {
    * @param {Object} res
    */
   callback: function (req, res) {
-    function tryAgain () {
+    function tryAgain (errorMsg) {
       // If an error was thrown, redirect the user to the login which should
       // take care of rendering the error messages.
       // req.flash('msgError','Username or password incorrect!');
-      req.flash('msgError','Usuario o Contrasenia Incorrectas');
+      // req.flash('msgError','Usuario o Contrasenia Incorrectas');
+      req.flash('msgError',errorMsg);
       // console.log('UsernameError');
       req.flash('form', req.body);
       res.redirect(req.param('action') === 'register' ? '/register' : '/login');
@@ -155,12 +156,12 @@ var AuthController = {
     passport.callback(req, res, function (err, user) {
       
       if (err){
-        return tryAgain();
+        return tryAgain(req.flash("error"));
       }
 
       req.login(user, function (loginErr) {
         if (loginErr) {
-          return tryAgain();
+          return tryAgain(req.flash("error"));
         }
           
         // Upon successful login, send the user to the homepage were req.user

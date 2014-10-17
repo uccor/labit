@@ -29,14 +29,14 @@ exports.register = function (req, res, next) {
     , password2 = req.param('password2')
     , role = req.param('role')
 
-    console.log(password2)
-    console.log(password)
+    // console.log(password2)
+    // console.log(password)
 
   if (password!=password2){
-      console.log("Passwords don't match")
-      registrarionmessage = "NO COINCIDE CONTRASEÑA"
-      req.flash('error', 'Error.Passport.Password');
-    //  req.setAttribute('registrationerror', "")
+      // console.log("Passwords don't match")
+      // registrarionmessage = "NO COINCIDE CONTRASEÑA"
+      req.flash('error', 'Error Contrasenia con coincide');
+      // req.setAttribute('registrationerror', "")
 
       /*
       res.render('error', {title: 'Register', error: 'Email and password required.'});
@@ -45,17 +45,17 @@ exports.register = function (req, res, next) {
       return next(new Error('Password do not match.'));
   }
   if (!email) {
-    req.flash('error', 'Error.Passport.Email.Missing');
+    req.flash('error', 'Error Email no especificado');
     return next(new Error('No email was entered.'));
   }
 
   if (!username) {
-    req.flash('error', 'Error.Passport.Username.Missing');
+    req.flash('error', 'Username No Especificado');
     return next(new Error('No username was entered.'));
   }
 
   if (!password) {
-    req.flash('error', 'Error.Passport.Password.Missing');
+    req.flash('error', 'Contrasenia Incorrecta');
     return next(new Error('No password was entered.'));
   }
 
@@ -67,9 +67,9 @@ exports.register = function (req, res, next) {
     if (err) {
       if (err.code === 'E_VALIDATION') {
         if (err.invalidAttributes.email) {
-          req.flash('error', 'Error.Passport.Email.Exists');
+          req.flash('error', 'Error email ya existente');
         } else {
-          req.flash('error', 'Error.Passport.User.Exists');
+          req.flash('error', 'Error username ya existe');
         }
       }
       
@@ -83,7 +83,7 @@ exports.register = function (req, res, next) {
     }, function (err, passport) {
       if (err) {
         if (err.code === 'E_VALIDATION') {
-          req.flash('error', 'Error.Passport.Password.Invalid');
+          req.flash('error', 'Error Passport Invalid');
         }
         
         return user.destroy(function (destroyErr) {
@@ -164,11 +164,11 @@ exports.login = function (req, identifier, password, next) {
 
     if (!user) {
       if (isEmail) {
-        req.flash('error', 'Error.Passport.Email.NotFound');
-        console.log("Error.Passport.Email.NotFound")
+        req.flash('error', 'Error email not found');
+        // console.log("Error.Passport.Email.NotFound")
       } else {
-        req.flash('error', 'Error.Passport.Username.NotFound');
-        console.log("Error.Passport.Username.NotFound")
+        req.flash('error', 'Error password not found');
+        // console.log("Error.Passport.Username.NotFound")
 
       }
 
@@ -186,8 +186,8 @@ exports.login = function (req, identifier, password, next) {
           }
 
           if (!res) {
-            req.flash('error', 'Error.Passport.Password.Wrong');
-              console.log("Contraseña o Usuario incorrecto")
+            req.flash('error', 'Error Password Wrong');
+              // console.log("Contraseña o Usuario incorrecto")
             return next(null, false);
           } else {
             return next(null, user);
@@ -195,8 +195,8 @@ exports.login = function (req, identifier, password, next) {
         });
       }
       else {
-        req.flash('error', 'Error.Passport.Password.NotSet');
-          console.log("ingrese contraseña")
+        req.flash('error', 'Error Password NotSet');
+          // console.log("ingrese contraseña")
         return next(null, false);
       }
     });
