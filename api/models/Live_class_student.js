@@ -17,15 +17,26 @@ module.exports = {
             primaryKey : true
         },
 
-        pdf_activo:{
+        pdf_sharing:{
             type: 'boolean'
         },
 
-        pdf_ruta: {
+        pdf_synchronize:{
+            type: 'boolean'
+        },
+
+        pdf_allowNavigation:{
+            type: 'boolean'
+        },
+
+        pdf_url: {
             type: 'string'
         },
 
-        pdf_numeroPagina: {
+        pdf_studentPageNumber: {
+            type: 'integer'
+        },
+        pdf_screenPageNumber: {
             type: 'integer'
         }
 
