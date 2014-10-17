@@ -62,7 +62,7 @@
                         <label for="InputRole">Seleccione su rol</label>
                         <div class="input-group">
                             <form>
-                                <input type="radio" name="role" value="student">Estudiante<br>
+                                <input type="radio" name="role" value="student" checked>Estudiante<br>
                                 <input type="radio" name="role" value="professor">Profesor
                             </form>
                         </div>
@@ -73,13 +73,9 @@
             </form>
             <div class="col-lg-5 col-md-push-1">
                 <div class="col-md-12">
-                    <div class="alert alert-success">
-                        <strong><span class="glyphicon glyphicon-ok"></span> Success! Message sent.</strong>
-                    </div>
-                    <div class="alert alert-danger">
-                        <span class="glyphicon glyphicon-remove"></span><strong> Error! </strong>
-                        <td>{{$registrationmessage}}</td>
-                    </div>
+                    
+                    <h3 class="alert-danger" id="errorForm"> <%- req.flash('msgError') %> </h3>
+                    
                 </div>
             </div>
         </div>
