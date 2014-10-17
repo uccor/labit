@@ -3,6 +3,7 @@
       enctype="multipart/form-data"
       action="api/file/upload"
       method="post">
+
     <br><br>
     <div class="form-group">
         <label class="col-sm-3" for="select_newFile_button">Nombre del Archivo</label>
@@ -16,7 +17,7 @@
         <label class="col-sm-3" for="select_newFile_button">Examinar</label>
 
         <div class="col-sm-9">
-            <input type="file" id="select_newFile_button" name="upload11File">
+            <input type="file" id="select_newFile_button" name="upload11File" ng-model="myFile">
         </div>
     </div>
 

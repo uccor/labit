@@ -39,19 +39,52 @@ var ProfessorUploadPage = function () {
         }
 
         unhideFileInputs();
+
         var path = require('path');
         var fileToUpload = '/File_Testing_Uploads/PDFtest.pdf';
         var absolutePath = path.resolve(__dirname, fileToUpload);
         $('input[type="file"]').sendKeys(absolutePath);
 
-       // browser.debugger();
-        element(by.id('submit_newFile_button')).click();
-        browser.debugger();
+        //element(by.id('submit_newFile_button')).click()
+/*
+        //
+        browser.wait(function () {
+            return browser.executeScript(function () {
+
+
+                 var a = angular.element($('#professorManager')).scope()["myFile"];
+
+                var fd = new FormData();
+                fd.append('file',a);
+
+                $http = angular.injector(["ng"]).get("$http");
+                $http.post('/api/file/upload',fd, {
+                    transformRequest: angular.identity,
+                    headers: {'Content-Type': undefined}
+                }).
+                    success(function(data, status, headers, config) {
+                        console.log(status);
+                        return data;
+                    }).
+                    error(function(data, status, headers, config) {
+                        console.log(status);
+                        return false;
+                    });
+
+            }).then(function () {
+
+            });
+        }, 30000);
+        */
+        //Fin prueba
+
 
     }
 
     this.getFileName = function (){
-        return element(by.model(nombre_local).getAttribute('value'));
+
+        return element(by.model('newName_file_toUpload').getAttribute('value'));
+
     }
 
     this.getUploadedPdfName = function (){
