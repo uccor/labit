@@ -8,12 +8,12 @@ var environment = process.env.NODE_ENV || "dev";
 
 var genericConfig = {
     suites: {
+        //register: ['../test/registerSpec.js'],
         login: ['../test/loginSpec.js'],
-        //     register: ['../test/registerSpec.js'],
-        question: ['../test/questionSpec.js'],
-        student: ['../test/studentSpec.js'],
         professorMFileShare: ['../test/professorMFileShareSpec.js'],
-        professorUploadSpec: ['../test/professorUploadSpec.js']
+        professorUploadSpec: ['../test/professorUploadSpec.js'],
+        student: ['../test/studentSpec.js'],
+        question: ['../test/questionSpec.js']
     }
 };
 
@@ -39,7 +39,6 @@ var configurationByEnvironment = {
             //               platform: 'windows 8.1',
             //               version: 11
             //           },genericCapability)
-
         ],
         baseUrl: 'http://127.0.0.1:8080'
     }, genericConfig),
