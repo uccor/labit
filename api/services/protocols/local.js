@@ -36,7 +36,7 @@ exports.register = function (req, res, next) {
       console.log("Passwords don't match")
       registrarionmessage = "NO COINCIDE CONTRASEÑA"
       req.flash('error', 'Error.Passport.Password');
-      req.setAttribute('registrationerror', "")
+    //  req.setAttribute('registrationerror', "")
 
       /*
       res.render('error', {title: 'Register', error: 'Email and password required.'});

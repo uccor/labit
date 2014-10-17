@@ -41,7 +41,7 @@ app.controller('QuestionControllerStudent', ['$scope',"$sailsBind","$compile", f
 	
 }]);
 
-app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind", function ($scope, $sailsBind) {
+app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind","$timeout", function ($scope, $sailsBind,$timeout) {
 	$sailsBind.bind("api/question", $scope);
 	$scope.responses = [];
     $scope.summaryAnswers = [];
@@ -98,6 +98,9 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind", function (
         });
         $scope.text = '';
         $scope.saveOk="true";
+        $timeout(function() {
+            $scope.saveOk = "false";
+        }, 2000);
     };
 
 
