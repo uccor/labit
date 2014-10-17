@@ -11,7 +11,6 @@ module.exports = {
         if (req.method === 'GET')
             return res.json({'status': 'GET not allowed'});                       // Call to /upload via GET is error
 
-        console.log("llego hasta aca1");
         var uploadFile = req.file('uploadFile');
         //console.log(uploadFile);
 

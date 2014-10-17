@@ -25,11 +25,6 @@ var ProfessorUploadPage = function () {
     }
 
     this.selectFile = function (){
-        //element(by.id('select_newFile_button')).click();
-    }
-
-    this.submitPDF = function (){
-
         var unhideFileInputs = function () {
             var makeInputVisible = function () {
                 $('input[type="file"]').removeClass('hidden-uploader');
@@ -44,8 +39,11 @@ var ProfessorUploadPage = function () {
         var fileToUpload = '/File_Testing_Uploads/PDFtest.pdf';
         var absolutePath = path.resolve(__dirname, fileToUpload);
         $('input[type="file"]').sendKeys(absolutePath);
+    }
 
+    this.submitPDF = function (){
         //element(by.id('submit_newFile_button')).click()
+
 /*
         //
         browser.wait(function () {
@@ -83,13 +81,11 @@ var ProfessorUploadPage = function () {
 
     this.getFileName = function (){
 
-        return element(by.model('newName_file_toUpload').getAttribute('value'));
-
+        return element(by.model('newName_file_toUpload')).getAttribute('value');
     }
 
     this.getUploadedPdfName = function (){
         return  element.all(by.repeater("pdf in pdfs")).last().getText();
-
     }
 }
 

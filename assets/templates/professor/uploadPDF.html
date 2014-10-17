@@ -1,28 +1,32 @@
-<form class="form-horizontal" role="form"
-      id="uploadForm"
-      enctype="multipart/form-data"
-      action="api/file/upload"
-      method="post">
+<div ng-controller="uploadFormController">
+    <form class="form-horizontal" role="form"
+          id="uploadForm"
+          enctype="multipart/form-data"
+          action="api/file/upload"
+          method="post">
 
-    <br><br>
-    <div class="form-group">
-        <label class="col-sm-3" for="select_newFile_button">Nombre del Archivo</label>
+        <br><br>
+        <div class="form-group">
+            <label class="col-sm-3" for="select_newFile_button">Nombre del Archivo</label>
 
-        <div class="col-sm-9">
-            <input type="text" class="form-control" name="nombreArchivo" placeholder="Nombre del Archivo" ng-model="newName_file_toUpload">
+            <div class="col-sm-9">
+                <input type="text" class="form-control" name="nombreArchivo" placeholder="Nombre del Archivo" ng-model="newName_file_toUpload">
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label class="col-sm-3" for="select_newFile_button">Examinar</label>
+        <div class="form-group">
+            <label class="col-sm-3" for="select_newFile_button">Examinar</label>
 
-        <div class="col-sm-9">
-            <input type="file" id="select_newFile_button" name="upload11File" ng-model="myFile">
+            <div class="col-sm-9">
+                <input type="file" id="select_newFile_button" name="uploadFile" ng-model="newRoute_file_toUpload">
+            </div>
         </div>
-    </div>
 
 
-    <button type="submit" class="btn btn-default" id="submit_newFile_button">Subir</button>
-    <br><br>
+        <button type="submit" class="btn btn-default" id="submit_newFile_button">Subir</button>
+        <br><br>
 
-</form>
+    </form>
+
+
+</div>
