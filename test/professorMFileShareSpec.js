@@ -6,16 +6,16 @@ describe('Professor page', function () {
         expect(ProfessorManagerPage.getClass('CLASS1')).toEqual('CLASS1');
     });
     it('should show available files', function () {
-        expect(ProfessorManagerPage.getPdfElement(0).getText()).toEqual('PDF1');
+        expect(ProfessorManagerPage.getPdfElement(0).getText()).toEqual('pdf1_example');
 
     });
     it('should not allow to subscribe if there is no class selected', function () {
-        ProfessorManagerPage.sharePDF('PDF2');
+        ProfessorManagerPage.sharePDF('pdf2_example');
         expect(ProfessorManagerPage.isWarningHidden()).toEqual(false);
     });
     it('should subscribe to a class and share a PDF', function () {
         ProfessorManagerPage.selectClass('CLASS1')
-        ProfessorManagerPage.sharePDF('PDF2');
+        ProfessorManagerPage.sharePDF('pdf2_example');
         browser.wait(function () {
             return  ProfessorManagerPage.getTotalPages().then(function (txt) {
                 return (txt == '6');

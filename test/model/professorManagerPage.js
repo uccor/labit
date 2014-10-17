@@ -34,33 +34,33 @@ var ProfessorManagerPage = function () {
     this.getPdfElement = function (pdf) {
         var row = 0;
         switch (pdf) {
-            case 'PDF1':
+            case 'pdf1_example':
                 row = 0;
                 break;
-            case 'PDF2':
+            case 'pdf2_example':
                 row = 1;
                 break;
-            case 'PDF3':
+            case 'pdf3_example':
                 row = 2;
                 break;
 
         }
-        return element(By.repeater('pdf in pdfs').row(row).column('id'));
+        return element(By.repeater('pdf in pdfs').row(row).column('nombre'));
     }
     this.sharePDF = function (pdf) {
         switch (pdf) {
-            case 'PDF1':
+            case 'pdf1_example':
                 row = 0;
                 break;
-            case 'PDF2':
+            case 'pdf2_example':
                 row = 1;
                 break;
-            case 'PDF3':
+            case 'pdf3_example':
                 row = 2;
                 break;
 
         }
-        element(By.repeater('pdf in pdfs').row(row).column('id')).click();
+        element(By.repeater('pdf in pdfs').row(row).column('nombre')).click();
     }
     this.stopSharing = function () {
         element(By.id('stopSharing')).click();
