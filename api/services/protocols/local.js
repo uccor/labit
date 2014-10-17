@@ -25,8 +25,25 @@ var validator = require('validator');
 exports.register = function (req, res, next) {
   var email    = req.param('email')
     , username = req.param('username')
-    , password = req.param('password');
+    , password = req.param('password')
+    , password2 = req.param('password2')
+    , role = req.param('role')
 
+    console.log(password2)
+    console.log(password)
+
+  if (password!=password2){
+      console.log("Passwords don't match")
+      registrarionmessage = "NO COINCIDE CONTRASEÑA"
+      req.flash('error', 'Error.Passport.Password');
+      req.setAttribute('registrationerror', "")
+
+      /*
+      res.render('error', {title: 'Register', error: 'Email and password required.'});
+      res.render ('/register', {errorMessages: 'NOOOO COINCIDE PASSSWOOOORD'});
+      */
+      return next(new Error('Password do not match.'));
+  }
   if (!email) {
     req.flash('error', 'Error.Passport.Email.Missing');
     return next(new Error('No email was entered.'));
@@ -45,6 +62,7 @@ exports.register = function (req, res, next) {
   User.create({
     username : username
   , email    : email
+  , role : role
   }, function (err, user) {
     if (err) {
       if (err.code === 'E_VALIDATION') {
@@ -147,8 +165,11 @@ exports.login = function (req, identifier, password, next) {
     if (!user) {
       if (isEmail) {
         req.flash('error', 'Error.Passport.Email.NotFound');
+        console.log("Error.Passport.Email.NotFound")
       } else {
         req.flash('error', 'Error.Passport.Username.NotFound');
+        console.log("Error.Passport.Username.NotFound")
+
       }
 
       return next(null, false);
@@ -166,6 +187,7 @@ exports.login = function (req, identifier, password, next) {
 
           if (!res) {
             req.flash('error', 'Error.Passport.Password.Wrong');
+              console.log("Contraseña o Usuario incorrecto")
             return next(null, false);
           } else {
             return next(null, user);
@@ -174,6 +196,7 @@ exports.login = function (req, identifier, password, next) {
       }
       else {
         req.flash('error', 'Error.Passport.Password.NotSet');
+          console.log("ingrese contraseña")
         return next(null, false);
       }
     });

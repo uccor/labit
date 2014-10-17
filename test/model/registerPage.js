@@ -1,9 +1,12 @@
 //var protractor = require('protractor');
 
-
 var RegisterPage= function() {
+    var pageRegisterTitle = '';
     this.get = function() {
          browser.get('http://localhost:'+process.env.PORT+'/register');
+         browser.getTitle().then(function (text) {
+            pageRegisterTitle = text;
+        });
     }
 
     this.fill= function(name, lastName, username, email, pass, pass2) {
@@ -26,10 +29,19 @@ var RegisterPage= function() {
     }
     this.check = function (){
          // ptor = protractor.getInstance();
-        browser.getTitle().then(function (text) {
-            console.log(text)
+        pp = protractor.getInstance();
+        pp.sleep(1000).then(function () {
+            var pageHomeTitle = '';
+            pp.getCurrentUrl().then(function (text) {
+                
+                // console.log('home2: ',text);
+                // console.log('register: ',pageRegisterTitle);
+                pageHomeTitle = text;
+                // expect(element('legend').text()).not().toBe("LOGIN_CONNECT");
+                expect(pageRegisterTitle.not().toBe(pageHomeTitle);
+            });
         });
-        expect(browser.getTitle()).toEqual('Main');
+        
     }
 }
 module.exports = new RegisterPage();
