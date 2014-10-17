@@ -11,16 +11,18 @@ module.exports = {
         if (req.method === 'GET')
             return res.json({'status': 'GET not allowed'});                       // Call to /upload via GET is error
 
+        console.log("llego hasta aca1");
         var uploadFile = req.file('uploadFile');
         //console.log(uploadFile);
 
         uploadFile.upload({
+
             dirname: '../../assets/pdf'
             //adapter: require('skipper-gridfs'),                                       //Para subir a una base de datos necesita configuracion adicional
             //uri: 'mongodb://[username:password@]host1[:port1][/[database[.bucket]]'
             //e.g. mongodb://jimmy@j1mtr0n1xx@mongo.jimmy.com:27017/coolapp.avatar_uploads
         }, function onUploadComplete(err, files) {                // Files will be uploaded to .tmp/uploads
-
+            console.log(err);
 
             if (err) return res.serverError(err);                              // IF ERROR Return and send 500 error with error
             var name = files[0].fd.split('\\');
