@@ -1,1 +1,2 @@
-web: node web.js
+web: node node_modules/sails/bin/sails.js lift
+
