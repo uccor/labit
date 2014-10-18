@@ -56,5 +56,8 @@
   "license": "",
   "devDependencies": {
     "protractor": "^1.3.1"
+  },
+  "engines": {
+        "node": "v0.10.32"
   }
 }
