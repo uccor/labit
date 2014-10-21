@@ -10,9 +10,11 @@ module.exports = {
 	attributes: {
 
 		text: { type: 'string' , required: true},
-		status: {type: 'string', required: true, defaultsTo: ''},
+		status: {type: 'string', defaultsTo: ''},
 		answers: {type : "array", required: true},
-		visible: {type: 'string', required: true, defaultsTo: 'false'}
+		visible: {type: 'string', required: true, defaultsTo: 'false'},
+		course: { required: true, model: 'course', defaultsTo: 1},
+		live_class : { model: 'live_class_student'},
 	}
 };
 

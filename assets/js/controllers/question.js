@@ -1,20 +1,35 @@
 
 app.controller('QuestionControllerStudent', ['$scope',"$sailsBind","$compile", function ($scope, $sailsBind, $compile) {
 	// $sailsBind.bind("api/question", $scope, {"visible": {"equals": "true"}});
+    
 	$scope.questions = [];
-	
-	io.socket.get('/question/visible', function (data, jwres) {
-		// data.questions;
-		// console.log();
-		$scope.questions = data.questions;
-        if (!$scope.$$phase) {
-            $scope.$apply();
-        }
-		
-	});
+	// angular.element('[ng-controller=ctrl]').scope()
+
+	$scope.getQuestion = function() {
+        io.socket.get('/question/visible', function (data, jwres) {
+            // data.questions;
+            // console.log();
+            $scope.questions = data.questions;
+            if (!$scope.$$phase) {
+                $scope.$apply();
+            }
+            
+        });  
+    }
+    /*When new question is visible reload questions*/
+    io.socket.on("newQuestion", function onServerSentEvent (data) { 
+        $scope.getQuestion();
+    });
+
+    $scope.$on('changedQuestionStatus', function (event, args) {
+        debugger;
+    });
+
+    $scope.getQuestion();
    
     $scope.validAnswers = 0;     
-    $scope.sendResult = function(answer){
+    
+    $scope.sendResult = function(answer) {
     	var questionId = answer.$parent.question.id;
         var question = answer.$parent.question;
     	var answerUser = answer.$index;
@@ -41,14 +56,31 @@ app.controller('QuestionControllerStudent', ['$scope',"$sailsBind","$compile", f
 	
 }]);
 
-app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind","$timeout", function ($scope, $sailsBind,$timeout) {
-	$sailsBind.bind("api/question", $scope);
+app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind","$timeout","$rootScope", function ($scope, $sailsBind,$timeout,$rootScope) {
+
+	// $sailsBind.bind("api/question", $scope);
+
+    // var x_act_class= $location.path();
+    // $scope.subscribe_to_class = function () {
+    //     io.socket.get('/api/live_class_student' + x_act_class, function messageReceived(jsonObject) {
+    //        $scope.idClase = jsonObject.id;
+    //        $scope.getQuestion(idCourse);
+           
+    //     });
+    // };
+    $scope.questions = [];
+    $scope.getQuestion = function() {
+        io.socket.get('/question/get_by_course', function (data, jwres) {
+            $scope.questions = data.questions;
+            if (!$scope.$$phase) {
+                $scope.$apply();
+            }
+        });  
+    }
+    $scope.getQuestion();
 	$scope.responses = [];
     $scope.summaryAnswers = [];
 	$scope.changeStatus = function (question) {
-    	/*tengo que saber si esta click el check o no para pasarle distintos status...*/
-   		//var questionId = ques.question.id;
-   		
 		$( "input:checkbox.checkButton" ).each(function(ind,element) {
 			var questionId = $(element).attr("id");
 			var isVisible = $(element).prop("checked");
@@ -56,13 +88,13 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind","$timeout",
 	    	io.socket.put('/api/question/'+questionId, { visible: isVisible }, function (data) {
 	    		console.log(data)
 	    	});	
-		})
-
+		});
+        io.socket.get('/question/reload');
+        // $rootScope.$broadcast('changedQuestionStatus', {'change': "pepeChange"});
+       
 
     };
-
-    // $sailsBind.bind("api/answer", $scope);
-    // $sailsBind.bind("api/answer", $scope, {"question" : {"id": {"equal": "13"}}});
+    
     $scope.searchAnswers = function (ques) {
 
     	io.socket.get('/answer/responses', { id: ques.question.id }, function (data, jwres) {

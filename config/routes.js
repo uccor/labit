@@ -20,7 +20,7 @@
  * http://sailsjs.org/#/documentation/concepts/Routes/RouteTargetSyntax.html
  */
 
-module.exports.routes = {
+ module.exports.routes = {
 
     /***************************************************************************
      *                                                                          *
@@ -33,8 +33,8 @@ module.exports.routes = {
      ***************************************************************************/
 
 
-    '/': {
-        view: 'homepage'
+     '/': {
+      view: 'homepage'
     },
     //'/index': {
     //    view: 'index'
@@ -43,13 +43,13 @@ module.exports.routes = {
     '/index': 'UserController.redirectHomeByRole',
 
     '/professorManager': {
-        view: 'professorManager'
+      view: 'professorManager'
     },
     '/professorScreen': {
-        view: 'professorScreen'
+      view: 'professorScreen'
     },
     '/student': {
-        view: 'student'
+      view: 'student'
     },
     'get /login': 'AuthController.login',
     'get /logout': 'AuthController.logout',
@@ -69,11 +69,13 @@ module.exports.routes = {
     'get /answer/responses': 'AnswerController.getResponses',
     '/question_professor': { view: 'questionProfessor' },
     'get /question/visible': 'QuestionController.getVisible',
-    '/make_question': { view: 'makeQuestion' }
+    '/make_question': { view: 'makeQuestion' },
+    'get /question/reload': 'QuestionController.reloadQuestion',
+    'get /question/get_by_course': 'QuestionController.getAllByCourse',
 
 
-  
-  
+    
+    
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *
