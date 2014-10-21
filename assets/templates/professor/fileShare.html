@@ -7,6 +7,8 @@
                 <!--th>#</th-->
                 <th>Nombre del Archivo</th>
                 <th> Compartir</th>
+                <th> Editar</th>
+                <th> Eliminar</th>
             </tr>
             </thead>
             <tbody>
@@ -14,13 +16,20 @@
                 <!--td>{{ pdf.id }}</td-->
                 <td>{{ pdf.nombre }}</td>
                 <td class="text-center">
-                    <img id="img_{{ pdf.id }}" src="images/ico_pdf.png">
+                    <a href=""><img id="img_{{ pdf.id }}" src="images/ico_pdf.png"></a>
+                </td>
+                <td>
+                    <a href=""><span class="glyphicon glyphicon-cog"></span></a>
+                </td>
+                <td>
+                    <a href=""><span class="glyphicon glyphicon-trash"></span></a>
                 </td>
             </tr>
             </tbody>
         </table>
     </div>
     <div class="col-md-2">
-        <div id="warningMsg" class="alert alert-danger" role="alert" ng-class="{hidden:warning.class}">{{warning.msg}}</div>
+        <div id="warningMsg" class="alert alert-danger" role="alert" ng-class="{hidden:warning.class}">{{warning.msg}}
+        </div>
     </div>
 </div>
