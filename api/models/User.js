@@ -28,7 +28,28 @@ module.exports = {
     email     : { type: 'email',  unique: true },
     status    : { type: 'string', unique: false, defaultsTo: 'Offline', required: 'true'},
     passports : { collection: 'Passport', via: 'user' },
-    role : {type:'string', defaultsTo:'student'}
+    role : {type:'string', defaultsTo:'student'},
+
+      //Atributos ultimos sprint
+
+      courses: {
+          collection: 'course',
+          via: 'users'
+      },
+
+      live_class_student:{
+          model: 'live_class_student'
+      }
+      /*,
+
+
+      answers: {
+          collection: 'answer',
+          via: ''
+
+      }
+      */
+
   }
 };
 

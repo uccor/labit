@@ -25,8 +25,17 @@ module.exports = {
     ruta: {
 	      type: 'string',
 	      required: true
+    },
+
+      //Atributos ultimo sprint
+    live_class_student: {
+          model:'live_class_student'
+    },
+
+    course: {
+        model: 'course'
     }
-    
+
 
   }
 };

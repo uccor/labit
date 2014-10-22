@@ -8,7 +8,33 @@
 module.exports = {
 
   attributes: {
-	name: { type: 'string' },
+
+      //Atributos ultimo sprint
+      name: {
+          type: 'string'
+      },
+
+      users: {
+          collection: 'user',
+          via: 'courses'
+      },
+
+      live_classes_student: {
+          collection: 'live_class_student',
+          via: 'course'
+      },
+
+      pdfs:{
+          collection: 'pdf',
+          via: 'course'
+      },
+
+      questions: {
+          collection: 'question',
+          via: 'course'
+      }
+
+
   }
 };
 
