@@ -38,6 +38,9 @@ module.exports = {
         },
         pdf_screenPageNumber: {
             type: 'integer'
+        },
+        course_id: {
+            type: 'integer'
         }
 
     }

@@ -124,7 +124,8 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind","$timeout",
 		$scope.questions.push({
 			text: $scope.text,
 			status: "si",
-			answers: ans
+			answers: ans,
+            live_class:$scope.$parent.live_class_students
 		});
 		$scope.text = '';
 		$scope.saveOk="true";
