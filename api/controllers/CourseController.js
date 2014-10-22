@@ -61,39 +61,17 @@ module.exports = {
         }
 
 
-
-        Course.find().populateAll().exec(function findCB(err,courses){
-        //User.findOne({id:userID, role:'professor'}).populate('courses').exec(function findCB(err,found){
-
-            if(err){
-                res.send(err);
-                return;
-            }
+        User.findOne({id:userID}).populate('courses').exec(function findCB(err,found) {
 
             var userCourses = [];
-            var course = [];
 
-            res.send(courses.length);
-
-            while (courses.length){
-                course = courses.pop();
-
-                if(course.users[0]){
-                    userCourses.push(course);
-                }
+            while (found.courses.length){
+                userCourses.push(found.courses.pop());
             }
 
-            if(userCourses.length < 1){
-                res.send('No se encontraron Cursos del Usuario');
-                return;
-            }
-
+            //console.log(userCourses);
             res.send(userCourses);
-
         });
-
-
-
     },
 
 
@@ -119,9 +97,7 @@ module.exports = {
 
             console.log('Updated user to have name ' + updated[0].name);
 
-        });
-
-        */
+        });*/
     }
 
 

@@ -75,9 +75,9 @@ module.exports.routes = {
     '/make_question':           { view: 'makeQuestion' },
 
     //Routes last sprint
-    'post /api/newCourse':  'CourseController.create_course',
+    'post /api/myCourses':  'CourseController.create_course',
     'get  /api/myCourses':  'CourseController.get_my_courses',
-    'put  /api/editCourse': 'CourseController.set_my_course'
+    'put  /api/myCourses':  'CourseController.set_my_course'
 
   
   
