@@ -1,5 +1,5 @@
 /**
- * Created by martin on 11/10/14.
+ * Created by Mojarritas on 11/10/14.
  */
 
 app.controller('professorFileShare', ['$scope', '$rootScope', "$sailsBind", function ($scope, $rootScope, $sailsBind) {
@@ -25,6 +25,16 @@ app.controller('professorFileShare', ['$scope', '$rootScope', "$sailsBind", func
             $scope.warning.msg = "Seleccione una clase";
             $scope.warning.class = '';
         }
+    };
+
+    $scope.savePdf = function (data, id) {
+        angular.extend(data, {id: id});
+        $scope.pdfs.push(data);
+        console.log(JSON.stringify(data));
+    };
+
+    $scope.removePdf = function (index) {
+        $scope.pdfs.splice(index, 1);
     };
 
     $sailsBind.bind("api/pdf", $scope);

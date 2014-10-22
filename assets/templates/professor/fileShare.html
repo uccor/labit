@@ -4,27 +4,39 @@
             <caption><p class="tituloPDF"> Archivos Subidos </p></caption>
             <thead>
             <tr>
-                <!--th>#</th-->
                 <th>Nombre del Archivo</th>
-                <th> Compartir</th>
-                <th> Editar</th>
-                <th> Eliminar</th>
+                <th style="text-align: center;"> Compartir</th>
+                <th style="text-align: center;"> Editar</th>
+                <th style="text-align: center;"> Eliminar</th>
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="pdf in pdfs" ng-click="share(pdf.id,pdf.ruta,pdf.nombre)">
-                <!--td>{{ pdf.id }}</td-->
+            <tr ng-repeat="pdf in pdfs">
                 <td>{{ pdf.nombre || 'empty' }}</td>
-                <td class="text-center">
-                    <a href=""><img id="img_{{ pdf.id }}" src="images/ico_pdf.png"></a>
-                </td>
-                <td>
-                    <a href="">
-                        <span class="glyphicon glyphicon-cog" ng-click="textBtnForm.$show()" ng-hide="textBtnForm.$visible"></span>
+                <td class="text-center" align="center">
+                    <a href="" ng-click="share(pdf.id,pdf.ruta,pdf.nombre)">
+                        <img id="img_{{ pdf.id }}" src="images/ico_pdf.png">
                     </a>
                 </td>
-                <td>
-                    <a href=""><span class="glyphicon glyphicon-trash"></span></a>
+                <td align="center">
+                    <form editable-form name="rowform" ng-show="rowform.$visible" onbeforesave="savePdf(rowform.$data, pdf.id)"
+                          class="form-buttons form-inline" shown="inserted == pdf">
+                        <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
+                            save
+                        </button>
+                        <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()"
+                                class="btn btn-default">
+                            cancel
+                        </button>
+                    </form>
+                    <a href="" ng-click="rowform.$show()" ng-hide="rowform.$visible">
+                        <span class="glyphicon glyphicon-cog"></span>
+                    </a>
+                </td>
+                <td align="center">
+                    <a href="" ng-click="removePdf($index)" ng-hide="rowform.$visible">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </a>
                 </td>
             </tr>
             </tbody>
