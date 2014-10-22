@@ -13,7 +13,7 @@
             <tbody>
             <tr ng-repeat="pdf in pdfs">
                 <td>
-                     <span editable-text="pdf.nombre" e-form="textBtnForm">{{ pdf.nombre || 'empty' }} </span>
+                     <span editable-text="pdf.nombre" e-form="rowform">{{ pdf.nombre || 'empty' }} </span>
                 </td>
                 <td class="text-center" align="center">
                     <a href="" ng-click="share(pdf.id,pdf.ruta,pdf.nombre)">
@@ -24,21 +24,17 @@
                     <form editable-form name="rowform" ng-show="rowform.$visible" onbeforesave="savePdf(rowform.$data, pdf.id)"
                           class="form-buttons form-inline" shown="inserted == pdf">
                         <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
-                            save
+                            <span class="glyphicon glyphicon-ok"></span>
                         </button>
                         <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()"
                                 class="btn btn-default">
-                            cancel
+                            <span class="glyphicon glyphicon-remove"></span>
                         </button>
                     </form>
-                    <a href="" ng-click="rowform.$show()" ng-hide="rowform.$visible">
-                        <span class="glyphicon glyphicon-cog"></span>
-                    </a>
+                        <span class="glyphicon glyphicon-pencil" ng-click="rowform.$show()" ng-hide="rowform.$visible" style="cursor: pointer"></span>
                 </td>
                 <td align="center">
-                    <a href="" ng-click="removePdf($index)" ng-hide="rowform.$visible">
-                        <span class="glyphicon glyphicon-trash"></span>
-                    </a>
+                    <span class="glyphicon glyphicon-trash" ng-click="removePdf($index)" ng-hide="rowform.$visible" style="cursor: pointer"></span>
                 </td>
             </tr>
             </tbody>
