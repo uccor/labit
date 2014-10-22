@@ -1,25 +1,25 @@
 app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind","$timeout","$rootScope", function ($scope, $sailsBind,$timeout,$rootScope) {
 
-	
-	
+
+
 	$scope.questions = [];
 	$scope.getQuestion = function() {
 
 		angular.element(document).ready(function () {
-			debugger;
+
 			$scope.$parent.live_class_students[0].id;
-			
+
 		});
 		// $scope.$watch('live_class_students', function(newValue, oldValue) {
 		// 	debugger;
-		
+
 
 		io.socket.get('/question/get_by_course', {}, function (data, jwres) {
 			$scope.questions = data.questions;
 			if (!$scope.$$phase) {
 				$scope.$apply();
 			}
-		});  
+		});
 
 	}
 	
@@ -63,7 +63,7 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind","$timeout",
 			return;
 		}
 		var ans = [];
-		var  answares = $("li > input.visible");
+		var  answares = $("li > input");
         var ansQuantity=0;
 		angular.forEach(answares, function(val, key) {
 			if(val.value != '') {
@@ -100,7 +100,7 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind","$timeout",
                 $scope.text = '';
                 $scope.saveOk="true";
                 $scope.error="";
-
+                $("li:not('#template') > input").parent("li").remove();
 
                 if (!$scope.$$phase) {
                     $scope.$apply();
@@ -145,6 +145,7 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind","$timeout",
 		var newAns= template.clone();
 		newAns.removeClass("hidden");
 		newAns.removeAttr("id");
+        newAns.find("input").val("");
 		newAns.find("input").addClass("visible");
 		//var element = $compile(angular.element(clone))(scope);
 
