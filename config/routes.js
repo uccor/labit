@@ -62,14 +62,12 @@
     'get /show': 'ConnectController.show',
     'get /getCurrentUsers': 'CurrentUsersController.get',
 
-    '/question_student': {
-      view: 'questionStudent'
-    },
+  
     'post /answer/send': 'AnswerController.sendAnswer',
     'get /answer/responses': 'AnswerController.getResponses',
-    '/question_professor': { view: 'questionProfessor' },
+    
     'get /question/visible': 'QuestionController.getVisible',
-    '/make_question': { view: 'makeQuestion' },
+    // '/make_question': { view: 'makeQuestion' },
     'get /question/reload': 'QuestionController.reloadQuestion',
     'get /question/get_by_course': 'QuestionController.getAllByCourse',
 

@@ -5,25 +5,45 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind","$timeout",
 	$scope.questions = [];
 	$scope.getQuestion = function() {
 		
-		io.socket.get('/question/get_by_course', {} function (data, jwres) {
-			$scope.questions = data.questions;
-			if (!$scope.$$phase) {
-				$scope.$apply();
-			}
-		});  
+			// var currentClassId = $scope.$parent.live_class_students[0].id;
+		
+
+		angular.element(document).ready(function () {
+			debugger;
+			$scope.$parent.live_class_students[0].id;
+			
+		});
+		// $scope.$watch('live_class_students', function(newValue, oldValue) {
+		// 	debugger;
+			
+
+		// }, true);
+		
+
+		//io.socket.get('/question/get_by_course',  function (data, jwres) {
+		//	$scope.questions = data.questions;
+		//	if (!$scope.$$phase) {
+		//		$scope.$apply();
+		//	}
+		//});  
+		
+			// $scope.$apply();
+			
+		
 	}
-	$scope.getQuestion();
+	
 	$scope.responses = [];
 	$scope.summaryAnswers = [];
 	$scope.changeStatus = function (question) {
+		var currentClassId = $scope.$parent.live_class_students[0].id;
 		$( "input:checkbox.checkButton" ).each(function(ind,element) {
 			var questionId = $(element).attr("id");
 			var isVisible = $(element).prop("checked");
 			// var statusNow = "invisible"; 	
-			var currentClassId = $scope.$parent.live_class_students[0].id;
+			
 			// debugger;
 			io.socket.put('/api/question/'+questionId, { visible: isVisible, live_class : currentClassId }, function (data) {
-				console.log(data)
+				// console.log(data)
 			});	
 		});
 		io.socket.get('/question/reload');
@@ -72,7 +92,8 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind","$timeout",
 			$scope.saveOk = "false";
 		}, 2000);
 	};
-
+	//Load questions for course...
+	$scope.getQuestion();
 
 
 //    app.directive("answerDynamic",  ['$compile',function($compile) {
