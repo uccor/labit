@@ -12,7 +12,9 @@
             </thead>
             <tbody>
             <tr ng-repeat="pdf in pdfs">
-                <td>{{ pdf.nombre || 'empty' }}</td>
+                <td>
+                     <span editable-text="pdf.nombre" e-form="textBtnForm">{{ pdf.nombre || 'empty' }} </span>
+                </td>
                 <td class="text-center" align="center">
                     <a href="" ng-click="share(pdf.id,pdf.ruta,pdf.nombre)">
                         <img id="img_{{ pdf.id }}" src="images/ico_pdf.png">

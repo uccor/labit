@@ -28,7 +28,7 @@ app.controller('professorFileShare', ['$scope', '$rootScope', "$sailsBind", func
     };
 
     $scope.savePdf = function (data, id) {
-        angular.extend(data, {id: id});
+        //angular.extend(data, {id: id});
         $scope.pdfs.push(data);
         console.log(JSON.stringify(data));
     };
