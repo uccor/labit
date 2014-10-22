@@ -31,4 +31,15 @@ app.controller('professorCourse', ['$scope', '$rootScope', "$sailsBind", functio
         $scope.courses.push(data);
         console.log(JSON.stringify(data));
     };
+    /*
+
+    $scope.addCourseDEPRUEBA = function () {
+        io.socket.post('/api/newCourse/', {name: 'nuevonuevo'});
+    };
+
+
+    $scope.addCoursePruebaGET = function () {
+        io.socket.get('/api/myCourses/');
+    };
+    */
 }]);
