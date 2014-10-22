@@ -5,7 +5,7 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind","$timeout",
 	$scope.questions = [];
 	$scope.getQuestion = function() {
 		
-		io.socket.get('/question/get_by_course', {} function (data, jwres) {
+		io.socket.get('/question/get_by_course', {}, function (data, jwres) {
 			$scope.questions = data.questions;
 			if (!$scope.$$phase) {
 				$scope.$apply();
@@ -53,21 +53,52 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind","$timeout",
 		}
 		var ans = [];
 		var  answares = $("li > input.visible");
+        var ansQuantity=0;
 		angular.forEach(answares, function(val, key) {
 			if(val.value != '') {
 				ans.push(val.value);
 				val.value = "";
+                ansQuantity=ansQuantity+1;
 			}
 		});
-		$scope.questions.push({
-			text: $scope.text,
-			status: "si",
-			answers: ans,
-            live_class:1,
-            course:$scope.$parent.live_class_students[0].course.id
-		});
-		$scope.text = '';
-		$scope.saveOk="true";
+
+        if(ansQuantity<2){
+            $scope.error="Minimo 2 respuestas";
+            return;
+        }
+
+//		$scope.questions.push({
+//			text: $scope.text,
+//			status: "si",
+//			answers: ans,
+//            live_class:1,
+//            course:$scope.$parent.live_class_students[0].course.id
+//		});
+
+
+        io.socket.post(
+            '/api/question',
+            {
+                text: $scope.text,
+                status: "si",
+                answers: ans,
+                live_class:1,
+                course:$scope.$parent.live_class_students[0].course.id
+            },
+            function (data, jwres) {
+                $scope.text = '';
+                $scope.saveOk="true";
+                $scope.error="";
+
+
+                if (!$scope.$$phase) {
+                    $scope.$apply();
+                }
+            }
+        );
+
+
+
 		$timeout(function() {
 			$scope.saveOk = "false";
 		}, 2000);
