@@ -1,0 +1,53 @@
+<div ng-controller="professorCourse" id="professorCourse">
+    <div class="page-header" align="center" style="margin-top: 0px">
+
+        <b class="titulos">
+            Cursos Disponibles
+        </b>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <button class="btn btn-default" ng-click="addCourse()">Add row</button>
+                <table class="table table-striped table-hover table-condensed" style="width: 100%">
+                    <thead>
+                    <tr>
+                        <th>Curso</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="c in courses track by c.id" ng-click="">
+                        <td>
+                              <span editable-text="c.name" e-form="rowform">
+          {{ c.name || 'empty' }}                             </span>
+                        </td>
+                        <td class="text-center">
+                            <form editable-form name="rowform" ng-show="rowform.$visible" onbeforesave="saveCourse(rowform.$data, c.id)"
+                                  class="form-buttons form-inline" shown="inserted == c">
+                                <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
+                                    save
+                                </button>
+                                <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()"
+                                        class="btn btn-default">
+                                    cancel
+                                </button>
+                            </form>
+                            <a class="btn btn-default" ng-click="rowform.$show()"
+                               ng-hide="rowform.$visible">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </a>
+                            <a class="btn btn-danger" ng-click="removeCourse($index)" ng-hide="rowform.$visible">
+                                <span class="glyphicon glyphicon-trash"></span>
+
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6">
+            </div>
+        </div>
+    </div>
+</div>
