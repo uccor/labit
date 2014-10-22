@@ -53,7 +53,6 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind","$timeout",
 		}
 		var ans = [];
 		var  answares = $("li > input.visible");
-
 		angular.forEach(answares, function(val, key) {
 			if(val.value != '') {
 				ans.push(val.value);
@@ -64,7 +63,8 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind","$timeout",
 			text: $scope.text,
 			status: "si",
 			answers: ans,
-            live_class:$scope.$parent.live_class_students
+            live_class:1,
+            course:$scope.$parent.live_class_students[0].course.id
 		});
 		$scope.text = '';
 		$scope.saveOk="true";
