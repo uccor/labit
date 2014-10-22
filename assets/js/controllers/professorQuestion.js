@@ -1,74 +1,11 @@
-
-app.controller('QuestionControllerStudent', ['$scope',"$sailsBind","$compile", function ($scope, $sailsBind, $compile) {
-	// $sailsBind.bind("api/question", $scope, {"visible": {"equals": "true"}});
-	
-	$scope.questions = [];
-	$scope.getQuestion = function() {
-		io.socket.get('/question/visible', function (data, jwres) {
-			// data.questions;
-			// console.log();
-			$scope.questions = data.questions;
-			if (!$scope.$$phase) {
-				$scope.$apply();
-			}
-			
-		});  
-	}
-	/*When new question is visible reload questions*/
-	io.socket.on("newQuestion", function onServerSentEvent (data) { 
-		$scope.getQuestion();
-	});
-
-	$scope.$on('changedQuestionStatus', function (event, args) {
-		debugger;
-	});
-
-	$scope.getQuestion();
-   
-	$scope.validAnswers = 0;     
-	
-	$scope.sendResult = function(answer) {
-		var questionId = answer.$parent.question.id;
-		var question = answer.$parent.question;
-		var answerUser = answer.$index;
-		io.socket.post(
-			'/answer/send', 
-			{
-				question: questionId,
-				answer: answerUser 
-			}, 
-			function (data, jwres) {
-				//if the answer was saved, then remove the question only in form..
-				if (data.status == "ok") {
-					// $("#" + answer.$parent.question.id).parents('.question').delay( 100 ).fadeOut( 300 );
-					//var delQuestion = $scope.questions[questionId];
-
-					$scope.questions.splice( question, 1 );
-					if (!$scope.$$phase) {
-						$scope.$apply();
-					}
-				} 
-			}
-		);
-	};
-	
-}]);
-
 app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind","$timeout","$rootScope", function ($scope, $sailsBind,$timeout,$rootScope) {
 
-	// $sailsBind.bind("api/question", $scope);
-
-	// var x_act_class= $location.path();
-	// $scope.subscribe_to_class = function () {
-	//     io.socket.get('/api/live_class_student' + x_act_class, function messageReceived(jsonObject) {
-	//        $scope.idClase = jsonObject.id;
-	//        $scope.getQuestion(idCourse);
-		   
-	//     });
-	// };
+	
+	
 	$scope.questions = [];
 	$scope.getQuestion = function() {
-		io.socket.get('/question/get_by_course', function (data, jwres) {
+		
+		io.socket.get('/question/get_by_course', {} function (data, jwres) {
 			$scope.questions = data.questions;
 			if (!$scope.$$phase) {
 				$scope.$apply();
@@ -83,7 +20,9 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind","$timeout",
 			var questionId = $(element).attr("id");
 			var isVisible = $(element).prop("checked");
 			// var statusNow = "invisible"; 	
-			io.socket.put('/api/question/'+questionId, { visible: isVisible }, function (data) {
+			var currentClassId = $scope.$parent.live_class_students[0].id;
+			// debugger;
+			io.socket.put('/api/question/'+questionId, { visible: isVisible, live_class : currentClassId }, function (data) {
 				console.log(data)
 			});	
 		});
@@ -189,5 +128,3 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind","$timeout",
 		}
 	}
 });
-
-
