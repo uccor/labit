@@ -38,7 +38,26 @@ module.exports = {
         },
         pdf_screenPageNumber: {
             type: 'integer'
+        },
+
+        //Atributos del ultimo sprint
+
+        users:{
+            collection: 'user',
+            via: 'live_class_student'
+        },
+
+        course: {
+            model: 'course'
+        },
+
+        pdfs:{
+            model: 'pdf'
         }
+
+
+
+
 
     }
 };

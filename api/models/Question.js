@@ -12,7 +12,14 @@ module.exports = {
 		text: { type: 'string' , required: true},
 		status: {type: 'string', required: true, defaultsTo: ''},
 		answers: {type : "array", required: true},
-		visible: {type: 'string', required: true, defaultsTo: 'false'}
+		visible: {type: 'string', required: true, defaultsTo: 'false'},
+
+        //Atributos ultimo sprint
+        course: {
+            model: 'course'
+        }
+
+
 	}
 };
 
