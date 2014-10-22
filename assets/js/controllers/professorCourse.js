@@ -15,20 +15,21 @@ app.controller('professorCourse', ['$scope', '$rootScope', "$sailsBind", functio
     // add user
     $scope.addCourse = function () {
         $scope.inserted = {
-            id: $scope.courses.length + 1,
             name: ''
         };
-
-        $scope.courses.push($scope.inserted);
+        io.socket.put("/api/course/create/", $scope.inserted);
+        //$scope.courses.push(c );
     };
 
-    $scope.saveCourse = function (data, id) {
-
-        //$scope.user not updated yet
-        //$scope.courses.pop();
-        //return $http.post('/saveUser', data);
+    $scope.saveCourse = function (data,id) {
         angular.extend(data, {id: id});
         $scope.courses.push(data);
         console.log(JSON.stringify(data));
+    };
+    $scope.checkName = function(data) {
+        console.log(data);
+        if (data == '') {
+            return "Please fill a name";
+        }
     };
 }]);
