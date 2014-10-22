@@ -39,7 +39,7 @@ var self = {
 		sails.io.sockets.emit('newQuestion');
 	},
 	getAllByCourse : function (req, res) {
-		console.log('get by course');
+		// console.log('get by course');
 		var currentCourse = req.param('courseId');
 		currentCourse = 1;
 		Question.find({
