@@ -51,6 +51,9 @@ module.exports.routes = {
     '/student': {
         view: 'student'
     },
+    '/professorCourse': {
+        view: 'professorCourse'
+    },
     'get /login': 'AuthController.login',
     'get /logout': 'AuthController.logout',
     'get /register': 'AuthController.register',
