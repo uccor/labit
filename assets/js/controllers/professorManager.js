@@ -14,9 +14,16 @@ app.config(['$routeProvider',
         $routeProvider.when('/fileUpload', {
             template: JST["assets/templates/professor/uploadPDF.html"]
         });
+        $routeProvider.when('/makeQuestion', {
+            template: JST["assets/templates/professor/makeQuestion.html"]
+        });
+        $routeProvider.when('/viewQuestion', {
+            template: JST["assets/templates/professor/viewQuestion.html"]
+        });
         $routeProvider.otherwise({
             template: JST["assets/templates/professor/fileShare.html"]
         });
+
     }]);
 
 app.controller('professorTab', function ($scope, $location) {
