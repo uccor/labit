@@ -54,26 +54,30 @@ module.exports.routes = {
     '/professorCourse': {
         view: 'professorCourse'
     },
-    'get /login': 'AuthController.login',
-    'get /logout': 'AuthController.logout',
-    'get /register': 'AuthController.register',
+    'get /login':               'AuthController.login',
+    'get /logout':              'AuthController.logout',
+    'get /register':            'AuthController.register',
 
-    'post /register': 'AuthController.register',
-    'post /auth/local': 'AuthController.callback',
+    'post /register':           'AuthController.register',
+    'post /auth/local':         'AuthController.callback',
     'post /auth/local/:action': 'AuthController.callback',
 
-    'get /show': 'ConnectController.show',
-    'get /getCurrentUsers': 'CurrentUsersController.get',
+    'get /show':                'ConnectController.show',
+    'get /getCurrentUsers':     'CurrentUsersController.get',
 
     '/question_student': {
-      view: 'questionStudent'
+      view:                     'questionStudent'
     },
-    'post /answer/send': 'AnswerController.sendAnswer',
-    'get /answer/responses': 'AnswerController.getResponses',
-    '/question_professor': { view: 'questionProfessor' },
-    'get /question/visible': 'QuestionController.getVisible',
-    '/make_question': { view: 'makeQuestion' }
+    'post /answer/send':        'AnswerController.sendAnswer',
+    'get /answer/responses':    'AnswerController.getResponses',
+    '/question_professor':      { view: 'questionProfessor' },
+    'get /question/visible':    'QuestionController.getVisible',
+    '/make_question':           { view: 'makeQuestion' },
 
+    //Routes last sprint
+    'post /api/newCourse':  'CourseController.create_course',
+    'get  /api/myCourses':  'CourseController.get_my_courses',
+    'put  /api/editCourse': 'CourseController.set_my_course'
 
   
   
