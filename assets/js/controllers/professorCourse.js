@@ -31,6 +31,11 @@ app.controller('professorCourse', ['$scope', '$rootScope', "$sailsBind", functio
         $scope.courses.push(data);
         console.log(JSON.stringify(data));
     };
+    $scope.checkName = function(data) {
+        console.log(data);
+        if (data == '') {
+            return "Please fill a name";
+        }
 
 /*
     $scope.addCourseDEPRUEBA = function () {

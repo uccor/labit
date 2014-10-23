@@ -7,9 +7,9 @@
     </div>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6" style="background: white">
                 <button class="btn btn-default" ng-click="addCourse()">Add row</button>
-                <table class="table table-striped table-hover table-condensed" style="width: 100%">
+                <table class="table table-striped table-hover table" style="width: 100%">
                     <thead>
                     <tr>
                         <th>Curso</th>
@@ -17,30 +17,36 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="c in courses track by c.id" ng-click="">
+                    <tr ng-repeat="c in courses | filter:{name:'!!'}" ng-click="">
                         <td>
-                              <span editable-text="c.name" e-form="rowform">
-                            {{ c.name || 'empty' }}                             </span>
+                              <span editable-text="c.name" e-form="rowform" onbeforesave="checkName($data)">
+          {{ c.name || 'empty' }}
+                              </span>
                         </td>
-                        <td class="text-center">
-                            <form editable-form name="rowform" ng-show="rowform.$visible" onbeforesave="saveCourse(rowform.$data, c.id)"
-                                  class="form-buttons form-inline" shown="inserted == c">
-                                <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
-                                    save
+                        <td class="text-center" style="width: 300px">
+                            <form editable-form name="rowform" ng-show="rowform.$visible"
+                                  onbeforesave="saveCourse(rowform.$data, c.id)"
+                                  class="form-buttons form-inline" shown="c.name == ''">
+                                <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-success">
+                                    <span class="glyphicon glyphicon-ok"></span>
                                 </button>
                                 <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()"
                                         class="btn btn-default">
-                                    cancel
+                                    <span class="glyphicon glyphicon-remove"></span>
                                 </button>
                             </form>
-                            <a class="btn btn-default" ng-click="rowform.$show()"
-                               ng-hide="rowform.$visible">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                            </a>
-                            <a class="btn btn-danger" ng-click="removeCourse($index)" ng-hide="rowform.$visible">
-                                <span class="glyphicon glyphicon-trash"></span>
+                            <div style="font-size: 1.5em">
+                                <span class="" ng-click="rowform.$show()"
+                                      ng-hide="rowform.$visible">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </span>
+                                    &numsp;
+                                    <span class="" ng-click="removeCourse($index)" ng-hide="rowform.$visible">
+                                    <span class="glyphicon glyphicon-trash text-danger" d></span>
 
-                            </a>
+                                </span>
+                            </div>
+
                         </td>
                     </tr>
                     </tbody>
