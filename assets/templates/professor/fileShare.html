@@ -1,3 +1,41 @@
+<div class="row" ng-controller="uploadFormController">
+    <form class="form-horizontal" role="form"
+          id="uploadForm"
+          enctype="multipart/form-data"
+          action="api/file/upload"
+          method="post">
+
+        <br><br>
+        <div style="">
+        <div class="form-group">
+            <label class="col-sm-2" for="select_newFile_button">Nombre del Archivo</label>
+
+            <div class="col-sm-6">
+                <input type="text" class="form-control" name="nombreArchivo" placeholder="Introducir Nombre del Archivo Subido..." ng-model="newName_file_toUpload">
+            </div>
+
+
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-4">
+                <input type="file" id="select_newFile_button" name="uploadFile"  ng-model="newRoute_file_toUpload">
+            </div>
+            <div class="col-sm-4">
+            <button type="submit" class="btn btn-default" id="submit_newFile_button">Subir</button>
+            </div>
+        </div>
+
+
+
+        <br><br>
+        </div>
+
+    </form>
+
+
+</div>
+
 <div class="row" ng-controller="professorFileShare">
     <div class="col-md-10">
         <table class="table table-striped table-hover table-condensed">
@@ -45,3 +83,4 @@
         </div>
     </div>
 </div>
+
