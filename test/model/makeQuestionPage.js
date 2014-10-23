@@ -15,7 +15,7 @@ var MakeQuestionPage = function() {
 
     },
     this.check = function() {
-        expect(element(by.model("saveOk")).getText()).toEqual("true");
+        expect(element(by.model("saveOk")).getText()).toEqual("Agregada exitosamente");
     },
     this.save = function() {
         sendButton = element(by.id('send'));

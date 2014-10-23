@@ -37,7 +37,7 @@ exports.register = function (req, res, next) {
   if (password!=password2){
       // console.log("Passwords don't match")
       // registrarionmessage = "NO COINCIDE CONTRASEÑA"
-      req.flash('error', 'Error Contraseña no coincide');
+      req.flash('error', 'Error, la contraseña no coincide');
       // req.setAttribute('registrationerror', "")
 
       /*

@@ -9,7 +9,7 @@ describe('make question page', function() {
        makeQuestionPage.check();
    });
 });
-
+/*
 var questionStudentPage = require('./model/questionStudentPage');
 describe('student questions page', function() {
     it('the questions selected should be remove', function() {
@@ -18,6 +18,7 @@ describe('student questions page', function() {
     });
 });
 
+*/
 var questionProfessorPage = require('./model/questionProfessorPage');
 describe('professor questions page', function() {
     it('should open the page', function() {
