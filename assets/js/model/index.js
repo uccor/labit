@@ -5,6 +5,11 @@
 // 	}
 // }
 
+/**
+ * Description
+ * @method onload
+ * @return 
+ */
 window.onload = function () {
 
     // var socket = io.connect('http://localhost') ;

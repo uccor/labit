@@ -14,6 +14,12 @@ app.controller('QuestionControllerStudent', ['$scope',"$sailsBind","$compile", f
 	});
    
     $scope.validAnswers = 0;     
+    /**
+     * Description
+     * @method sendResult
+     * @param {} answer
+     * @return 
+     */
     $scope.sendResult = function(answer){
     	var questionId = answer.$parent.question.id;
         var question = answer.$parent.question;
@@ -45,6 +51,12 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind","$timeout",
 	$sailsBind.bind("api/question", $scope);
 	$scope.responses = [];
     $scope.summaryAnswers = [];
+	/**
+	 * Description
+	 * @method changeStatus
+	 * @param {} question
+	 * @return 
+	 */
 	$scope.changeStatus = function (question) {
     	/*tengo que saber si esta click el check o no para pasarle distintos status...*/
    		//var questionId = ques.question.id;
@@ -63,6 +75,12 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind","$timeout",
 
     // $sailsBind.bind("api/answer", $scope);
     // $sailsBind.bind("api/answer", $scope, {"question" : {"id": {"equal": "13"}}});
+    /**
+     * Description
+     * @method searchAnswers
+     * @param {} ques
+     * @return 
+     */
     $scope.searchAnswers = function (ques) {
 
     	io.socket.get('/answer/responses', { id: ques.question.id }, function (data, jwres) {
@@ -78,6 +96,11 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind","$timeout",
     };
 
     $scope.saveOk = "";
+    /**
+     * Description
+     * @method addQuestion
+     * @return 
+     */
     $scope.addQuestion = function() {
         if ($scope.text === '') {
             return;
@@ -125,6 +148,11 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind","$timeout",
 //    }]);
 
 
+    /**
+     * Description
+     * @method addAnswer
+     * @return 
+     */
     $scope.addAnswer = function() {
         
         //var template = '<li answerDynamic="ans" id="template" class="hidden"><input type="text" placeholder="Respuesta"><button ng-click="removeAnswer($event)">X</button></li>';
@@ -142,6 +170,12 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind","$timeout",
 
     };
 
+    /**
+     * Description
+     * @method removeAnswer
+     * @param {} $event
+     * @return 
+     */
     $scope.removeAnswer = function($event) {
         $($event.target).parent("li").remove();
     }
@@ -151,6 +185,13 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind","$timeout",
     return {
         //template: '<li><input type="text" placeholder="Respuesta"><button ng-click="removeAnswer($event)">X</button></li>',
         replace: true,
+        /**
+         * Description
+         * @method link
+         * @param {} $scope
+         * @param {} element
+         * @return 
+         */
         link: function($scope, element) {
             var el = angular.element('<ul>');
             el.append('<li><input type="text" placeholder="Respuesta"><button ng-click="removeAnswer($event)">X</button></li>');
