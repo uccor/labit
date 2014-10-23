@@ -8,11 +8,22 @@ app.controller('professorCourse', ['$scope', '$rootScope', "$sailsBind", functio
     $sailsBind.bind("api/course", $scope);
 
 
+    /**
+     * Description
+     * @method removeCourse
+     * @param {} index
+     * @return 
+     */
     $scope.removeCourse = function (index) {
         $scope.courses.splice(index, 1);
     };
 
     // add user
+    /**
+     * Description
+     * @method addCourse
+     * @return 
+     */
     $scope.addCourse = function () {
         $scope.inserted = {
             id: $scope.courses.length + 1,
@@ -22,6 +33,13 @@ app.controller('professorCourse', ['$scope', '$rootScope', "$sailsBind", functio
         $scope.courses.push($scope.inserted);
     };
 
+    /**
+     * Description
+     * @method saveCourse
+     * @param {} data
+     * @param {} id
+     * @return 
+     */
     $scope.saveCourse = function (data, id) {
 
         //$scope.user not updated yet
