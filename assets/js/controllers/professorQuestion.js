@@ -5,23 +5,37 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind","$timeout",
 	$scope.questions = [];
 	$scope.getQuestion = function() {
 
-		angular.element(document).ready(function () {
-			debugger;
-			$scope.$parent.live_class_students[0].id;
+		// angular.element(document).ready(function () {
+		// 	var currentCourseId = $scope.$parent.live_class_students[0].id;
+		// 	// io.socket.get('/question/get_by_course', {courseId : currentCourseId }, function (data, jwres) {
+		// 	io.socket.get('/question/get_by_course', function (data, jwres) {
+		// 		$scope.questions = data.questions;
+		// 		if (!$scope.$$phase) {
+		// 			$scope.$apply();
+		// 		}
+		// 	});
 			
+			
+		// });
+		
+		
+		$scope.$parent.$watch("live_class_students", function() {
+			var currentCourseId = $scope.$parent.live_class_students[0].id;
+			io.socket.get('/question/get_by_course', {courseId : currentCourseId }, function (data, jwres) {
+			
+				$scope.questions = data.questions;
+				if (!$scope.$$phase) {
+					$scope.$apply();
+				}
+			});
 		});
-		// $scope.$watch('live_class_students', function(newValue, oldValue) {
-		// 	debugger;
 		
 
-		io.socket.get('/question/get_by_course', {}, function (data, jwres) {
-			$scope.questions = data.questions;
-			if (!$scope.$$phase) {
-				$scope.$apply();
-			}
-		});  
+		  
 
 	}
+	
+	$scope.getQuestion();
 	
 	$scope.responses = [];
 	$scope.summaryAnswers = [];
@@ -115,7 +129,7 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind","$timeout",
 		}, 2000);
 	};
 	//Load questions for course...
-	$scope.getQuestion();
+	
 
 
 //    app.directive("answerDynamic",  ['$compile',function($compile) {
