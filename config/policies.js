@@ -48,5 +48,5 @@ module.exports.policies = {
 		// before letting any users feed our rabbits
 		// feed : ['isNiceToAnimals', 'hasRabbitFood']
 	// }
-  '*': [ 'passport' ]
+  '*': [ 'passport', 'filterByUser']
 };
