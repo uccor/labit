@@ -7,13 +7,13 @@ var LoginPage= function() {
     }
 
     this.fill= function(user, pass) {
-        e=element(by.id('username'));
+        e=element(by.id('login-username'));
         e.sendKeys(user);
-        p=element(by.id('pass'));
+        p=element(by.id('login-pass'));
         p.sendKeys(pass);
     }
     this.login = function () {
-       e=element(by.id('submit'));
+       e=element(by.id('login-submit'));
        e.click();
     }
     this.check = function () {
