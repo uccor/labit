@@ -14,7 +14,7 @@
 
 
 module.exports = {
-
+/*
     create : function (req, res) {
 
         var courseName  =   req.param('name');
@@ -123,7 +123,7 @@ module.exports = {
                 if (req.isSocket){
                     Course.publishUpdate(course.id,{name:course.name});
                 }
-                */
+                * /
             });
 
 
@@ -169,6 +169,7 @@ module.exports = {
 
     }
 
+*/
 
 };
 

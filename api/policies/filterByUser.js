@@ -12,8 +12,11 @@ module.exports = function filterByUser(req, res, next) {
             req.body.createdBy = userid;
         }
         if (req.options.action == 'find') {
-            req.params.push({'where': '{createdBy: "' + userid + '" }'});
         }
+        if (req.query.where)
+            req.query.where = '{"createdBy": "' + userid + '" ,' + req.query.where.replace('{','');
+        else
+            req.query.where = '{"createdBy": "' + userid + '" }';
     }
 
     return next();
