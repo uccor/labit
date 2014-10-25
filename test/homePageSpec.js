@@ -9,13 +9,13 @@ var loginPage = require('./model/loginPage');
 function waitForTitleChange() {
     browser.wait(function () {
         return homePage.getTitle().then(function (titulo) {
-            if (titulo != 'Labit Student') {
+            if (titulo != 'Labit - Estudiante') {
                 return false;
             } else {
                 return true;
             }
         });
-    }, 30000);
+    }, 10000);
 }
 describe('home page', function () {
 
@@ -23,7 +23,7 @@ describe('home page', function () {
 
     it('should exist', function () {
         homePage.get();
-        expect(homePage.getTitle()).toEqual('Labit Homepage');
+        expect(homePage.getTitle()).toEqual('Labit - Inicio');
     });
 
 
@@ -34,20 +34,20 @@ describe('home page', function () {
         registerPage.fill('2' + rand, 'leu3si', '2' + rand, 'p0' + rand + 'o@p.com', '12', '12');
         registerPage.register();
         waitForTitleChange();
-        expect(homePage.getTitle()).toEqual('Labit Student');
+        expect(homePage.getTitle()).toEqual('Labit - Estudiante');
 
         // Parametros de fill: name, lastName, username, email, pass, pass2
         //------como se hace esto porque cuando querramos pasar muchos test hay que -
         //cambiar estos datos siempre??
     });
 
-    it('should  allow me to login', function() {
+    it('should  allow me to login', function () {
         homePage.get();
         //var loginPage = LoginPage;
         loginPage.fill('2' + rand, '12');
         loginPage.login();
 
         waitForTitleChange();
-        expect(homePage.getTitle()).toEqual('Labit Student');
+        expect(homePage.getTitle()).toEqual('Labit - Estudiante');
     });
 });
