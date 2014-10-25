@@ -74,11 +74,6 @@ module.exports.routes = {
     'get /question/visible':    'QuestionController.getVisible',
     '/make_question':           { view: 'makeQuestion' },
 
-    //Routes last sprint
-    'put  /api/course/create':      'CourseController.create',
-    'get  /api/course':             'CourseController.get_my_courses',
-    'post  /api/course/update':     'CourseController.update',
-    'delete  /api/course/destroy':  'CourseController.delete'
 
   
   
