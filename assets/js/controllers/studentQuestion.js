@@ -2,9 +2,11 @@
 app.controller('QuestionControllerStudent', ['$scope',"$sailsBind","$compile", function ($scope, $sailsBind, $compile) {
 	// $sailsBind.bind("api/question", $scope, {"visible": {"equals": "true"}});
 	
+	currentClassId = 2;
+
 	$scope.questions = [];
 	$scope.getQuestion = function() {
-		io.socket.get('/question/visible', function (data, jwres) {
+		io.socket.get('/question/visible', {courseId : currentClassId}, function (data, jwres) {
 			// data.questions;
 			// console.log();
 			$scope.questions = data.questions;
@@ -35,7 +37,8 @@ app.controller('QuestionControllerStudent', ['$scope',"$sailsBind","$compile", f
 			'/answer/send', 
 			{
 				question: questionId,
-				answer: answerUser 
+				answer: answerUser
+
 			}, 
 			function (data, jwres) {
 				//if the answer was saved, then remove the question only in form..
