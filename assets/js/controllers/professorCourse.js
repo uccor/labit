@@ -17,10 +17,22 @@ app.controller('professorCourse', ['$scope', '$rootScope', "$sailsBind", "toastr
     });
     $sailsBind.bind("api/course", $scope);
 
+    /**
+     * Description
+     * @method removeCourse
+     * @param {} index
+     * @return 
+     */
     $scope.removeCourse = function (index) {
         $scope.courses.splice(index, 1);
     };
-// add user
+
+    // add user
+    /**
+     * Description
+     * @method addCourse
+     * @return 
+     */
     $scope.addCourse = function () {
 
         $scope.inserted = {
@@ -28,6 +40,14 @@ app.controller('professorCourse', ['$scope', '$rootScope', "$sailsBind", "toastr
         };
         io.socket.put("/api/course/create/", $scope.inserted);
     };
+
+    /**
+     * Description
+     * @method saveCourse
+     * @param {} data
+     * @param {} id
+     * @return 
+     */
     $scope.saveCourse = function (data, id) {
         angular.extend(data, {id: id});
         $scope.courses.push(data);
