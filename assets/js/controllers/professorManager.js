@@ -1,13 +1,13 @@
 /**
- * Created by guille on 13/09/14.
+ * Created by Mojarritas on 13/09/14.
  */
 app.config(['$routeProvider',
     function ($routeProvider) {
 
-        $routeProvider.when('/', {
-            template: JST["assets/templates/professor/uploadPDF.html"]
+        //$routeProvider.when('/', {
+        //    template: JST["assets/templates/professor/uploadPDF.html"]
             //controller : 'AlumnoCreateCtl'
-        });
+        //});
         $routeProvider.when('/fileShare', {
             template: JST["assets/templates/professor/fileShare.html"]
         });
@@ -20,6 +20,12 @@ app.config(['$routeProvider',
     }]);
 
 app.controller('professorTab', function ($scope, $location) {
+    /**
+     * Description
+     * @method isActive
+     * @param {} route
+     * @return BinaryExpression
+     */
     $scope.isActive = function (route) {
         return route === $location.path();
     }
@@ -33,6 +39,13 @@ app.controller('professorManagerFooter', ['$scope', '$rootScope', "$sailsBind", 
     $scope.synchronize = true;
     $scope.pdfName = '';
 
+    /**
+     * Description
+     * @method getPdf
+     * @param {} file
+     * @param {} pag
+     * @return 
+     */
     $scope.getPdf = function (file, pag) {
         pag = typeof pag !== 'undefined' ? pag : 1;
 
@@ -55,6 +68,14 @@ app.controller('professorManagerFooter', ['$scope', '$rootScope', "$sailsBind", 
         }
     }
 
+    /**
+     * Description
+     * @method pageStageChange
+     * @param {} sharing
+     * @param {} file
+     * @param {} page
+     * @return 
+     */
     $scope.pageStageChange = function (sharing, file, page) {
 
         var data = {};
@@ -81,6 +102,11 @@ app.controller('professorManagerFooter', ['$scope', '$rootScope', "$sailsBind", 
     }
 
 
+    /**
+     * Description
+     * @method prevPage
+     * @return 
+     */
     $scope.prevPage = function () {
         if ($scope.pageNum > 1) {
             $scope.pageNum--;
@@ -89,6 +115,11 @@ app.controller('professorManagerFooter', ['$scope', '$rootScope', "$sailsBind", 
         $rootScope.$broadcast('pdfPageChanged', $scope.pageNum);
     };
 
+    /**
+     * Description
+     * @method nextPage
+     * @return 
+     */
     $scope.nextPage = function () {
         if ($scope.pageNum < $scope.pageTotal) {
             $scope.pageNum++;
@@ -98,6 +129,11 @@ app.controller('professorManagerFooter', ['$scope', '$rootScope', "$sailsBind", 
         $rootScope.$broadcast('pdfPageChanged', $scope.pageNum);
     };
 
+    /**
+     * Description
+     * @method stopSharing
+     * @return 
+     */
     $scope.stopSharing = function () {
         io.socket.put('/api/live_class_student/' + $scope.$parent.id_class_to_share, {pdf_sharing: false});
         $scope.pageStageChange(false);
@@ -109,6 +145,11 @@ app.controller('professorManagerFooter', ['$scope', '$rootScope', "$sailsBind", 
         $scope.getPdf(args.file, args.pag);
     });
 
+    /**
+     * Description
+     * @method openShare
+     * @return 
+     */
     $scope.openShare = function (){
 
         window.open('/professorScreen#/'+$scope.$parent.id_class_to_share, 'Screen', "height=800,width=600");
@@ -125,6 +166,7 @@ app.controller('professorManager', ['$scope', '$rootScope', "$sailsBind", functi
         $scope.userId = data.userId;
         io.socket.get('/api/user/'+$scope.userId , function (data) {
             $scope.live_class_student = data.live_class_student.id;
+            console.log( data.live_class_student.id);
         });
     });
 }]);
