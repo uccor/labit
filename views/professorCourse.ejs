@@ -14,7 +14,8 @@
                     <thead>
                     <tr>
                         <th>Cursos <i class="fa fa-spinner fa-spin" ng-class="loading"></i></th>
-                        <th></th>
+                        <th class="text-center" style="width: 90px">Edici&oacute;n</th>
+                        <th class="text-center" style="width: 90px">Comenzar</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -24,33 +25,33 @@
           {{ c.name || 'empty' }}
                               </span>
                         </td>
-                        <td class="text-center" style="width: 300px">
+                        <td class="text-center">
                             <form editable-form name="rowform" ng-show="rowform.$visible"
                                   onbeforesave="saveCourse(rowform.$data, c.id)"
                                   class="form-buttons form-inline" shown="c.name == ''">
                                 <span ng-disabled="rowform.$waiting"
-                                      class="pointer pointer-success" ng-click="rowform.$submit()">
-                                    <span class="fa fa-check fa-2x"></span>
+                                      class="pointer pointer-success fa fa-check fa-2x" ng-click="rowform.$submit()">
                                 </span>
                                 &numsp;
                                 <span type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()"
-                                      class="pointer pointer-danger">
-                                    <span class="fa fa-remove fa-2x"></span>
+                                      class="pointer pointer-danger fa fa-remove fa-2x">
                                 </span>
                             </form>
                             <div>
-                                <span class="pointer" ng-click="rowform.$show()"
+                                <span class="pointer fa fa-edit fa-2x" ng-click="rowform.$show()"
                                       ng-hide="rowform.$visible">
-                                    <span class="fa fa-edit fa-2x"></span>
                                 </span>
                                 &numsp;
-                                <span class="pointer pointer-danger" ng-click="removeCourse($index)"
+                                <span class="pointer pointer-danger fa fa-trash fa-2x" ng-click="removeCourse($index)"
                                       ng-hide="rowform.$visible">
-                                    <span class="fa fa-trash fa-2x" d></span>
-
                                 </span>
                             </div>
 
+                        </td>
+                        <td class="text-center">
+                            <span class="pointer-primary pointer"
+                                  ng-click="courseStart(c.id)"><span class="fa fa-play fa-2x"></span>
+                            </span>
                         </td>
                     </tr>
                     </tbody>

@@ -83,23 +83,31 @@
     cursor: hand;
 }
 
-.pointer span:hover {
+.pointer:hover {
     text-shadow: 0 0 3px #484848;
 }
 
-.pointer-danger span:hover {
+.pointer-danger:hover {
     text-shadow: 0 0 3px #e55752;
 }
 
 .pointer-danger {
     color: #d9534f;
 }
-.pointer-success span:hover {
+.pointer-success:hover {
     text-shadow: 0 0 3px #46c600;
 }
 
 .pointer-success  {
     color: #40b400;
+}
+
+.pointer-primary:hover {
+    text-shadow: 0 0 3px #0156ff;
+}
+
+.pointer-primary  {
+    color: #428bca;
 }
 
 .no-btn {

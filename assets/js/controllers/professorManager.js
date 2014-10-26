@@ -118,6 +118,13 @@ app.controller('professorManagerFooter', ['$scope', '$rootScope', "$sailsBind", 
 
 
 app.controller('professorManager', ['$scope', '$rootScope', "$sailsBind", function ($scope, $rootScope, $sailsBind) {
-    $scope.nada = {};
-    $sailsBind.bind("api/live_class_student", $scope);
+    $scope.live_class_student = 'CLASS1';
+    $scope.userId = '';
+
+    io.socket.get('/api/user/getUser', function (data) {
+        $scope.userId = data.userId;
+        io.socket.get('/api/user/'+$scope.userId , function (data) {
+            $scope.live_class_student = data.live_class_student.id;
+        });
+    });
 }]);
