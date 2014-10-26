@@ -125,6 +125,7 @@ app.controller('professorManager', ['$scope', '$rootScope', "$sailsBind", functi
         $scope.userId = data.userId;
         io.socket.get('/api/user/'+$scope.userId , function (data) {
             $scope.live_class_student = data.live_class_student.id;
+            console.log( data.live_class_student.id);
         });
     });
 }]);
