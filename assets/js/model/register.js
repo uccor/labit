@@ -1,3 +1,8 @@
+/**
+ * Description
+ * @method validatePass
+ * @return 
+ */
 function validatePass() {
     $( "form" ).submit(function( event ) {
         var pass1 = document.getElementById("pass").value;
@@ -15,6 +20,11 @@ $(document).ready(function () {
     //validatePass();
 });
 
+/**
+ * Description
+ * @method usernameExists
+ * @return 
+ */
 function usernameExists () {
     $('input[name="username"]').change( function () {
         username = $(this).val();
