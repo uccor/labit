@@ -16,18 +16,10 @@
                 <div class="col-md-10">
                     <ul class="nav nav-tabs pestanas" role="tablist" ng-controller="professorTab">
                         <!--li ng-class="{active:isActive('/')}"><a href="#">Subir Archivo</a></li-->
-                        <li ng-class="{active:isActive('/fileShare')}"><a href="#fileShare">Documentos</a></li>
-                        <li ng-class="{active:isActive('/dashboard')}"><a href="#">Hacer Pregunta</a></li>
-                        <li ng-class="{active:isActive('/dashboard')}"><a href="#">Asistencia</a></li>
+                        <li ng-class="{active:isActive('/fileShare') || isActive('/')}"><a href="#fileShare">Documentos</a></li>
+                        <li ng-class="{active:isActive('/dashboard')}"><a href="#/">Hacer Pregunta</a></li>
+                        <li ng-class="{active:isActive('/dashboard')}"><a href="#/">Asistencia</a></li>
                     </ul>
-                </div>
-
-                <div class="col-md-2">
-                    <label for="form-control" class="col-sm-2 pestanas">Clase</label>
-                    <select class="form-control col-sm-10 cbox" ng-model="id_class_to_share">
-                        <option ng-repeat="class in live_class_students">{{ class.id }}</option>
-
-                    </select>
                 </div>
             </div>
 
