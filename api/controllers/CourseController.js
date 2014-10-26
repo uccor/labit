@@ -7,5 +7,28 @@
 
 module.exports = {
 
+
+    get_my_courses : function (req, res) {
+
+        var userID      =   req.session.passport.user;
+
+        if(!userID){
+            console.log('No existe un usuario Logueado');
+            res.send('No existe un usuario Logueado');
+            return;
+        }
+
+        User.findOne({id:userID}).populate('courses').exec(function findCB(err,found) {
+
+                var userCourses = [];
+
+                while (found.courses.length){
+                    userCourses.push(found.courses.pop());
+                }
+                    res.send(userCourses);
+                });
+
+        }
+
 };
 

@@ -75,7 +75,8 @@ module.exports.routes = {
     '/make_question':           { view: 'makeQuestion' },
 
 
-    '/api/user/getUser': 'UserController.getUser'
+    '/api/user/getUser': 'UserController.getUser',
+    'get  /api/course':  'CourseController.get_my_courses'
   
   
   /***************************************************************************
