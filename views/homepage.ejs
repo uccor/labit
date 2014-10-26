@@ -2,36 +2,45 @@
     <title>Bienvenido a Labit</title>
 </head>
 
-<div>
-    <div class="page-header row" align="left" style="margin-top: 0px;">
-        <div class="col-md-6" style="background: #CEECF5">
-            <img src="/images/logo_labit.png" class="logo">
-            <b class="titulos">
-                Bienvenido a Labit
-            </b>
-        </div>
+<!--div class="div-banner" style="z-index: 8; position: absolute; width: 100%">
+    <img src="/images/log.png">
+</div-->
 
-        <!--LOGIN-->
-        <div class="col-md-6" style="background: #CEECF5; padding-top: 6px;">
-            <form class="form-horizontal" role="form" action="/auth/local" method="post">
-                <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-3 control-label">Username o Email</label>
-                    <div class="col-sm-6">
-                        <input type="email" class="form-control" id="username" name="identifier" placeholder="Username o Email">
+<div class="container-fluid">
+    <div>
+        <div class="row" align="left" style="margin-top: 0px;">
+            <div class="col-md-6" style="background: #CEECF5;">
+                <img src="/images/logo_labit.png" class="logo">
+                <b class="titulos">
+                    Bienvenido a Labit
+                </b>
+            </div>
+
+            <!--LOGIN-->
+            <div class="col-md-6" style="background: #CEECF5; padding-top: 17px;">
+                <form class="form-horizontal" role="form" action="/auth/local" method="post">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">Username o Email</label>
+
+                        <div class="col-sm-6">
+                            <input type="email" class="form-control" id="username" name="identifier"
+                                   placeholder="Username o Email">
+                        </div>
+                        <div class="col-sm-3"></div>
                     </div>
-                    <div class="col-sm-3"></div>
-                </div>
-                <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-3 control-label">Password</label>
-                    <div class="col-sm-6">
-                        <input type="password" class="form-control" id="pass" name="password" placeholder="Password">
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-3 control-label">Password</label>
+
+                        <div class="col-sm-6">
+                            <input type="password" class="form-control" id="pass" name="password"
+                                   placeholder="Password">
+                        </div>
+                        <div class="col-sm-3">
+                            <button type="submit" class="btn btn-default" id="submit">Sign in</button>
+                        </div>
                     </div>
-                    <div class="col-sm-3">
-                        <button type="submit" class="btn btn-default" id="submit">Sign in</button>
-                    </div>
-                </div>
-            </form>
-            <!--section class="loginform cf">
+                </form>
+                <!--section class="loginform cf">
                 <h3 id="errorForm" style="margin-top: 15px"> Login <%- req.flash('msgError') %> </h3>
 
                 <form role="form" action="/auth/local" method="post">
@@ -40,122 +49,109 @@
                     <button id="submit" type="submit">Sign in</button>
                 </form>
             </section-->
-        </div>
+            </div>
 
-        <!--Div Inferior-->
-        <div class="container-fluid">
-            <!--Presentacion Izquierda-->
-            <div class="row">
-                <div class="container col-md-6">
-                    <br><br>
-                    Labit es un sistema que ayuda al dictado de clases. <br>
-                    Con Labit, siendo profesor, podes subir facilmente PDF's para poder compartir con tus alumnos durante la clase,
-                    además de generar preguntas, y te permite tomar asistencia on-line.
-                    <br>
-                    Con Labit, siendo alumno, podes tener acceso a los PDF's que tu profesor comparte en clase,
-                    además de la posibilidad de responder preguntas en clase, y registrar tu asistencia con el solo
-                    hecho de loguearte.
-                    <img src="/images/pantHome.png">
-                </div>
+            <div class="col-md-8">
+                <br><br>
+                Labit es un sistema que ayuda al dictado de clases. <br>
+                Con Labit, siendo profesor, podes subir facilmente PDF's para poder compartir con tus alumnos
+                durante la clase,
+                además de generar preguntas, y te permite tomar asistencia on-line.
+                <br>
+                Con Labit, siendo alumno, podes tener acceso a los PDF's que tu profesor comparte en clase,
+                además de la posibilidad de responder preguntas en clase, y registrar tu asistencia con el solo
+                hecho de loguearte.
+                <img src="/images/pantHome.png">
+            </div>
 
-                <!--Formulario de Registracion-->
-                <div class="container col-md-6">
-                    <div class="row">
-                        <div class="col-md-8 col-sm-6 col-xs-12">
-                            <h2>Regístrate en Labit</h2>
-                        </div>
-                        <form role="form" action="/auth/local/register" method="post">
-                            <div class="col-lg-6">
-                                <div class="well well-sm"><strong><span class="glyphicon glyphicon-asterisk"></span>Required
-                                        Field</strong></div>
-                                <div class="form-group">
-                                    <label for="InputName">Ingrese su nombre</label>
+            <!--Formulario de Registracion-->
+            <div class="container col-md-4">
+                <h2>Regístrate en Labit</h2>
 
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" name="name" id="name"
-                                               placeholder="Nombre" required>
-                                        <span class="input-group-addon"><span
-                                                    class="glyphicon glyphicon-asterisk"></span></span>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="InputLastName">Ingrese su Apellido</label>
+                <form role="form" action="/auth/local/register" method="post">
 
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" name="lastName" id="lastName"
-                                               placeholder="Apellido" required>
-                                        <span class="input-group-addon"><span
-                                                    class="glyphicon glyphicon-asterisk"></span></span>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="InputUsername">Ingrese su Nombre de Usuario</label>
-
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" name="username" id="username"
-                                               placeholder="Nombre de Usuario" required>
-                                        <span class="input-group-addon"><span
-                                                    class="glyphicon glyphicon-asterisk"></span></span>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="InputEmail">Ingrese su Email</label>
-
-                                    <div class="input-group">
-                                        <input type="email" class="form-control" id="email" name="email"
-                                               placeholder="Email" required>
-                                        <span class="input-group-addon"><span
-                                                    class="glyphicon glyphicon-asterisk"></span></span>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="InputPassword">Ingrese contraseña</label>
-
-                                    <div class="input-group">
-                                        <input type="password" class="form-control" id="pass" name="password"
-                                               placeholder="Contraseña" required>
-                                        <span class="input-group-addon"><span
-                                                    class="glyphicon glyphicon-asterisk"></span></span>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="InputConfirmPassword">Confirme la contraseña</label>
-
-                                    <div class="input-group">
-                                        <input type="password" class="form-control" id="pass2" name="password2"
-                                               placeholder="Contraseña" required>
-                                        <span class="input-group-addon"><span
-                                                    class="glyphicon glyphicon-asterisk"></span></span>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="InputRole">Seleccione su rol</label>
-
-                                    <div class="input-group">
-                                        <form>
-                                            <input type="radio" name="role" value="student" checked>Estudiante<br>
-                                            <input type="radio" name="role" value="professor">Profesor
-                                        </form>
-                                    </div>
-                                </div>
-
-                                <input type="submit" name="submit" id="submit" value="Listo"
-                                       class="btn btn-info pull-right">
-                            </div>
-                        </form>
-                        <!--div class="col-lg-5 col-md-push-1">
-                            <div class="col-md-12">
-
-                                <h3 class="alert-danger" id="errorForm"> <%- req.flash('msgError') %> </h3>
-
-                            </div>
-                        </div-->
+                    <div>
+                        <strong><span class="glyphicon glyphicon-asterisk"></span>Required Field</strong>
                     </div>
-                </div>
+                    <div class="form-group">
+                        <label for="InputName">Ingrese su nombre</label>
+
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="name" id="name"
+                                   placeholder="Nombre" required>
+                                        <span class="input-group-addon"><span
+                                                    class="glyphicon glyphicon-asterisk"></span></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="InputLastName">Ingrese su Apellido</label>
+
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="lastName" id="lastName"
+                                   placeholder="Apellido" required>
+                                        <span class="input-group-addon"><span
+                                                    class="glyphicon glyphicon-asterisk"></span></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="InputUsername">Ingrese su Nombre de Usuario</label>
+
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="username" id="username"
+                                   placeholder="Nombre de Usuario" required>
+                                        <span class="input-group-addon"><span
+                                                    class="glyphicon glyphicon-asterisk"></span></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="InputEmail">Ingrese su Email</label>
+
+                        <div class="input-group">
+                            <input type="email" class="form-control" id="email" name="email"
+                                   placeholder="Email" required>
+                                        <span class="input-group-addon"><span
+                                                    class="glyphicon glyphicon-asterisk"></span></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="InputPassword">Ingrese contraseña</label>
+
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="pass" name="password"
+                                   placeholder="Contraseña" required>
+                                        <span class="input-group-addon"><span
+                                                    class="glyphicon glyphicon-asterisk"></span></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="InputConfirmPassword">Confirme la contraseña</label>
+
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="pass2" name="password2"
+                                   placeholder="Contraseña" required>
+                                        <span class="input-group-addon"><span
+                                                    class="glyphicon glyphicon-asterisk"></span></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="InputRole">Seleccione su rol</label>
+
+                        <div class="input-group">
+                            <form>
+                                <input type="radio" name="role" value="student" checked>Estudiante<br>
+                                <input type="radio" name="role" value="professor">Profesor
+                            </form>
+                        </div>
+                    </div>
+
+                    <input type="submit" name="submit" id="submit" value="Listo"
+                           class="btn btn-info pull-right">
+
+                </form>
             </div>
         </div>
     </div>

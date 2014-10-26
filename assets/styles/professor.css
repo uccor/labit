@@ -76,3 +76,8 @@
     font-size: 40px;
     color: #1071de;
 }
+
+.div-banner {
+    background-image: url("../images/cinta.png");
+    background-repeat: repeat-x;
+}
