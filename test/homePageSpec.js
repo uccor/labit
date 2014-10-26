@@ -6,16 +6,17 @@
 var homePage = require('./model/homePage');
 var registerPage = require('./model/registerPage');
 var loginPage = require('./model/loginPage');
-function waitForTitleChange() {
+
+function waitForTitleChange(tit) {
     browser.wait(function () {
         return homePage.getTitle().then(function (titulo) {
-            if (titulo != 'Labit - Estudiante') {
+            if (titulo != tit) {
                 return false;
             } else {
                 return true;
             }
         });
-    }, 10000);
+    }, 30000);
 }
 describe('home page', function () {
 
@@ -33,7 +34,7 @@ describe('home page', function () {
         rand = Math.floor((Math.random() * 1000) + 1);
         registerPage.fill('2' + rand, 'leu3si', '2' + rand, 'p0' + rand + 'o@p.com', '12', '12');
         registerPage.register();
-        waitForTitleChange();
+        waitForTitleChange('Labit - Estudiante');
         expect(homePage.getTitle()).toEqual('Labit - Estudiante');
 
         // Parametros de fill: name, lastName, username, email, pass, pass2
@@ -47,7 +48,7 @@ describe('home page', function () {
         loginPage.fill('2' + rand, '12');
         loginPage.login();
 
-        waitForTitleChange();
+        waitForTitleChange('Labit - Estudiante');
         expect(homePage.getTitle()).toEqual('Labit - Estudiante');
     });
 });
