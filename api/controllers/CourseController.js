@@ -20,13 +20,20 @@ module.exports = {
 
         User.findOne({id:userID}).populate('courses').exec(function findCB(err,found) {
 
-                var userCourses = [];
+            var userCourses = [];
 
-                while (found.courses.length){
-                    userCourses.push(found.courses.pop());
-                }
-                    res.send(userCourses);
-                });
+            while (found.courses.length){
+                userCourses.push(found.courses.pop());
+            }
+
+
+            if (req.isSocket) {
+                Course.subscribe(req.socket, userCourses, ['update'], ['create'], ['destroy'], ['add'], ['remove']);
+                Course.watch(req.socket);
+            }
+
+            return res.send(userCourses);
+            });
 
         }
 

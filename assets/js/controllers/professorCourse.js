@@ -38,7 +38,10 @@ app.controller('professorCourse', ['$scope', '$rootScope', "$sailsBind", "toastr
         $scope.inserted = {
             name: ''
         };
-        io.socket.put("/api/course/create/", $scope.inserted);
+        io.socket.put("/api/course/create/", $scope.inserted,function (data) {
+           data;
+        });
+
     };
 
     /**
@@ -52,6 +55,7 @@ app.controller('professorCourse', ['$scope', '$rootScope', "$sailsBind", "toastr
         angular.extend(data, {id: id});
         $scope.courses.push(data);
     };
+
     $scope.checkName = function (data) {
         if (data == '') {
             return "Complete un nombre valido";

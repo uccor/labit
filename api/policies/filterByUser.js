@@ -14,26 +14,40 @@ module.exports = function filterByUser(req, res, next) {
         return;
     }
 
-    if(req.method != "GET") {
+    if(req.method == 'GET'){
+        return next();
+    }
 
-        User.findOne({id:userID}).exec(function findCB(err,user) {
-            //Si es un profesor, authorizar request
+
+    if (req.options.action == 'create') {
+        req.body.users =  [
+            {id: userID}
+        ];
+        return next();
+    }
+
+    if(req.options.action == 'destroy' || req.options.action == 'update') {
+        var courseID = req.param('id');
+
+        User.findOne({id:userID}).populate('courses').exec(function findCB(err,user) {
+            //Si es un profesor, continuar
             if(user.role == "student"){
                 console.log('No tiene permisos para realizar esta accion');
                 res.send('No tiene permisos para realizar esta accion');
 
                 return res.redirect('/notAllowed');
             }
-            else{
-                return next();
+
+            //Si el curso pertenece a este profesor, authorizar request
+            while (user.courses.length) {
+                if(user.courses.pop().id == courseID){
+                    return next();
+                }
             }
+            return res.redirect('/notAllowed');
         })
     }
     else{
         return next();
     }
-
-
-
-
 }
