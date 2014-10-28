@@ -29,7 +29,7 @@
                         <td class="text-center">
                             <form editable-form name="rowform" ng-show="rowform.$visible"
                                   onbeforesave="saveCourse(rowform.$data, c.id)"
-                                  class="form-buttons form-inline" shown="c.name == ''">
+                                  class="form-buttons form-inline" shown="inserted.id == c.id">
                                 <span ng-disabled="rowform.$waiting"
                                       class="pointer pointer-success fa fa-check fa-2x" ng-click="rowform.$submit()">
                                 </span>

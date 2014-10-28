@@ -35,11 +35,13 @@ app.controller('professorCourse', ['$scope', '$rootScope', "$sailsBind", "toastr
      */
     $scope.addCourse = function () {
 
-        $scope.inserted = {
+        var newCourse= {
             name: ''
         };
-        io.socket.put("/api/course/create/", $scope.inserted,function (data) {
-           data;
+        io.socket.put("/api/course/create/", newCourse,function (data) {
+            console.log(data);
+            $scope.inserted = data;
+            $scope.$apply();
         });
 
     };

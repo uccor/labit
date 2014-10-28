@@ -24,7 +24,7 @@ app.controller('professorFileShare', ['$scope', '$rootScope', "$sailsBind", func
         $scope.pdf_nombre = nombre;
         $scope.pdf_route = route;
 
-        if ($scope.$parent.id_class_to_share != '' && typeof $scope.$parent.id_class_to_share !== 'undefined') {
+        if ($scope.$parent.getLiveClassStudent() != '' && typeof $scope.$parent.getLiveClassStudent()!== 'undefined') {
             $rootScope.$broadcast('pdfChange', {file: route, pag: 1, name: nombre});
             $scope.warning.msg = "";
             $scope.warning.class = 'hidden';
