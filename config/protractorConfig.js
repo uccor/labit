@@ -10,6 +10,7 @@ var genericConfig = {
     suites: {
         student: ['../test/studentSpec.js'],
         professorMFileShare:  ['../test/professorMFileShareSpec.js'],
+        professorScreenSpec:  ['../test/professorScreenSpec.js'],
         professorUploadSpec:    ['../test/professorUploadSpec.js']
     }
 };
