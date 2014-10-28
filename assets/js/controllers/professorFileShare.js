@@ -16,23 +16,26 @@ app.controller('professorFileShare', ['$scope', '$rootScope', "$sailsBind", func
      * @param {} id
      * @param {} route
      * @param {} nombre
-     * @return 
+     * @return
      */
     $scope.share = function (id, route, nombre) {
 
         $scope.pdf_id = id;
         $scope.pdf_nombre = nombre;
         $scope.pdf_route = route;
+        $scope.$parent.getLiveClassStudent().then(function (liveClass) {
+            console.log(liveClass);
+            if (liveClass != '') {
+                $rootScope.$broadcast('pdfChange', {file: route, pag: 1, name: nombre});
+                $scope.warning.msg = "";
+                $scope.warning.class = 'hidden';
+            }
+            else {
+                $scope.warning.msg = "Seleccione una clase";
+                $scope.warning.class = '';
+            }
+        });
 
-        if ($scope.$parent.getLiveClassStudent() != '' && typeof $scope.$parent.getLiveClassStudent()!== 'undefined') {
-            $rootScope.$broadcast('pdfChange', {file: route, pag: 1, name: nombre});
-            $scope.warning.msg = "";
-            $scope.warning.class = 'hidden';
-        }
-        else {
-            $scope.warning.msg = "Seleccione una clase";
-            $scope.warning.class = '';
-        }
     };
 
     /**
@@ -40,7 +43,7 @@ app.controller('professorFileShare', ['$scope', '$rootScope', "$sailsBind", func
      * @method savePdf
      * @param {} data
      * @param {} id
-     * @return 
+     * @return
      */
     $scope.savePdf = function (data, id) {
         angular.extend(data, {id: id});
@@ -52,7 +55,7 @@ app.controller('professorFileShare', ['$scope', '$rootScope', "$sailsBind", func
      * Funcion que permite borrar el PDF de una lista de PDF's
      * @method removePdf
      * @param {} index
-     * @return 
+     * @return
      */
     $scope.removePdf = function (index) {
         $scope.pdfs.splice(index, 1);

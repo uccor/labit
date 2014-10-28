@@ -21,7 +21,7 @@ app.config(['$routeProvider',
 
 app.controller('professorTab', function ($scope, $location) {
     /**
-     * Description
+     * Evaluate if the current route is selected
      * @method isActive
      * @param {} route
      * @return BinaryExpression
@@ -40,11 +40,12 @@ app.controller('professorManagerFooter', ['$scope', '$rootScope', "$sailsBind", 
     $scope.pdfName = '';
 
     /**
-     * Description
+     * Donload and evalute a pdf file
+     * @return
      * @method getPdf
      * @param {} file
      * @param {} pag
-     * @return
+     * @return 
      */
     $scope.getPdf = function (file, pag) {
         pag = typeof pag !== 'undefined' ? pag : 1;
@@ -69,12 +70,13 @@ app.controller('professorManagerFooter', ['$scope', '$rootScope', "$sailsBind", 
     }
 
     /**
-     * Description
+     * Called to change the current page shared
+     * @return
      * @method pageStageChange
      * @param {} sharing
      * @param {} file
      * @param {} page
-     * @return
+     * @return 
      */
     $scope.pageStageChange = function (sharing, file, page) {
 
@@ -98,14 +100,15 @@ app.controller('professorManagerFooter', ['$scope', '$rootScope', "$sailsBind", 
         data['pdf_allowNavigation'] = $scope.allowNavigation;
 
 
-        io.socket.put('/api/live_class_student/' + $scope.$parent.id_class_to_share, data);
+        $scope.$parent.getLiveClassStudent().then(function (liveClass) {
+            io.socket.put('/api/live_class_student/' + liveClass, data);
+        });
     }
 
 
     /**
-     * Description
+     * Return the page of the current pdf Shared
      * @method prevPage
-     * @return
      */
     $scope.prevPage = function () {
         if ($scope.pageNum > 1) {
@@ -116,9 +119,8 @@ app.controller('professorManagerFooter', ['$scope', '$rootScope', "$sailsBind", 
     };
 
     /**
-     * Description
+     * Advance the page of the current  pdf shared
      * @method nextPage
-     * @return
      */
     $scope.nextPage = function () {
         if ($scope.pageNum < $scope.pageTotal) {
@@ -130,12 +132,13 @@ app.controller('professorManagerFooter', ['$scope', '$rootScope', "$sailsBind", 
     };
 
     /**
-     * Description
+     * Stop sharing content with the users and the proyector window
      * @method stopSharing
-     * @return
      */
     $scope.stopSharing = function () {
-        io.socket.put('/api/live_class_student/' + $scope.$parent.id_class_to_share, {pdf_sharing: false});
+        $scope.$parent.getLiveClassStudent().then(function (liveClass) {
+            io.socket.put('/api/live_class_student/' + liveClass, {pdf_sharing: false});
+        });
         $scope.pageStageChange(false);
     }
 
@@ -146,13 +149,14 @@ app.controller('professorManagerFooter', ['$scope', '$rootScope', "$sailsBind", 
     });
 
     /**
-     * Description
+     * Open an external windows with the current PDF shared
      * @method openShare
-     * @return
      */
     $scope.openShare = function () {
 
-        window.open('/professorScreen#/' + $scope.$parent.id_class_to_share, 'Screen', "height=800,width=600");
+        $scope.$parent.getLiveClassStudent().then(function (liveClass) {
+            window.open('/professorScreen#/' + liveClass, 'Screen', "height=800,width=600");
+        });
     }
 }])
 ;
@@ -162,6 +166,11 @@ app.controller('professorManager', ['$scope', '$rootScope', "$sailsBind", '$q' ,
     $scope.live_class_student = '';
     $scope.userId = '';
 
+    /**
+     * This function ask the server the current LifeClassID of the current user.
+     * @method getLiveClassStudent
+     * @return a Promise where the data is the current LifeClassID
+     */
     $scope.getLiveClassStudent = function () {
         var deferred = $q.defer();
 
@@ -178,10 +187,7 @@ app.controller('professorManager', ['$scope', '$rootScope', "$sailsBind", '$q' ,
         } else {
             deferred.resolve($scope.live_class_student);
         }
-
-        return deferred.promise.then(function (id) {
-            return id;
-        });
+        return deferred.promise;
     }
 
     $scope.getLiveClassStudent();
