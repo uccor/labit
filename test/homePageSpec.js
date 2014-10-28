@@ -15,7 +15,7 @@ function waitForTitleChange() {
                 return true;
             }
         });
-    }, 10000);
+    }, 30000);
 }
 describe('home page', function () {
 
@@ -23,7 +23,7 @@ describe('home page', function () {
 
     it('should exist', function () {
         homePage.get();
-        expect(homePage.getTitle()).toEqual('Labit - Inicio');
+        expect(homePage.getTitle()).toEqual('Bienvenido a Labit');
     });
 
 
