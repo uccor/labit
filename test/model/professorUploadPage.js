@@ -86,7 +86,12 @@ var ProfessorUploadPage = function () {
 
     this.getUploadedPdfName = function (){
         return  element.all(by.repeater("pdf in pdfs")).last().getText();
+
     }
 }
 
 module.exports = new ProfessorUploadPage();
+
+// browser.debugger();
+// protractor debug spec.js
+// crtl+c to continue

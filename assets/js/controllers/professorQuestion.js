@@ -1,20 +1,12 @@
 app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind","$timeout","$rootScope", function ($scope, $sailsBind,$timeout,$rootScope) {
 
-
+	currentCourseId = 1;
+	currentClassId = 2;
 
 	$scope.questions = [];
 	$scope.getQuestion = function() {
-
-		angular.element(document).ready(function () {
-
-			$scope.$parent.live_class_students[0].id;
-
-		});
-		// $scope.$watch('live_class_students', function(newValue, oldValue) {
-		// 	debugger;
-
-
-		io.socket.get('/question/get_by_course', {}, function (data, jwres) {
+		// var currentCourseId = $scope.$parent.live_class_students[0].id;
+		io.socket.get('/question/get_by_course', {courseId : currentCourseId }, function (data, jwres) {
 			$scope.questions = data.questions;
 			if (!$scope.$$phase) {
 				$scope.$apply();
@@ -23,10 +15,12 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind","$timeout",
 
 	}
 	
+	$scope.getQuestion();
+	
 	$scope.responses = [];
 	$scope.summaryAnswers = [];
 	$scope.changeStatus = function (question) {
-		var currentClassId = $scope.$parent.live_class_students[0].id;
+		
 		$( "input:checkbox.checkButton" ).each(function(ind,element) {
 			var questionId = $(element).attr("id");
 			var isVisible = $(element).prop("checked");
@@ -115,7 +109,7 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind","$timeout",
 		}, 2000);
 	};
 	//Load questions for course...
-	$scope.getQuestion();
+	
 
 
 //    app.directive("answerDynamic",  ['$compile',function($compile) {

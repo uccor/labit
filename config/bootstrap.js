@@ -33,6 +33,7 @@ module.exports.bootstrap = function (cb) {
             {id: '5', nombre: 'Scrum', ruta: '/pdf/Scrum.pdf'}
         ]).exec(afterPdf);
 
+
         Live_class_student.create([
             {  id: 'CLASS1', pdf_sharing: 'false',
                 pdf_synchronize: false,
@@ -50,5 +51,6 @@ module.exports.bootstrap = function (cb) {
             }
         ]).exec(afterPdf);
     });
+    Course.create([{name: 'Biologia'},{name: 'Derecho Penal'}]).exec(function (){});
     cb();
 };
