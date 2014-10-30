@@ -22,7 +22,7 @@ app.controller('QuestionControllerStudent', ['$scope',"$sailsBind","$compile", f
 	});
 
 	$scope.$on('changedQuestionStatus', function (event, args) {
-		debugger;
+		
 	});
 
 	$scope.getQuestion();

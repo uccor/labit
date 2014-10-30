@@ -1,11 +1,12 @@
 app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind","$timeout","$rootScope", function ($scope, $sailsBind,$timeout,$rootScope) {
 
-	currentCourseId = 1;
-	currentClassId = 2;
+	
+	// currentClassId = 2;
 
 	$scope.questions = [];
 	$scope.getQuestion = function() {
-		// var currentCourseId = $scope.$parent.live_class_students[0].id;
+		// var currentClassId = $scope.$parent.live_class_student
+		var currentCourseId = $scope.live_course;
 		io.socket.get('/question/get_by_course', {courseId : currentCourseId }, function (data, jwres) {
 			$scope.questions = data.questions;
 			if (!$scope.$$phase) {
@@ -26,7 +27,7 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind","$timeout",
 			var isVisible = $(element).prop("checked");
 			// var statusNow = "invisible"; 	
 			
-			// debugger;
+			
 			io.socket.put('/api/question/'+questionId, { visible: isVisible, live_class : currentClassId }, function (data) {
 				// console.log(data)
 			});	
