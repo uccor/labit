@@ -88,7 +88,8 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind","$timeout",
                 status: "si",
                 answers: ans,
                 live_class:1,
-                course:$scope.$parent.live_class_students[0].course.id
+                //course:$scope.$parent.live_class_students[0].course.id
+                course:$scope.live_class_student
             },
             function (data, jwres) {
                 $scope.text = '';
