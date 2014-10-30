@@ -1,13 +1,13 @@
 /**
- * Created by guille on 13/09/14.
+ * Created by Mojarritas on 13/09/14.
  */
 app.config(['$routeProvider',
     function ($routeProvider) {
 
-        $routeProvider.when('/', {
-            template: JST["assets/templates/professor/uploadPDF.html"]
-            //controller : 'AlumnoCreateCtl'
-        });
+        //$routeProvider.when('/', {
+        //    template: JST["assets/templates/professor/uploadPDF.html"]
+        //controller : 'AlumnoCreateCtl'
+        //});
         $routeProvider.when('/fileShare', {
             template: JST["assets/templates/professor/fileShare.html"]
         });
@@ -27,6 +27,12 @@ app.config(['$routeProvider',
     }]);
 
 app.controller('professorTab', function ($scope, $location) {
+    /**
+     * Evaluate if the current route is selected
+     * @method isActive
+     * @param {} route
+     * @return BinaryExpression
+     */
     $scope.isActive = function (route) {
         return route === $location.path();
     }
@@ -40,6 +46,14 @@ app.controller('professorManagerFooter', ['$scope', '$rootScope', "$sailsBind", 
     $scope.synchronize = true;
     $scope.pdfName = '';
 
+    /**
+     * Donload and evalute a pdf file
+     * @return
+     * @method getPdf
+     * @param {} file
+     * @param {} pag
+     * @return 
+     */
     $scope.getPdf = function (file, pag) {
         pag = typeof pag !== 'undefined' ? pag : 1;
 
@@ -62,13 +76,22 @@ app.controller('professorManagerFooter', ['$scope', '$rootScope', "$sailsBind", 
         }
     }
 
+    /**
+     * Called to change the current page shared
+     * @return
+     * @method pageStageChange
+     * @param {} sharing
+     * @param {} file
+     * @param {} page
+     * @return 
+     */
     $scope.pageStageChange = function (sharing, file, page) {
 
         var data = {};
         data['pdf_sharing'] = sharing;
         $scope.sharing = sharing;
-        if(typeof page !== 'undefined')
-        $scope.pageNum = page;
+        if (typeof page !== 'undefined')
+            $scope.pageNum = page;
 
         data['pdf_screenPageNumber'] = $scope.pageNum;
 
@@ -84,10 +107,16 @@ app.controller('professorManagerFooter', ['$scope', '$rootScope', "$sailsBind", 
         data['pdf_allowNavigation'] = $scope.allowNavigation;
 
 
-        io.socket.put('/api/live_class_student/' + $scope.$parent.id_class_to_share, data);
+        $scope.$parent.getLiveClassStudent().then(function (liveClass) {
+            io.socket.put('/api/live_class_student/' + liveClass, data);
+        });
     }
 
 
+    /**
+     * Return the page of the current pdf Shared
+     * @method prevPage
+     */
     $scope.prevPage = function () {
         if ($scope.pageNum > 1) {
             $scope.pageNum--;
@@ -96,6 +125,10 @@ app.controller('professorManagerFooter', ['$scope', '$rootScope', "$sailsBind", 
         $rootScope.$broadcast('pdfPageChanged', $scope.pageNum);
     };
 
+    /**
+     * Advance the page of the current  pdf shared
+     * @method nextPage
+     */
     $scope.nextPage = function () {
         if ($scope.pageNum < $scope.pageTotal) {
             $scope.pageNum++;
@@ -105,8 +138,14 @@ app.controller('professorManagerFooter', ['$scope', '$rootScope', "$sailsBind", 
         $rootScope.$broadcast('pdfPageChanged', $scope.pageNum);
     };
 
+    /**
+     * Stop sharing content with the users and the proyector window
+     * @method stopSharing
+     */
     $scope.stopSharing = function () {
-        io.socket.put('/api/live_class_student/' + $scope.$parent.id_class_to_share, {pdf_sharing: false});
+        $scope.$parent.getLiveClassStudent().then(function (liveClass) {
+            io.socket.put('/api/live_class_student/' + liveClass, {pdf_sharing: false});
+        });
         $scope.pageStageChange(false);
     }
 
@@ -116,15 +155,47 @@ app.controller('professorManagerFooter', ['$scope', '$rootScope', "$sailsBind", 
         $scope.getPdf(args.file, args.pag);
     });
 
-    $scope.openShare = function (){
+    /**
+     * Open an external windows with the current PDF shared
+     * @method openShare
+     */
+    $scope.openShare = function () {
 
-        window.open('/professorScreen#/'+$scope.$parent.id_class_to_share, 'Screen', "height=800,width=600");
+        $scope.$parent.getLiveClassStudent().then(function (liveClass) {
+            window.open('/professorScreen#/' + liveClass, 'Screen', "height=800,width=600");
+        });
     }
 }])
 ;
 
 
-app.controller('professorManager', ['$scope', '$rootScope', "$sailsBind", function ($scope, $rootScope, $sailsBind) {
-    $scope.nada = {};
-    $sailsBind.bind("api/live_class_student", $scope);
+app.controller('professorManager', ['$scope', '$rootScope', "$sailsBind", '$q' , function ($scope, $rootScope, $sailsBind, $q) {
+    $scope.live_class_student = '';
+    $scope.userId = '';
+
+    /**
+     * This function ask the server the current LifeClassID of the current user.
+     * @method getLiveClassStudent
+     * @return a Promise where the data is the current LifeClassID
+     */
+    $scope.getLiveClassStudent = function () {
+        var deferred = $q.defer();
+
+        if ($scope.live_class_student == '') {
+            io.socket.get('/api/user/getUser', function (data) {
+                $scope.userId = data.userId;
+                io.socket.get('/api/user/' + $scope.userId, function (data) {
+                    console.log(data);
+                    $scope.live_class_student = data.live_class_student.id;
+
+                    deferred.resolve(data.live_class_student.id);
+                });
+            });
+        } else {
+            deferred.resolve($scope.live_class_student);
+        }
+        return deferred.promise;
+    }
+
+    $scope.getLiveClassStudent();
 }]);

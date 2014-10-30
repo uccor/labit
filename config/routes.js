@@ -79,11 +79,9 @@
    
     'get /question/visible':    'QuestionController.getVisible',
 
-    //Routes last sprint
-    'put  /api/course/create':      'CourseController.create',
-    'get  /api/course':             'CourseController.get_my_courses',
-    'post  /api/course/update':     'CourseController.update',
-    'delete  /api/course/destroy':  'CourseController.delete'
+
+    '/api/user/getUser': 'UserController.getUser',
+    'GET  /api/course':  'CourseController.get_my_courses'
 
     
     
