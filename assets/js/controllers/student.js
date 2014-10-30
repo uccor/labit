@@ -14,6 +14,11 @@ app.controller('contentShared', ['$scope', '$rootScope', "$sailsBind", function 
     });
 
     //Subscribe to live_class_student  :
+    /**
+     * Description
+     * @method subscribe_to_class
+     * @return 
+     */
     $scope.subscribe_to_class = function () {
 
         // If already subscribed to one class, unsubscribe from it
@@ -57,6 +62,11 @@ app.controller('contentShared', ['$scope', '$rootScope', "$sailsBind", function 
         }
     });
 
+    /**
+     * Description
+     * @method updatePDF
+     * @return 
+     */
     $scope.updatePDF = function(){
         if ($scope.actClass.pdf_sharing) {
             $rootScope.$broadcast('pdfChange',

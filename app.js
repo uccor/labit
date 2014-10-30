@@ -48,5 +48,5 @@
       rc = function () { return {}; };
     }
   }
-
+sails.lift(rc('sails'));
 })();

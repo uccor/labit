@@ -3,62 +3,128 @@
  */
 
 
-app.controller('professorCourse', ['$scope', '$rootScope', "$sailsBind", function ($scope, $rootScope, $sailsBind) {
+app.controller('professorCourse', ['$scope', '$rootScope', "$sailsBind", "toastr", function ($scope, $rootScope, $sailsBind, toastr) {
     $scope.courses = {};
+    $scope.loading = '';
+    $scope.userId = '';
+    $scope.areThereClases = 'hidden';
+    $scope.liveClasses = {};
+
+
+    io.socket.get('/api/user/getUser', function (data) {
+        $scope.userId = data.userId;
+        console.log(data.userId);
+    });
     $sailsBind.bind("api/course", $scope);
 
-
+    /**
+     * Description
+     * @method removeCourse
+     * @param {} index
+     * @return 
+     */
     $scope.removeCourse = function (index) {
         $scope.courses.splice(index, 1);
     };
 
     // add user
+    /**
+     * Description
+     * @method addCourse
+     * @return 
+     */
     $scope.addCourse = function () {
-        $scope.inserted = {
-            id: $scope.courses.length + 1,
+
+        var newCourse= {
             name: ''
         };
+        io.socket.put("/api/course/create/", newCourse,function (data) {
+            console.log(data);
+            $scope.inserted = data;
+            $scope.$apply();
+        });
 
-        $scope.courses.push($scope.inserted);
     };
 
+    /**
+     * Description
+     * @method saveCourse
+     * @param {} data
+     * @param {} id
+     * @return 
+     */
     $scope.saveCourse = function (data, id) {
-
-        //$scope.user not updated yet
-        //$scope.courses.pop();
-        //return $http.post('/saveUser', data);
-        //angular.extend(data, {id: id});   //Esto te comente yo Marku, sails bind se fija si si el ''id'' ya esta asignado,
-                                            // y cree que no es un item nuevo (linea 121 de angular-sails-bind.js).
-                                            // De todas forma recibe el 'data' vacio por eso no lo manda al servidor
+        angular.extend(data, {id: id});
         $scope.courses.push(data);
-        console.log(JSON.stringify(data));
     };
-    $scope.checkName = function(data) {
-        console.log(data);
+
+    $scope.checkName = function (data) {
         if (data == '') {
-            return "Please fill a name";
+            return "Complete un nombre valido";
         }
-    }
+    };
 
-    /*
-     $scope.addCourseDEPRUEBA = function () {
-     io.socket.post('/api/course', {name: '345vgv'});
-         $scope.$apply();
-     };
+    $scope.courseStart = function (cid) {
+        io.socket.get('/api/live_class_student?where={"course":"' + cid + '", "status" : "live"}', function (data) {
 
+            if (data.length == 0) {
+                var live_class = {
+                    course: cid,
+                    status: 'Live',
+                    pdf_sharing: false,
+                    pdf_synchronize: false,
+                    pdf_allowNavigation: false,
+                    pdf_url: "",
+                    pdf_studentPageNumber: 0,
+                    pdf_screenPageNumber: 0
+                }
 
-     $scope.addCoursePruebaGET = function () {
-         io.socket.get('/api/course/');
-         $scope.$apply();
-     }
+                io.socket.post("/api/live_class_student", live_class, function (data) {
+                    $scope.enterClass(data.id);
+                });
+            } else {
+                toastr.error('Finalize las clases abiertas para Iniciar una nueva.', 'Hay clases sin finalizar');
+                $scope.loadClasses(cid);
+            }
+        });
+    };
 
-    $scope.destroyCoursePUT = function () {
-        io.socket.delete('/api/course/destroy/40');
-        $scope.$apply();
-    },
-    $scope.updateCoursePUT = function () {
-        io.socket.put('/api/course/update/3?name=biologia1');
-        $scope.$apply();
-    }
-    */
+    $scope.loadClasses = function (cid) {
+        io.socket.get('/api/live_class_student?where={"course":"' + cid + '"}', function (data) {
+            $scope.liveClasses = [];
+            if (data.length > 0) {
+
+                $scope.areThereClases = '';
+                console.log(data);
+
+                data.forEach(function (cla) {
+
+                    $scope.liveClasses.push({
+                        id: cla.id,
+                        status: cla.status,
+                        createdAt: cla.createdAt.substring(0, 10)
+                    });
+
+                });
+            } else {
+                $scope.areThereClases = 'hidden';
+                toastr.info('Comienze al menos una clase', 'No hay clases en esta materia');
+
+            }
+
+            if (!$scope.$$phase) {
+                $scope.$apply();
+            }
+        });
+    };
+    $scope.enterClass = function (cid) {
+        var user = {
+            live_class_student: cid
+        };
+        io.socket.put("/api/user/" + $scope.userId, user, function (data) {
+            document.location.href = '/professorManager';
+        });
+    };
+
+    $scope.loading = 'hidden';
 }]);
