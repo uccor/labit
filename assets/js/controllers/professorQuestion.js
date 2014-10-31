@@ -56,7 +56,6 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind","$timeout",
 	};
 
 	$scope.saveOk = "";
-    $scope
 	$scope.addQuestion = function() {
 		if ($scope.text === '') {
 			return;
