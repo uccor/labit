@@ -31,7 +31,7 @@ exports.register = function (req, res, next) {
     , password2 = req.param('password2')
     , role = req.param('role')
 
-    // console.log(password2)
+     console.log('LOCAAAAAAAAAAAAAAAAAL')
     // console.log(password)
 
   if (password!=password2){
