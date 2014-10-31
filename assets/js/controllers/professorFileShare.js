@@ -4,7 +4,7 @@
 
 app.controller('professorFileShare', ['$scope', '$rootScope', "$sailsBind", function ($scope, $rootScope, $sailsBind) {
 
-    debbuger;
+
     $scope.live_class_students = {};
 
     $scope.warning = {
