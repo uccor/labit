@@ -39,7 +39,6 @@ app.controller('professorCourse', ['$scope', '$rootScope', "$sailsBind", "toastr
             name: ''
         };
         io.socket.put("/api/course/create/", newCourse, function (data) {
-            console.log(data);
             $scope.inserted = data;
             $scope.$apply();
         });
