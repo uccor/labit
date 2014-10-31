@@ -5,10 +5,23 @@
 app.controller('professorFileShare', ['$scope', '$rootScope', "$sailsBind", function ($scope, $rootScope, $sailsBind) {
 
     $scope.live_class_students = {};
+
     $scope.warning = {
         msg: '',
         class: 'hidden'
     };
+
+    $scope.course = {};
+
+
+    $scope.$parent.getLiveClassStudent().then(function (liveClass) {
+    /*    $scope.course = $scope.$parent.live_course;
+        if (!$scope.$$phase) {
+            $scope.$apply();
+        }*/
+
+        $("#inputCourse").val($scope.$parent.live_course);
+    });
 
     /**
      * Funcion que se encarga de compartir el PDF
@@ -18,6 +31,7 @@ app.controller('professorFileShare', ['$scope', '$rootScope', "$sailsBind", func
      * @param {} nombre
      * @return
      */
+
     $scope.share = function (id, route, nombre) {
 
         $scope.pdf_id = id;
@@ -61,6 +75,11 @@ app.controller('professorFileShare', ['$scope', '$rootScope', "$sailsBind", func
         $scope.pdfs.splice(index, 1);
     };
 
-    $sailsBind.bind("api/pdf", $scope);
+    $scope.$parent.getLiveClassStudent().then(function (liveClass) {
+
+       // $sailsBind.bind("api/pdf", $scope,{"course": {"contains":$scope.$parent.live_course}});
+
+        $sailsBind.bind("api/pdf", $scope,{"course": {"contains":$scope.$parent.live_course}});
+    });
 
 }]);
