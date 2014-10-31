@@ -13,6 +13,14 @@ app.controller('pdfViewer', ['$scope', '$rootScope', "$sailsBind", function ($sc
     $scope.pageTotal = 0;
     $scope.navigation = false;
 
+    /**
+     * Description
+     * @method getpdf
+     * @param {} file
+     * @param {} pag
+     * @param {} navigation
+     * @return 
+     */
     $scope.getpdf = function (file, pag, navigation) {
         pag = typeof pag !== 'undefined' ? pag : 1;
         navigation = typeof navigation !== 'undefined' ? navigation : true;
@@ -57,6 +65,12 @@ app.controller('pdfViewer', ['$scope', '$rootScope', "$sailsBind", function ($sc
     }
 
 
+    /**
+     * Description
+     * @method changePage
+     * @param {} pagina
+     * @return 
+     */
     $scope.changePage = function (pagina) {
 
         $scope.pageTotal = $scope.pdf.numPages;
@@ -102,6 +116,11 @@ app.controller('pdfViewer', ['$scope', '$rootScope', "$sailsBind", function ($sc
             });
         });
     };
+    /**
+     * Description
+     * @method prevPage
+     * @return 
+     */
     $scope.prevPage = function () {
         if ($scope.pageNum <= 1) {
             return;
@@ -110,6 +129,11 @@ app.controller('pdfViewer', ['$scope', '$rootScope', "$sailsBind", function ($sc
         $scope.changePage($scope.pageNum);
     };
 
+    /**
+     * Description
+     * @method nextPage
+     * @return 
+     */
     $scope.nextPage = function () {
         if ($scope.pageNum >= $scope.pageTotal) {
             return;

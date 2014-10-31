@@ -1,11 +1,14 @@
 
-app.controller('QuestionControllerStudent', ['$scope',"$sailsBind","$compile", function ($scope, $sailsBind, $compile) {
+app.controller('QuestionControllerStudent', ['$scope',"$sailsBind","$compile", "$rootScope", function ($scope, $sailsBind, $compile, $rootScope) {
 	// $sailsBind.bind("api/question", $scope, {"visible": {"equals": "true"}});
 	
-	currentClassId = 2;
+	var currentClassId = -1;
 
 	$scope.questions = [];
-	$scope.getQuestion = function() {
+	// $scope.getQuestion = function(classId) {
+	$rootScope.getQuestion = function(classId) {
+		// currentClassId = $scope.id_subscribedClass
+		currentClassId = classId;
 		io.socket.get('/question/visible', {courseId : currentClassId}, function (data, jwres) {
 			// data.questions;
 			// console.log();
@@ -16,16 +19,20 @@ app.controller('QuestionControllerStudent', ['$scope',"$sailsBind","$compile", f
 			
 		});  
 	}
+
+	
+
 	/*When new question is visible reload questions*/
 	io.socket.on("newQuestion", function onServerSentEvent (data) { 
-		$scope.getQuestion();
+		var classId = $rootScope.currentClassId;
+		$scope.getQuestion(classId);
 	});
 
 	$scope.$on('changedQuestionStatus', function (event, args) {
-		debugger;
+		
 	});
 
-	$scope.getQuestion();
+	// $scope.getQuestion();
    
 	$scope.validAnswers = 0;     
 	

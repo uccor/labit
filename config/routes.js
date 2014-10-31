@@ -51,26 +51,37 @@
     '/student': {
       view: 'student'
     },
-    'get /login': 'AuthController.login',
-    'get /logout': 'AuthController.logout',
-    'get /register': 'AuthController.register',
+    '/professorCourse': {
+        view: 'professorCourse'
+    },
+    'get /login':               'AuthController.login',
+    'get /logout':              'AuthController.logout',
+    'get /register':            'AuthController.register',
 
-    'post /register': 'AuthController.register',
-    'post /auth/local': 'AuthController.callback',
+    'post /register':           'AuthController.register',
+    'post /auth/local':         'AuthController.callback',
     'post /auth/local/:action': 'AuthController.callback',
 
-    'get /show': 'ConnectController.show',
-    'get /getCurrentUsers': 'CurrentUsersController.get',
+    'get /show':                'ConnectController.show',
+    'get /getCurrentUsers':     'CurrentUsersController.get',
 
-  
-    'post /answer/send': 'AnswerController.sendAnswer',
-    'get /answer/responses': 'AnswerController.getResponses',
-    
+
     'get /question/visible': 'QuestionController.getVisible',
     // '/make_question': { view: 'makeQuestion' },
     'get /question/reload': 'QuestionController.reloadQuestion',
     'get /question/get_by_course': 'QuestionController.getAllByCourse',
 
+    '/question_student': {
+      view:                     'questionStudent'
+    },
+    'post /answer/send':        'AnswerController.sendAnswer',
+    'get /answer/responses':    'AnswerController.getResponses',
+   
+    'get /question/visible':    'QuestionController.getVisible',
+
+
+    '/api/user/getUser': 'UserController.getUser',
+    'GET  /api/course':  'CourseController.get_my_courses'
 
     
     

@@ -30,7 +30,7 @@ module.exports = {
             });
             //console.log(files);
            //res.json({status: 200, file: files});
-            res.redirect('/professorManager');
+            res.redirect('/professorManager#/fileShare');
         });
     }
 };

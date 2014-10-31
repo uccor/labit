@@ -7,6 +7,11 @@ app.controller('professorScreen', ['$scope', '$rootScope', "$sailsBind","$locati
     $scope.paginaActualPDF = 0;
      // Subscription
     var x_act_class= $location.path();
+     /**
+      * Description
+      * @method subscribe_to_class
+      * @return 
+      */
      $scope.subscribe_to_class = function () {
          io.socket.get('/api/live_class_student' + x_act_class, function messageReceived(jsonObject) {
                  $scope.idClase = jsonObject.id;
@@ -38,6 +43,11 @@ app.controller('professorScreen', ['$scope', '$rootScope', "$sailsBind","$locati
         }
     });
 
+    /**
+     * Description
+     * @method updatePDF
+     * @return 
+     */
     $scope.updatePDF = function(){
         if ($scope.actClass.pdf_sharing) {
             $rootScope.$broadcast('pdfChange',

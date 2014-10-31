@@ -1,19 +1,21 @@
 app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind","$timeout","$rootScope", function ($scope, $sailsBind,$timeout,$rootScope) {
 
-	currentCourseId = 1;
-	currentClassId = 2;
 	
+	// currentClassId = 2;
+
 	$scope.questions = [];
 	$scope.getQuestion = function() {
-		// var currentCourseId = $scope.$parent.live_class_students[0].id;
-
-		io.socket.get('/question/get_by_course', {courseId : currentCourseId }, function (data, jwres) {
-			
-			$scope.questions = data.questions;
-			if (!$scope.$$phase) {
-				$scope.$apply();
-			}
+		// var currentClassId = $scope.$parent.live_class_student
+		$scope.getLiveClassStudent().then(function() {
+			var currentCourseId = $scope.live_course;
+			io.socket.get('/question/get_by_course', {courseId : currentCourseId }, function (data, jwres) {
+				$scope.questions = data.questions;
+				if (!$scope.$$phase) {
+					$scope.$apply();
+				}
+			});
 		});
+		
 
 	}
 	
@@ -28,7 +30,7 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind","$timeout",
 			var isVisible = $(element).prop("checked");
 			// var statusNow = "invisible"; 	
 			
-			// debugger;
+			var currentClassId = $scope.live_class_student;
 			io.socket.put('/api/question/'+questionId, { visible: isVisible, live_class : currentClassId }, function (data) {
 				// console.log(data)
 			});	
@@ -54,12 +56,13 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind","$timeout",
 	};
 
 	$scope.saveOk = "";
+    $scope
 	$scope.addQuestion = function() {
 		if ($scope.text === '') {
 			return;
 		}
 		var ans = [];
-		var  answares = $("li > input.visible");
+		var  answares = $("li > input");
         var ansQuantity=0;
 		angular.forEach(answares, function(val, key) {
 			if(val.value != '') {
@@ -89,14 +92,13 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind","$timeout",
                 text: $scope.text,
                 status: "si",
                 answers: ans,
-                live_class:1,
-                course:$scope.$parent.live_class_students[0].course.id
+                course:$scope.live_course
             },
             function (data, jwres) {
                 $scope.text = '';
                 $scope.saveOk="true";
                 $scope.error="";
-
+                $("li:not('#template') > input").parent("li").remove();
 
                 if (!$scope.$$phase) {
                     $scope.$apply();
@@ -141,6 +143,7 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind","$timeout",
 		var newAns= template.clone();
 		newAns.removeClass("hidden");
 		newAns.removeAttr("id");
+        newAns.find("input").val("");
 		newAns.find("input").addClass("visible");
 		//var element = $compile(angular.element(clone))(scope);
 

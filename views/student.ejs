@@ -9,7 +9,7 @@
             <br><br>
 
             <div> Seleccione ID Clase a la cual desea suscribirse:
-                <select class="form-control" ng-model="id_subscribedClass" >
+                <select class="form-control" ng-model="id_subscribedClass" ng-change="setCurrentClass(id_subscribedClass)">
                     <option ng-repeat="class in avaibleClasses">{{ class.id }}</option>
                 </select>
                 <!--input type="text" ng-model="id_subscribedClass"-->
