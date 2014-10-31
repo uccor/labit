@@ -6,13 +6,16 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind","$timeout",
 	$scope.questions = [];
 	$scope.getQuestion = function() {
 		// var currentClassId = $scope.$parent.live_class_student
-		var currentCourseId = $scope.live_course;
-		io.socket.get('/question/get_by_course', {courseId : currentCourseId }, function (data, jwres) {
-			$scope.questions = data.questions;
-			if (!$scope.$$phase) {
-				$scope.$apply();
-			}
+		$scope.getLiveClassStudent().then(function() {
+			var currentCourseId = $scope.live_course;
+			io.socket.get('/question/get_by_course', {courseId : currentCourseId }, function (data, jwres) {
+				$scope.questions = data.questions;
+				if (!$scope.$$phase) {
+					$scope.$apply();
+				}
+			});
 		});
+		
 
 	}
 	
@@ -27,7 +30,7 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind","$timeout",
 			var isVisible = $(element).prop("checked");
 			// var statusNow = "invisible"; 	
 			
-			
+			var currentClassId = $scope.live_class_student;
 			io.socket.put('/api/question/'+questionId, { visible: isVisible, live_class : currentClassId }, function (data) {
 				// console.log(data)
 			});	
