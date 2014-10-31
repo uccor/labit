@@ -53,6 +53,7 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind","$timeout",
 	};
 
 	$scope.saveOk = "";
+    $scope
 	$scope.addQuestion = function() {
 		if ($scope.text === '') {
 			return;
@@ -88,9 +89,7 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind","$timeout",
                 text: $scope.text,
                 status: "si",
                 answers: ans,
-                live_class:1,
-                //course:$scope.$parent.live_class_students[0].course.id
-                course:$scope.live_class_student
+                course:$scope.live_course
             },
             function (data, jwres) {
                 $scope.text = '';

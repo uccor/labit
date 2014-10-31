@@ -3,9 +3,10 @@
     <form>
             <input id="text"  type="text" placeholder="Preguntas" ng-model="text">
             <ul id="allAnswers">
-                <li><input type="text" placeholder="Respuesta" class="answer"></li>
+                <li ng-repeat=""><input type="text" placeholder="Respuesta" class="answer"></li>
                 <li  id="template"><input  type="text" placeholder="Respuesta" class="answer"></li>
             </ul>
+
             <button  class="web_button" ng-click="addAnswer()">Otra Opcion</button>
             <button class="web_button" id="send" type="submit" ng-click="addQuestion()">Enviar</button>
     </form>
