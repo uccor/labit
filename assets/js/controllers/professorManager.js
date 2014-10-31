@@ -14,9 +14,16 @@ app.config(['$routeProvider',
         $routeProvider.when('/fileUpload', {
             template: JST["assets/templates/professor/uploadPDF.html"]
         });
+        $routeProvider.when('/makeQuestion', {
+            template: JST["assets/templates/professor/makeQuestion.html"]
+        });
+        $routeProvider.when('/viewQuestion', {
+            template: JST["assets/templates/professor/viewQuestion.html"]
+        });
         $routeProvider.otherwise({
             template: JST["assets/templates/professor/fileShare.html"]
         });
+
     }]);
 
 app.controller('professorTab', function ($scope, $location) {
@@ -178,7 +185,7 @@ app.controller('professorManager', ['$scope', '$rootScope', "$sailsBind", '$q' ,
             io.socket.get('/api/user/getUser', function (data) {
                 $scope.userId = data.userId;
                 io.socket.get('/api/user/' + $scope.userId, function (user) {
-                    console.log(user);
+                    //console.log(user);
                     $scope.live_class_student = user.live_class_student.id;
                     $scope.live_course = user.live_class_student.course;
 

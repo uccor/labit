@@ -14,6 +14,7 @@ module.exports = {
 			var answerSelected = req.param('answer');
 			var questionSelectedId = req.param('question');
 			
+			
 			if (userSelected) {
 				Question.findOne({id: questionSelectedId}).exec(function(err, ques) {
 					var questionSelected = ques;

@@ -3,11 +3,13 @@
     <form>
             <input id="text"  type="text" placeholder="Preguntas" ng-model="text">
             <ul id="allAnswers">
-                <li><input type="text" placeholder="Respuesta" class="visible"></li>
-                <li  id="template" class="hidden"><input  type="text" placeholder="Respuesta"></li>
+                <li ng-repeat=""><input type="text" placeholder="Respuesta" class="answer"></li>
+                <li  id="template"><input  type="text" placeholder="Respuesta" class="answer"></li>
             </ul>
+
             <button  class="web_button" ng-click="addAnswer()">Otra Opcion</button>
             <button class="web_button" id="send" type="submit" ng-click="addQuestion()">Enviar</button>
     </form>
+    <b ng-model="error">{{error}}</b>
     <b ng-if="saveOk" ng-model="saveOk">Agregada exitosamente</b>
 </div>

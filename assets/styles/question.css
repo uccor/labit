@@ -104,7 +104,7 @@ input:focus {
     border-color:#6E6E6E;
 }
 
-.container {
+.container2 {
     width: 50%;
     float:left;
 }
@@ -130,7 +130,7 @@ input:focus {
     font-size: 0.8em;
 }
 
-input[type="checkbox"] {
+input[type="checkbox"].questionInput {
     width:40px;
     height:40px;
 }
