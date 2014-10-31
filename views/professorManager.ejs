@@ -13,7 +13,10 @@
         <div class="container-fluid">
             <!-- Navigation Bar -->
             <div class="row">
-                <div class="col-md-10">
+                <div class="col-md-2 col-md-push-10">
+                    <button id="finishClass" class="btn btn-danger" ng-click="finishClass()">Finalizar Clase</button>
+                </div>
+                <div class="col-md-10 col-md-pull-2">
                     <ul class="nav nav-tabs pestanas" role="tablist" ng-controller="professorTab">
                         <%//<li ng-class="{active:isActive('/')}"><a href="#">Subir Archivo</a></li>%>
                         <li ng-class="{active:isActive('/fileShare')}"><a href="#fileShare">Compartir Archivo</a></li>
