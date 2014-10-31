@@ -19,10 +19,19 @@ module.exports = function filterByUser(req, res, next) {
     }
 
     if (req.options.action == 'create') {
-        req.body.users =  [
-            {id: userID}
-        ];
-        return next();
+        User.findOne({id:userID}).populate('courses').exec(function findCB(err,user) {
+            //Si es un profesor, continuar
+            if(user.role == "student"){
+                console.log('No tiene permisos para realizar esta acción');
+                return res.redirect('/notAllowed');
+            }
+            else{
+                req.body.users =  [
+                    {id: userID}
+                ];
+                return next();
+            }
+        })
     }
 
     if(req.options.action == 'destroy' || req.options.action == 'update') {
