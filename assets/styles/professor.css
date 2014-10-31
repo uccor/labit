@@ -78,6 +78,11 @@
     color: #1071de;
 }
 
+.div-banner {
+    background-image: url("../images/cinta.png");
+    background-repeat: repeat-x;
+}
+
 .pointer {
     cursor: pointer;
     cursor: hand;

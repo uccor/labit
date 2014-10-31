@@ -188,6 +188,7 @@ app.controller('professorManager', ['$scope', '$rootScope', "$sailsBind", '$q' ,
                     //console.log(user);
                     $scope.live_class_student = user.live_class_student.id;
                     $scope.live_course = user.live_class_student.course;
+
                     deferred.resolve(user.live_class_student.id);
                 });
             });
@@ -197,5 +198,13 @@ app.controller('professorManager', ['$scope', '$rootScope', "$sailsBind", '$q' ,
         return deferred.promise;
     }
 
+    $scope.finishClass = function(){
+        var user = {
+            live_class_student: null
+        };
+        io.socket.put("/api/user/" + $scope.userId, user, function (data) {
+            document.location.href = '/professorCourse';
+        });
+    }
     $scope.getLiveClassStudent();
 }]);

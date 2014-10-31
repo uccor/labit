@@ -1,4 +1,4 @@
-ng<div ng-controller="professorCourse" id="professorCourse">
+<div ng-controller="professorCourse" id="professorCourse">
     <div class="page-header" align="center" style="margin-top: 0px">
 
         <b class="titulos">
@@ -31,7 +31,7 @@ ng<div ng-controller="professorCourse" id="professorCourse">
                                   onbeforesave="saveCourse(rowform.$data, c.id)"
                                   class="form-buttons form-inline" shown="inserted.id == c.id">
                                 <span ng-disabled="rowform.$waiting"
-                                      class="pointer pointer-success fa fa-check fa-2x" ng-click="rowform.$submit()">
+                                      class="pointer pointer-success fa fa-check fa-2x" ng-click="$scope.inserted = {};rowform.$submit()">
                                 </span>
                                 &numsp;
                                 <span type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()"
