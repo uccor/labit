@@ -141,16 +141,20 @@ var AuthController = {
       req.flash('msgError',errorMsg);
       // console.log('UsernameError');
       datos = req.body;
+
         console.log(errorMsg);
       req.flash('form', req.body);
+
       req.flash('name', datos.name);
       req.flash('lastName', datos.lastName);
       req.flash('username', datos.username);
       req.flash('email', datos.email);
+
       req.flash('role', datos.role);
         console.log(datos.name);
       console.log('authcontroller');
       res.redirect('/');
+
     }
 
     //---------====--------------==============------------
