@@ -17,14 +17,14 @@
             </div>
 
             <!--LOGIN-->
-            <div class="col-md-6" style="background: #CEECF5; padding-top: 17px;">
+            <div class="col-md-6" style="background: #CEECF5; padding-top: 2px;">
                 <form class="form-horizontal" role="form" action="/auth/local" method="post">
                     <div class="form-group">
                         <label for="inputEmail3" class="col-sm-3 control-label">Username o Email</label>
 
                         <div class="col-sm-6">
                             <input type="text" class="form-control" id="login-username" name="identifier"
-                                   placeholder="Username o Email">
+                                   value="<%- req.flash('username') %>">
                         </div>
                         <div class="col-sm-3"></div>
                     </div>
@@ -32,23 +32,17 @@
                         <label for="inputPassword3" class="col-sm-3 control-label">Password</label>
 
                         <div class="col-sm-6">
-                            <input type="password" class="form-control" id="login-pass" name="password"
-                                   placeholder="Password">
+                            <input type="password" class="form-control" id="login-pass" name="password">
                         </div>
                         <div class="col-sm-3">
                             <button type="submit" class="btn btn-default" id="login-submit">Sign in</button>
                         </div>
                     </div>
                 </form>
-                <!--section class="loginform cf">
-                <h3 id="errorForm" style="margin-top: 15px"> Login <%- req.flash('msgError') %> </h3>
+                <section class="loginform cf">
+                    <h3 id="errorForm" style="margin-top: 15px"> <%- req.flash('msgError') %> </h3>
+                </section>
 
-                <form role="form" action="/auth/local" method="post">
-                    <input id='username' type="text" name="identifier" placeholder="Username or Email">
-                    <input id='pass' type="password" name="password" placeholder="Password">
-                    <button id="submit" type="submit">Sign in</button>
-                </form>
-            </section-->
             </div>
 
             <div class="col-md-8">
@@ -68,7 +62,11 @@
             <div class="container col-md-4">
                 <h2>Regístrate en Labit</h2>
 
-                <form role="form" action="/auth/local/register" method="post">
+                <section class="loginform cf">
+                    <h3 id="errorForm" style="margin-top: 15px"> <%- req.flash('msgError') %> </h3>
+                </section>
+
+                <form role="form" action="auth/local/register" method="post">
 
                     <div>
                         <strong><span class="glyphicon glyphicon-asterisk"></span>Required Field</strong>
@@ -78,7 +76,7 @@
 
                         <div class="input-group">
                             <input type="text" class="form-control" name="name" id="name"
-                                   placeholder="Nombre" required>
+                                   value="<%- req.flash('name') %>" required>
                                         <span class="input-group-addon"><span
                                                     class="glyphicon glyphicon-asterisk"></span></span>
                         </div>
@@ -88,7 +86,7 @@
 
                         <div class="input-group">
                             <input type="text" class="form-control" name="lastName" id="lastName"
-                                   placeholder="Apellido" required>
+                                   value="<%- req.flash('lastName') %>" required>
                                         <span class="input-group-addon"><span
                                                     class="glyphicon glyphicon-asterisk"></span></span>
                         </div>
@@ -99,7 +97,7 @@
 
                         <div class="input-group">
                             <input type="text" class="form-control" name="username" id="username"
-                                   placeholder="Nombre de Usuario" required>
+                                   value="<%- req.flash('username') %>" required>
                                         <span class="input-group-addon"><span
                                                     class="glyphicon glyphicon-asterisk"></span></span>
                         </div>
@@ -109,7 +107,7 @@
 
                         <div class="input-group">
                             <input type="email" class="form-control" id="email" name="email"
-                                   placeholder="Email" required>
+                                   value="<%- req.flash('email') %>" required>
                                         <span class="input-group-addon"><span
                                                     class="glyphicon glyphicon-asterisk"></span></span>
                         </div>
@@ -120,7 +118,7 @@
 
                         <div class="input-group">
                             <input type="password" class="form-control" id="pass" name="password"
-                                   placeholder="Contraseña" required>
+                                   required>
                                         <span class="input-group-addon"><span
                                                     class="glyphicon glyphicon-asterisk"></span></span>
                         </div>
@@ -131,7 +129,7 @@
 
                         <div class="input-group">
                             <input type="password" class="form-control" id="pass2" name="password2"
-                                   placeholder="Contraseña" required>
+                                   required>
                                         <span class="input-group-addon"><span
                                                     class="glyphicon glyphicon-asterisk"></span></span>
                         </div>
@@ -141,16 +139,18 @@
                         <label for="InputRole">Seleccione su rol</label>
 
                         <div class="input-group">
-                                <input type="radio" name="role" value="student" checked>Estudiante<br>
-                                <input type="radio" name="role" value="professor">Profesor
+                            <input type="radio" name="role" value="student" checked>Estudiante<br>
+                            <input type="radio" name="role" value="professor">Profesor
                         </div>
                     </div>
 
                     <input type="submit" name="submit" id="submit" value="Listo"
                            class="btn btn-info pull-right">
-
                 </form>
+
+
             </div>
+
         </div>
     </div>
 </div>
