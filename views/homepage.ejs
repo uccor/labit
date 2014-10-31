@@ -24,7 +24,7 @@
 
                         <div class="col-sm-6">
                             <input type="text" class="form-control" id="login-username" name="identifier"
-                                   value="<%- req.flash('username') %>">
+                                   value="<%- req.flash('login-username') %>">
                         </div>
                         <div class="col-sm-3"></div>
                     </div>
@@ -40,7 +40,7 @@
                     </div>
                 </form>
                 <section class="loginform cf">
-                    <h3 id="errorForm" style="margin-top: 15px"> <%- req.flash('msgError') %> </h3>
+                    <h3 id="login-errorForm" style="margin-top: 15px"> <%- req.flash('error') %> </h3>
                 </section>
 
             </div>
@@ -62,7 +62,7 @@
             <div class="container col-md-4">
                 <h2>Regístrate en Labit</h2>
 
-                <section class="loginform cf">
+                <section class="registrationform cf">
                     <h3 id="errorForm" style="margin-top: 15px"> <%- req.flash('msgError') %> </h3>
                 </section>
 
