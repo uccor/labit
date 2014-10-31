@@ -4,6 +4,9 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind","$timeout",
 	// currentClassId = 2;
 
 	$scope.questions = [];
+    $scope.saveOk = "";
+    $scope.answers = [{},{}];
+
 	$scope.getQuestion = function() {
 		// var currentClassId = $scope.$parent.live_class_student
 		$scope.getLiveClassStudent().then(function() {
@@ -55,49 +58,36 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind","$timeout",
 		});
 	};
 
-	$scope.saveOk = "";
+
 	$scope.addQuestion = function() {
-		if ($scope.text === '') {
+		if ($scope.question_text === '') {
 			return;
 		}
-		var ans = [];
-		var  answares = $("li > input");
-        var ansQuantity=0;
-		angular.forEach(answares, function(val, key) {
-			if(val.value != '') {
-				ans.push(val.value);
-				val.value = "";
-                ansQuantity=ansQuantity+1;
-			}
-		});
 
-        if(ansQuantity<2){
+        if($scope.answers.length<2){
             $scope.error="Minimo 2 respuestas";
             return;
         }
-
-//		$scope.questions.push({
-//			text: $scope.text,
-//			status: "si",
-//			answers: ans,
-//            live_class:1,
-//            course:$scope.$parent.live_class_students[0].course.id
-//		});
-
-
+        ans_text = $scope.answers.map(function(item) { return item.text });
+        post_question={
+            text: $scope.question_text,
+            status: "si",
+            answers: ans_text,
+            course:{id:$scope.live_course}
+        }
         io.socket.post(
             '/api/question',
             {
-                text: $scope.text,
+                text: $scope.question_text,
                 status: "si",
-                answers: ans,
+                answers: ans_text,
                 course:$scope.live_course
             },
             function (data, jwres) {
-                $scope.text = '';
+                $scope.question_text = '';
                 $scope.saveOk="true";
                 $scope.error="";
-                $("li:not('#template') > input").parent("li").remove();
+                $scope.answers=[{},{}];
 
                 if (!$scope.$$phase) {
                     $scope.$apply();
@@ -136,21 +126,7 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind","$timeout",
 
 
 	$scope.addAnswer = function() {
-		
-		//var template = '<li answerDynamic="ans" id="template" class="hidden"><input type="text" placeholder="Respuesta"><button ng-click="removeAnswer($event)">X</button></li>';
-		var template = $("#template");
-		var newAns= template.clone();
-		newAns.removeClass("hidden");
-		newAns.removeAttr("id");
-        newAns.find("input").val("");
-		newAns.find("input").addClass("visible");
-		//var element = $compile(angular.element(clone))(scope);
-
-
-		//var new_ans = angular.element($compile(newAns)($scope));
-		//elem_0.append(a_input);
-		$("#allAnswers").append(newAns);
-
+        $scope.answers.push({});
 	};
 
 	$scope.removeAnswer = function($event) {

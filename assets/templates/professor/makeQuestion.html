@@ -1,10 +1,12 @@
 <h1>Arme sus preguntas:</h1>
 <div class="center" ng-controller="QuestionControllerProfessor">
     <form>
-            <input id="text"  type="text" placeholder="Preguntas" ng-model="text">
+            <input id="text" class="question" type="text" placeholder="Preguntas" ng-model="question_text">
             <ul id="allAnswers">
-                <li ng-repeat=""><input type="text" placeholder="Respuesta" class="answer"></li>
-                <li  id="template"><input  type="text" placeholder="Respuesta" class="answer"></li>
+                <li ng-repeat="ans in answers">
+                    <input type="text" placeholder="Respuesta" class="answer question" ng-model="ans.text">
+                </li>
+                <!--<li id="template"><input  type="text" placeholder="Respuesta" class="answer"></li>-->
             </ul>
 
             <button  class="web_button" ng-click="addAnswer()">Otra Opcion</button>
