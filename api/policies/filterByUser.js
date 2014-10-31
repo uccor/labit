@@ -18,7 +18,6 @@ module.exports = function filterByUser(req, res, next) {
         return next();
     }
 
-
     if (req.options.action == 'create') {
         req.body.users =  [
             {id: userID}
@@ -32,9 +31,7 @@ module.exports = function filterByUser(req, res, next) {
         User.findOne({id:userID}).populate('courses').exec(function findCB(err,user) {
             //Si es un profesor, continuar
             if(user.role == "student"){
-                console.log('No tiene permisos para realizar esta accion');
-                res.send('No tiene permisos para realizar esta accion');
-
+                console.log('No tiene permisos para realizar esta acción');
                 return res.redirect('/notAllowed');
             }
 
@@ -44,10 +41,11 @@ module.exports = function filterByUser(req, res, next) {
                     return next();
                 }
             }
+            console.log('No tiene permisos para realizar esta acción');
             return res.redirect('/notAllowed');
         })
     }
     else{
-        return next();
+        return res.redirect('/notAllowed');
     }
 }
