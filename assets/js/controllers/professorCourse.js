@@ -21,7 +21,7 @@ app.controller('professorCourse', ['$scope', '$rootScope', "$sailsBind", "toastr
      * Description
      * @method removeCourse
      * @param {} index
-     * @return 
+     * @return
      */
     $scope.removeCourse = function (index) {
         $scope.courses.splice(index, 1);
@@ -31,14 +31,14 @@ app.controller('professorCourse', ['$scope', '$rootScope', "$sailsBind", "toastr
     /**
      * Description
      * @method addCourse
-     * @return 
+     * @return
      */
     $scope.addCourse = function () {
 
-        var newCourse= {
+        var newCourse = {
             name: ''
         };
-        io.socket.put("/api/course/create/", newCourse,function (data) {
+        io.socket.put("/api/course/create/", newCourse, function (data) {
             console.log(data);
             $scope.inserted = data;
             $scope.$apply();
@@ -51,7 +51,7 @@ app.controller('professorCourse', ['$scope', '$rootScope', "$sailsBind", "toastr
      * @method saveCourse
      * @param {} data
      * @param {} id
-     * @return 
+     * @return
      */
     $scope.saveCourse = function (data, id) {
         angular.extend(data, {id: id});
@@ -122,7 +122,19 @@ app.controller('professorCourse', ['$scope', '$rootScope', "$sailsBind", "toastr
             live_class_student: cid
         };
         io.socket.put("/api/user/" + $scope.userId, user, function (data) {
-            document.location.href = '/professorManager';
+            var live_class = {
+                status: 'Finished',
+                pdf_sharing: false,
+                pdf_synchronize: false,
+                pdf_allowNavigation: false,
+                pdf_url: "",
+                pdf_studentPageNumber: 0,
+                pdf_screenPageNumber: 0
+            }
+
+            io.socket.put("/api/live_class_student/" + cid, live_class, function (data) {
+                document.location.href = '/professorManager';
+            });
         });
     };
 
