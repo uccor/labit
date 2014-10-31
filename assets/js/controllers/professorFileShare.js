@@ -13,7 +13,7 @@ app.controller('professorFileShare', ['$scope', '$rootScope', "$sailsBind", func
 
     $scope.course = {};
 
-
+    //Funcion que me obtiente el curso actual para guardarlo cuando subo el pdf.
     $scope.$parent.getLiveClassStudent().then(function (liveClass) {
     /*    $scope.course = $scope.$parent.live_course;
         if (!$scope.$$phase) {
@@ -77,8 +77,7 @@ app.controller('professorFileShare', ['$scope', '$rootScope', "$sailsBind", func
 
     $scope.$parent.getLiveClassStudent().then(function (liveClass) {
 
-       // $sailsBind.bind("api/pdf", $scope,{"course": {"contains":$scope.$parent.live_course}});
-
+        //filtro los pdf por curso para que solo me muestre los del curso actual
         $sailsBind.bind("api/pdf", $scope,{"course": {"contains":$scope.$parent.live_course}});
     });
 
