@@ -190,5 +190,8 @@ app.controller('professorManager', ['$scope', '$rootScope', "$sailsBind", '$q' ,
         return deferred.promise;
     }
 
+    $scope.finishClass = function(){
+
+    }
     $scope.getLiveClassStudent();
 }]);
