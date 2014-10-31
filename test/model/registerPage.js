@@ -33,15 +33,15 @@ var RegisterPage= function() {
         pp.sleep(1000).then(function () {
             var pageHomeTitle = '';
             pp.getCurrentUrl().then(function (text) {
-                
+
                 // console.log('home2: ',text);
                 // console.log('register: ',pageRegisterTitle);
                 pageHomeTitle = text;
                 // expect(element('legend').text()).not().toBe("LOGIN_CONNECT");
-                expect(pageRegisterTitle.not().toBe(pageHomeTitle);
+                expect(pageRegisterTitle.not().toBe(pageHomeTitle));
             });
         });
-        
+
     }
 }
 module.exports = new RegisterPage();

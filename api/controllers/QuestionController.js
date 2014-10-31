@@ -44,7 +44,7 @@ var self = {
 		// console.log('get by course');
 		var currentCourse = req.param('courseId');
 		//currentCourse = 1;
-		console.log('course:', currentCourse);
+		// console.log('course:', currentCourse);
 		Question.find({
 			course : currentCourse
 		})

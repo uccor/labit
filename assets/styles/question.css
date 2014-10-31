@@ -94,20 +94,22 @@
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6E6E6E', endColorstr='#6E6E6E',GradientType=0 ); /* IE6-9 */
 }
 
-input {
-    padding:5px; border:2px solid #ccc;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    margin: 0.2em;
-}
-input:focus {
-    border-color:#6E6E6E;
-}
 
-.container2 {
-    width: 50%;
-    float:left;
-}
+//input {
+//    padding:5px; border:2px solid #ccc;
+//    -webkit-border-radius: 5px;
+//    border-radius: 5px;
+//    margin: 0.2em;
+//}
+//input:focus {
+//    border-color:#6E6E6E;
+//}
+//
+//.container {
+//    width: 50%;
+//    float:left;
+//}
+
 
 .subtitle {
     font-weight: bold;
