@@ -177,11 +177,12 @@ app.controller('professorManager', ['$scope', '$rootScope', "$sailsBind", '$q' ,
         if ($scope.live_class_student == '') {
             io.socket.get('/api/user/getUser', function (data) {
                 $scope.userId = data.userId;
-                io.socket.get('/api/user/' + $scope.userId, function (data) {
-                    console.log(data);
-                    $scope.live_class_student = data.live_class_student.id;
+                io.socket.get('/api/user/' + $scope.userId, function (user) {
+                    console.log(user);
+                    $scope.live_class_student = user.live_class_student.id;
+                    $scope.live_course = user.live_class_student.course;
 
-                    deferred.resolve(data.live_class_student.id);
+                    deferred.resolve(user.live_class_student.id);
                 });
             });
         } else {
@@ -191,7 +192,12 @@ app.controller('professorManager', ['$scope', '$rootScope', "$sailsBind", '$q' ,
     }
 
     $scope.finishClass = function(){
-
+        var user = {
+            live_class_student: null
+        };
+        io.socket.put("/api/user/" + $scope.userId, user, function (data) {
+            document.location.href = '/professorCourse';
+        });
     }
     $scope.getLiveClassStudent();
 }]);
