@@ -39,7 +39,6 @@ module.exports = {
         pdf_screenPageNumber: {
             type: 'integer'
         },
-
         //Atributos del ultimo sprint
 
         users: {

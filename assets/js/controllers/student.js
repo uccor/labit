@@ -84,5 +84,10 @@ app.controller('contentShared', ['$scope', '$rootScope', "$sailsBind", function 
             );
         }
     };
-}])
-;
+
+    $scope.setCurrentClass = function(idClass) {
+        //$scope.$parent.getQuestion(idClass);
+        $rootScope.getQuestion(idClass);
+        $rootScope.currentClassId = idClass;
+    }
+}]);
