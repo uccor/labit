@@ -13,11 +13,11 @@ module.exports = {
             user_role = user.role;
             if (user_role == "student") {
                 console.log("student");
-                return res.view('indexStudent');
+                return res.view('student');
 
             } else if (user_role == "professor") {
                 console.log("prof");
-                return res.view('index');
+                return res.view('professorCourse');
             }
         }
         else {
