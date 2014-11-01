@@ -68,7 +68,12 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind","$timeout",
             $scope.error="Minimo 2 respuestas";
             return;
         }
-        ans_text = $scope.answers.map(function(item) { return item.text });
+
+
+
+        ans_text = $scope.answers.filter(function(e){return e.text});
+        ans_text = ans_text.map(function(item) { if(item.text!="") {return item.text} });
+
         post_question={
             text: $scope.question_text,
             status: "si",
@@ -129,19 +134,9 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind","$timeout",
         $scope.answers.push({});
 	};
 
-	$scope.removeAnswer = function($event) {
-		$($event.target).parent("li").remove();
+	$scope.removeAnswer = function(ans) {
+        $scope.answers.pop(ans);
 	}
 
 
-}]).directive('answerDynamic', function($compile) {
-	return {
-		//template: '<li><input type="text" placeholder="Respuesta"><button ng-click="removeAnswer($event)">X</button></li>',
-		replace: true,
-		link: function($scope, element) {
-			var el = angular.element('<ul>');
-			el.append('<li><input type="text" placeholder="Respuesta"><button ng-click="removeAnswer($event)">X</button></li>');
-			$compile(el)($scope);
-		}
-	}
-});
+}])
