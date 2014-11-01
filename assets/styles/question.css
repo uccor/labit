@@ -39,6 +39,7 @@
     -webkit-box-shadow: 0px 2px 3px 2px rgba(50, 50, 50, 0.4);
     -moz-box-shadow: 0px 2px 3px 2px rgba(50, 50, 50, 0.4);
     box-shadow: 0px 2px 3px 2px rgba(50, 50, 50, 0.4);
+    float:left;
 }
 
 .question_button:hover{
@@ -107,7 +108,14 @@ input:focus.question {
 .container_question {
     width: 50%;
     float:left;
+    margin-left: 30%;
 }
+.container_results {
+    width: 50%;
+    float:left;
+}
+
+
 
 .subtitle {
     font-weight: bold;
@@ -133,6 +141,8 @@ input:focus.question {
 input[type="checkbox"].questionInput {
     width:40px;
     height:40px;
+    float: left;
+    clear: both;
 }
 .ansLabel {
     display: inline;

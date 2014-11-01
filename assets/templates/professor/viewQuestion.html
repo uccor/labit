@@ -2,19 +2,20 @@
 <div ng-controller="QuestionControllerProfessor">
     <h1>Preguntas:</h1>
     
-    <div class="questions container font">
+    <div class="questions col-xs-5 col-md-5 col-md-offset-1 font">
         <div class="question" ng-repeat="question in questions">
-           
+
+            <input type="checkbox" class="checkButton questionInput" id="{{question.id}}" ng-checked="{{question.visible}}" />
             <input type="button" class="status-{{question.status}} question_button " id="{{question.id}}" ng-click="searchAnswers(this)" value="{{question.text}}"/>
             <!-- <input type="checkbox" ng-model="checkButton" ng-false-value="false" ng-true-value="true" ng-click="changeStatus(this)"/>-->
-            <input type="checkbox" class="checkButton questionInput" id="{{question.id}}" ng-checked="{{question.visible}}" />
+
 
 
         </div>
         <input id='ready' type="button" class="question_button_grey" ng-click="changeStatus()" value="Finalizar"/>
     </div>
 
-    <div id="answers" class="container font">
+    <div id="answers" class="col-md-5 col-md-offset-1 col-xs-5 font">
     <h3>Cantidad de Respuestas: {{responses.length}}</h3>
         <div id="summary">
             <p class="subtitle"> Resumen: </p>
