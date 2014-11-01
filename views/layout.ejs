@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html ng-app="labitApp">
-  <head>
+<head>
 
     <!-- Viewport mobile tag for sensible mobile support -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -35,86 +35,92 @@
     <link rel="stylesheet" href="/styles/question.css">
     <link rel="stylesheet" href="/styles/student.css">
     <!--STYLES END-->
-  </head>
+</head>
 
-  <body>
-    <%- body %>
-
-
-
-    <!--
-        Client-side Templates
-        ========================
-
-        HTML templates are important prerequisites of modern, rich client applications.
-        To work their magic, frameworks like Backbone, Angular, Ember, and Knockout require
-        that you load these templates client-side.
-
-        By default, your Gruntfile is configured to automatically load and precompile
-        client-side JST templates in your `assets/templates` folder, then
-        include them here automatically (between TEMPLATES and TEMPLATES END).
-
-        To customize this behavior to fit your needs, just edit `tasks/pipeline.js`.
-        For example, here are a few things you could do:
-
-            + Import templates from other directories
-            + Use a different template engine (handlebars, jade, dust, etc.)
-            + Internationalize your client-side templates using a server-side
-              stringfile before they're served.
-    -->
-
-    <!--TEMPLATES-->
-    <script type="text/javascript" src="/jst.js"></script>
-    <!--TEMPLATES END-->
+<body>
+<div style="float: right; position: absolute; z-index: 20; width: 100%">
+    <form action="/logout" method="get">
+        <input type="submit" name="logout" id="logout" value="Logout" class="btn btn-info pull-right"
+               style="margin-bottom: 20px;">
+    </form>
+</div>
+<%- body %>
 
 
-    <!--
 
-      Client-side Javascript
-      ========================
+<!--
+    Client-side Templates
+    ========================
 
-      You can always bring in JS files manually with `script` tags, or asynchronously
-      on the client using a solution like AMD (RequireJS).  Or, if you like, you can
-      take advantage of Sails' conventional asset pipeline (boilerplate Gruntfile).
+    HTML templates are important prerequisites of modern, rich client applications.
+    To work their magic, frameworks like Backbone, Angular, Ember, and Knockout require
+    that you load these templates client-side.
 
-      By default, files in your `assets/js` folder are included here
-      automatically (between SCRIPTS and SCRIPTS END).  Both JavaScript (.js) and
-      CoffeeScript (.coffee) are supported. In production, your scripts will be minified
-      and concatenated into a single file.
+    By default, your Gruntfile is configured to automatically load and precompile
+    client-side JST templates in your `assets/templates` folder, then
+    include them here automatically (between TEMPLATES and TEMPLATES END).
 
-      To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
-      For example, here are a few things you could do:
+    To customize this behavior to fit your needs, just edit `tasks/pipeline.js`.
+    For example, here are a few things you could do:
 
-          + Change the order of your scripts
-          + Import scripts from other directories
-          + Use a different preprocessor, like TypeScript
+        + Import templates from other directories
+        + Use a different template engine (handlebars, jade, dust, etc.)
+        + Internationalize your client-side templates using a server-side
+          stringfile before they're served.
+-->
 
-    -->
+<!--TEMPLATES-->
+<script type="text/javascript" src="/jst.js"></script>
+<!--TEMPLATES END-->
 
 
-    <script src="/js/dependencies/sails.io.js/dist/sails.io.js"></script>
-    <script src="/js/dependencies/angular/angular.min.js"></script>
-    <script src="/js/dependencies/jquery/dist/jquery.js"></script>
-    <script src="/js/dependencies/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="/js/dependencies/pdfjs-bower/dist/pdf.js"></script>
-    <script src="/js/dependencies/pdfjs-bower/dist/pdf.worker.js"></script>
-    <script src="/js/dependencies/angular-route/angular-route.min.js"></script>
-    <script src="/js/dependencies/angular-sails-bind/dist/angular-sails-bind.js"></script>
-    <script src="/js/dependencies/lodash/dist/lodash.js"></script>
+<!--
 
-    <script src="/js/utils.js"></script>
+  Client-side Javascript
+  ========================
 
-    <script src="/js/app.js"></script>
-    <script src="/js/model/index.js"></script>
-    <script src="/js/model/register.js"></script>
-    <script src="/js/controllers/pdfviewer.js"></script>
-    <script src="/js/controllers/professorManager.js"></script>
-    <script src="/js/controllers/professorScreen.js"></script>
-    <script src="/js/controllers/professorFileShare.js"></script>
-    <script src="/js/controllers/professorFileUpload.js"></script>
-    <script src="/js/controllers/question.js"></script>
-    <script src="/js/controllers/student.js"></script>
-    <script src="/js/controllers/asistentes.js"></script>
-    <script src="/js/controllers/currentUser.js"></script>
-  </body>
+  You can always bring in JS files manually with `script` tags, or asynchronously
+  on the client using a solution like AMD (RequireJS).  Or, if you like, you can
+  take advantage of Sails' conventional asset pipeline (boilerplate Gruntfile).
+
+  By default, files in your `assets/js` folder are included here
+  automatically (between SCRIPTS and SCRIPTS END).  Both JavaScript (.js) and
+  CoffeeScript (.coffee) are supported. In production, your scripts will be minified
+  and concatenated into a single file.
+
+  To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
+  For example, here are a few things you could do:
+
+      + Change the order of your scripts
+      + Import scripts from other directories
+      + Use a different preprocessor, like TypeScript
+
+-->
+
+
+<script src="/js/dependencies/sails.io.js/dist/sails.io.js"></script>
+<script src="/js/dependencies/angular/angular.min.js"></script>
+<script src="/js/dependencies/jquery/dist/jquery.js"></script>
+<script src="/js/dependencies/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/js/dependencies/pdfjs-bower/dist/pdf.js"></script>
+<script src="/js/dependencies/pdfjs-bower/dist/pdf.worker.js"></script>
+<script src="/js/dependencies/angular-route/angular-route.min.js"></script>
+<script src="/js/dependencies/angular-sails-bind/dist/angular-sails-bind.js"></script>
+<script src="/js/dependencies/lodash/dist/lodash.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/app.js"></script>
+<script src="/js/model/index.js"></script>
+<script src="/js/model/register.js"></script>
+<script src="/js/controllers/pdfviewer.js"></script>
+<script src="/js/controllers/professorManager.js"></script>
+<script src="/js/controllers/professorScreen.js"></script>
+<script src="/js/controllers/professorFileShare.js"></script>
+<script src="/js/controllers/professorFileUpload.js"></script>
+<script src="/js/controllers/question.js"></script>
+<script src="/js/controllers/student.js"></script>
+<script src="/js/controllers/asistentes.js"></script>
+<script src="/js/controllers/currentUser.js"></script>
+</body>
 </html>
