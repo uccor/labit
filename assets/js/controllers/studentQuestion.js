@@ -36,15 +36,15 @@ app.controller('QuestionControllerStudent', ['$scope',"$sailsBind","$compile", "
    
 	$scope.validAnswers = 0;     
 	
-	$scope.sendResult = function(answer) {
-		var questionId = answer.$parent.question.id;
-		var question = answer.$parent.question;
-		var answerUser = answer.$index;
+	$scope.sendResult = function(questionId,ansInd) {
+		//var questionId = answer.$parent.question.id;
+		//var question = answer.$parent.question;
+		//var answerUser = answer.$index;
 		io.socket.post(
 			'/answer/send', 
 			{
 				question: questionId,
-				answer: answerUser
+				answer: ansInd
 
 			}, 
 			function (data, jwres) {
@@ -53,7 +53,8 @@ app.controller('QuestionControllerStudent', ['$scope',"$sailsBind","$compile", "
 					// $("#" + answer.$parent.question.id).parents('.question').delay( 100 ).fadeOut( 300 );
 					//var delQuestion = $scope.questions[questionId];
 
-					$scope.questions.splice( question, 1 );
+                    $scope.questions.pop(questionId);
+//					$scope.questions.splice( question, 1 );
 					if (!$scope.$$phase) {
 						$scope.$apply();
 					}
