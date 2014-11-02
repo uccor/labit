@@ -13,7 +13,7 @@
     margin: 0 auto;
 }
 
-.web_button{
+.question_button{
     max-width: 80%;
     background: #0.4; /* Old browsers */
     background: -moz-linear-gradient(top,  #b4df5b 0%, #b4df5b 100%); /* FF3.6+ */
@@ -39,9 +39,10 @@
     -webkit-box-shadow: 0px 2px 3px 2px rgba(50, 50, 50, 0.4);
     -moz-box-shadow: 0px 2px 3px 2px rgba(50, 50, 50, 0.4);
     box-shadow: 0px 2px 3px 2px rgba(50, 50, 50, 0.4);
+    float:left;
 }
 
-.web_button:hover{
+.question_button:hover{
     text-decoration:none;
     background: #8dc025; /* Old browsers */
     background: -moz-linear-gradient(top,  #8dc025 0%, #8dc025 100%); /* FF3.6+ */
@@ -53,7 +54,7 @@
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8dc025', endColorstr='#8dc025',GradientType=0 ); /* IE6-9 */
 }
 
-.web_button_grey{
+.question_button_grey{
     max-width: 80%;
     background: #0.4; /* Old browsers */
     background: -moz-linear-gradient(top,  #E6E6E6 0%, #E6E6E6 100%); /* FF3.6+ */
@@ -81,7 +82,7 @@
     box-shadow: 0px 2px 3px 2px rgba(50, 50, 50, 0.4);
 }
 
-.web_button_grey:hover{
+.question_button_grey:hover{
     max-width: 200%;
     text-decoration:none;
     background: #8dc025; /* Old browsers */
@@ -107,7 +108,14 @@ input:focus.question {
 .container_question {
     width: 50%;
     float:left;
+    margin-left: 30%;
 }
+.container_results {
+    width: 50%;
+    float:left;
+}
+
+
 
 .subtitle {
     font-weight: bold;
@@ -133,6 +141,8 @@ input:focus.question {
 input[type="checkbox"].questionInput {
     width:40px;
     height:40px;
+    float: left;
+    clear: both;
 }
 .ansLabel {
     display: inline;
