@@ -24,9 +24,11 @@ module.exports = {
             console.log(err);
 
             if (err) return res.serverError(err);                              // IF ERROR Return and send 500 error with error
-            var name = files[0].fd.split('\\');
+            var name = files[0].fd.split('/');
             //console.log(name[name.length-1]);
-            Pdf.create({id: name[name.length-1].toLowerCase().replace(".pdf",""), nombre: req.body.nombreArchivo, ruta: '/pdf/' + name[name.length - 1]}).exec(function (err, ans) {
+            //console.log(req.body);
+            Pdf.create({id: name[name.length-1].toLowerCase().replace(".pdf",""), nombre: req.body.nombreArchivo, ruta: '/pdf/' + name[name.length - 1], course: req.body.courseId}).exec(function (err, ans) {
+
             });
             //console.log(files);
            //res.json({status: 200, file: files});

@@ -21,7 +21,7 @@ app.controller('professorCourse', ['$scope', '$rootScope', "$sailsBind", "toastr
      * Description
      * @method removeCourse
      * @param {} index
-     * @return 
+     * @return
      */
     $scope.removeCourse = function (index) {
         $scope.courses.splice(index, 1);
@@ -31,15 +31,14 @@ app.controller('professorCourse', ['$scope', '$rootScope', "$sailsBind", "toastr
     /**
      * Description
      * @method addCourse
-     * @return 
+     * @return
      */
     $scope.addCourse = function () {
 
-        var newCourse= {
+        var newCourse = {
             name: ''
         };
-        io.socket.put("/api/course/create/", newCourse,function (data) {
-            console.log(data);
+        io.socket.put("/api/course/create/", newCourse, function (data) {
             $scope.inserted = data;
             $scope.$apply();
         });
@@ -51,7 +50,7 @@ app.controller('professorCourse', ['$scope', '$rootScope', "$sailsBind", "toastr
      * @method saveCourse
      * @param {} data
      * @param {} id
-     * @return 
+     * @return
      */
     $scope.saveCourse = function (data, id) {
         angular.extend(data, {id: id});
@@ -65,7 +64,7 @@ app.controller('professorCourse', ['$scope', '$rootScope', "$sailsBind", "toastr
     };
 
     $scope.courseStart = function (cid) {
-        io.socket.get('/api/live_class_student?where={"course":"' + cid + '", "status" : "live"}', function (data) {
+        io.socket.get('/api/live_class_student?where={"course":"' + cid + '", "status" : "Live"}', function (data) {
 
             if (data.length == 0) {
                 var live_class = {
@@ -121,8 +120,8 @@ app.controller('professorCourse', ['$scope', '$rootScope', "$sailsBind", "toastr
         var user = {
             live_class_student: cid
         };
-        io.socket.put("/api/user/" + $scope.userId, user, function (data) {
-            document.location.href = '/professorManager';
+       io.socket.put("/api/user/" + $scope.userId, user, function (data) {
+                document.location.href = '/professorManager';
         });
     };
 

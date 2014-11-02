@@ -19,6 +19,7 @@
                     <input type="text" class="form-control" name="nombreArchivo"
                            placeholder="Introducir Nombre del Archivo Subido..." ng-model="newName_file_toUpload">
                 </div>
+                <input type="hidden" value="{{course}}" name="courseId" id="inputCourse"/>
                 <div class="col-sm-5" align="left">
                     <input type="file" name="uploadFile" ng-model="newRoute_file_toUpload">
                 </div>
