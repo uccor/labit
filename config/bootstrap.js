@@ -20,6 +20,7 @@ module.exports.bootstrap = function (cb) {
 
     sails.services.passport.loadStrategies();
 
+    /*
     Pdf.find({id: 'PDF1'}).exec(function (err, pdf) {
         if (pdf.length > 0) {
             return
@@ -32,6 +33,7 @@ module.exports.bootstrap = function (cb) {
             {id: '4', nombre: 'DerechoPenal', ruta: '/pdf/DerechoPenal.pdf'},
             {id: '5', nombre: 'Scrum', ruta: '/pdf/Scrum.pdf'}
         ]).exec(afterPdf);
+
 
         Live_class_student.create([
             {  id: 'CLASS1', pdf_sharing: 'false',
@@ -50,5 +52,7 @@ module.exports.bootstrap = function (cb) {
             }
         ]).exec(afterPdf);
     });
+    Course.create([{name: 'Biologia'},{name: 'Derecho Penal'}]).exec(function (){});
+    */
     cb();
 };

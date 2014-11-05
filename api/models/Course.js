@@ -7,7 +7,9 @@
 
 module.exports = {
 
-  attributes: {
+  autosubscribe: ['update','create','destroy','remove','add'],
+      attributes: {
+
 
       //Atributos ultimo sprint
       name: {
@@ -16,7 +18,8 @@ module.exports = {
 
       users: {
           collection: 'user',
-          via: 'courses'
+          via: 'courses',
+          required: true
       },
 
       live_classes_student: {

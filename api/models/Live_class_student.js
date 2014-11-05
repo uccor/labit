@@ -1,31 +1,31 @@
 /**
-* Live_class_student.js
-*
-* @description :: TODO: You might write a short summary of how this model works and what it represents here.
-* @docs        :: http://sailsjs.org/#!documentation/models
-*/
+ * Live_class_student.js
+ *
+ * @description :: TODO: You might write a short summary of how this model works and what it represents here.
+ * @docs        :: http://sailsjs.org/#!documentation/models
+ */
 
 module.exports = {
 
-    autosubscribe:['update'],
+    autosubscribe: ['update'],
     attributes: {
+//
+//        id: {
+//            type: 'string',
+//            required: true,
+//            unique: true,
+//            primaryKey : true
+//        },
 
-        id: {
-            type: 'string',
-            required: true,
-            unique: true,
-            primaryKey : true
-        },
-
-        pdf_sharing:{
+        pdf_sharing: {
             type: 'boolean'
         },
 
-        pdf_synchronize:{
+        pdf_synchronize: {
             type: 'boolean'
         },
 
-        pdf_allowNavigation:{
+        pdf_allowNavigation: {
             type: 'boolean'
         },
 
@@ -39,10 +39,9 @@ module.exports = {
         pdf_screenPageNumber: {
             type: 'integer'
         },
-
         //Atributos del ultimo sprint
 
-        users:{
+        users: {
             collection: 'user',
             via: 'live_class_student'
         },
@@ -51,14 +50,14 @@ module.exports = {
             model: 'course'
         },
 
-        pdfs:{
+        pdfs: {
             model: 'pdf'
+        },
+
+        status: {
+            type: 'string',
+            in: ['Live', 'Finished']
         }
-
-
-
-
-
     }
 };
 

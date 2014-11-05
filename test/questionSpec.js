@@ -1,15 +1,17 @@
-
+/*
 var makeQuestionPage = require('./model/makeQuestionPage');
 describe('make question page', function() {
    it('should make new question', function() {
        makeQuestionPage.get();
        // Parametros de fill: name, lastName, username, email, pass, pass2
-       makeQuestionPage.fill('Pregunta?','si');
+       makeQuestionPage.fill('Pregunta?',['si','no']);
        makeQuestionPage.save();
        makeQuestionPage.check();
    });
 });
-/*
+*/
+
+
 var questionStudentPage = require('./model/questionStudentPage');
 describe('student questions page', function() {
     it('the questions selected should be remove', function() {
@@ -18,7 +20,11 @@ describe('student questions page', function() {
     });
 });
 
-*/
+
+
+
+/* tefo
+
 var questionProfessorPage = require('./model/questionProfessorPage');
 describe('professor questions page', function() {
     it('should open the page', function() {
@@ -43,6 +49,6 @@ describe('professor questions page', function() {
      	questionProfessorPage.hideQuestion();
      	
     });
-
-
 });
+
+ */

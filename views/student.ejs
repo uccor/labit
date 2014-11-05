@@ -4,21 +4,36 @@
 
 <div class="bodyStudent container-fluid">
     <div class="row">
-        <div id="contentShared" ng-controller="contentShared" class="col-md-3" style="background: white;">
+        <div class="col-md-3">
+            <div id="contentShared"  class="col-md-12" ng-controller="contentShared" style="background: white;">
 
-            <br><br>
+                <br><br>
 
-            <div> Seleccione ID Clase a la cual desea suscribirse:
-                <select class="form-control" ng-model="id_subscribedClass" >
-                    <option ng-repeat="class in avaibleClasses">{{ class.id }}</option>
-                </select>
-                <!--input type="text" ng-model="id_subscribedClass"-->
-                <button class="btn" id="subcribeBTN" ng-click="subscribe_to_class()">Suscribirse</button>
+                <div> Seleccione ID Clase a la cual desea suscribirse:
+                    <select class="form-control" ng-model="id_subscribedClass" ng-change="setCurrentClass(id_subscribedClass)">
+                        <option ng-repeat="class in avaibleClasses">{{ class.id }}</option>
+                    </select>
+                    <!--input type="text" ng-model="id_subscribedClass"-->
+                    <button class="btn" id="subcribeBTN" ng-click="subscribe_to_class()">Suscribirse</button>
+                </div>
+                <br><br><br>
             </div>
-            <br><br><br>
+            <div ng-controller="QuestionControllerStudent">
+                <h1>Preguntas:</h1>
 
+                <div class="questions">
+                    <div class="question" ng-repeat="question in questions">
+
+                        <p class="status-{{question.status}} questionId" id="{{question.id}}" >{{question.text}}</p>
+
+                        <div class="answers" ng-repeat="answer in question.answers">
+                            <input type="radio" id="{{$index}}" name="question-{{question.id}}" ng-click="sendResult(this)"/>
+                            <label class="ansLabel" for="{{$index}}">{{answer}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
         <div ng-controller="pdfViewer" class="col-md-9">
             <div align="center">
                 <div type="button" class="btn-group">
@@ -40,5 +55,10 @@
                         height="633" width="490" style="width:100%; height: 100%;" ></canvas>
             </div>
         </div>
+
+
+
+
+        
     </div>
 </div>

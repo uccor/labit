@@ -13,21 +13,17 @@
         <div class="container-fluid">
             <!-- Navigation Bar -->
             <div class="row">
-                <div class="col-md-10">
+                <div class="col-md-2 col-md-push-10">
+                    <button id="finishClass" class="btn btn-danger" ng-click="finishClass()">Finalizar Clase</button>
+                </div>
+                <div class="col-md-10 col-md-pull-2">
                     <ul class="nav nav-tabs pestanas" role="tablist" ng-controller="professorTab">
                         <li ng-class="{active:isActive('/')}"><a href="#">Subir Archivo</a></li>
                         <li ng-class="{active:isActive('/fileShare')}"><a href="#fileShare">Compartir Archivo</a></li>
-                        <li ng-class="{active:isActive('/dashboard')}"><a href="#">Hacer Pregunta</a></li>
+                        <li ng-class="{active:isActive('/makeQuestion')}"><a href="#makeQuestion">Hacer Pregunta</a></li>
                         <li ng-class="{active:isActive('/dashboard')}"><a href="#">Asistencia</a></li>
+                        <li ng-class="{active:isActive('/viewQuestion')}"><a href="#viewQuestion">Ver Pregunta</a></li>
                     </ul>
-                </div>
-
-                <div class="col-md-2">
-                    <label for="form-control" class="col-sm-2 pestanas">Clase</label>
-                    <select class="form-control col-sm-10 cbox" ng-model="id_class_to_share">
-                        <option ng-repeat="class in live_class_students">{{ class.id }}</option>
-
-                    </select>
                 </div>
             </div>
 
