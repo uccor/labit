@@ -7,10 +7,15 @@
 
 module.exports = {
 
+    autoPK: false,
   autosubscribe: ['update','create','destroy','remove','add'],
+
       attributes: {
 
-
+          id: {
+              type: 'int',
+              primaryKey: true
+          },
       //Atributos ultimo sprint
       name: {
           type: 'string'

@@ -19,6 +19,7 @@ module.exports = function filterByUser(req, res, next) {
     }
 
     if (req.options.action == 'create') {
+        /*
         User.findOne({id:userID}).populate('courses').exec(function findCB(err,user) {
             //Si es un profesor, continuar
             if(user.role == "student"){
@@ -32,6 +33,11 @@ module.exports = function filterByUser(req, res, next) {
                 return next();
             }
         })
+        */
+        req.body.users =  [
+            {id: userID}
+        ];
+        return next();
     }
 
     if(req.options.action == 'destroy' || req.options.action == 'update') {

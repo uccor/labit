@@ -9,6 +9,7 @@ app.controller('professorCourse', ['$scope', '$rootScope', "$sailsBind", "toastr
     $scope.userId = '';
     $scope.areThereClases = 'hidden';
     $scope.liveClasses = {};
+    $scope.counter = 200;
 
 
     io.socket.get('/api/user/getUser', function (data) {
@@ -34,13 +35,15 @@ app.controller('professorCourse', ['$scope', '$rootScope', "$sailsBind", "toastr
      * @return
      */
     $scope.addCourse = function () {
-
+        $scope.counter++;
         var newCourse = {
-            name: ''
+            name: '',
+            id:counter
         };
+        $scope.inserted.id = counter;
         io.socket.put("/api/course/create/", newCourse, function (data) {
-            $scope.inserted = data;
-            $scope.$apply();
+            //$scope.inserted = data;
+            //$scope.$apply();
         });
 
     };
