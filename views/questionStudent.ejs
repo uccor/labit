@@ -8,7 +8,7 @@
             <p class="status-{{question.status}} questionId" id="{{question.id}}" >{{question.text}}</p>
             
             <div class="answers" ng-repeat="answer in question.answers">
-                <input type="radio" id="{{$index}}" name="question-{{question.id}}" ng-click="sendResult(this)"/>
+                <input type="radio" id="{{$index}}" name="question-{{question.id}}" ng-click="sendResult(answer)"/>
                 <label class="ansLabel" for="{{$index}}">{{answer}}</label>
             </div>
         </div>

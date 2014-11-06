@@ -6,12 +6,17 @@ app.controller('contentShared', ['$scope', '$rootScope', "$sailsBind", function 
 
 
     $scope.avaibleClasses = {};
-    io.socket.get('/api/live_class_student/', function messageReceived(jsonObject) {
+
+    //$sailsBind.bind("/api/live_class_student", $scope);
+
+
+    io.socket.get('/api/live_class_student?status=live', function messageReceived(jsonObject) {
         $scope.avaibleClasses = jsonObject;
         if (!$scope.$$phase) {
             $scope.$apply();
         }
     });
+
 
     //Subscribe to live_class_student  :
     /**
@@ -31,16 +36,27 @@ app.controller('contentShared', ['$scope', '$rootScope', "$sailsBind", function 
         // Subscription
         io.socket.get('/api/live_class_student/' + $scope.id_subscribedClass, function messageReceived(jsonObject) {
 
-                $scope.idClase = jsonObject.id;
-                $scope.actClass = jsonObject;
-                if (!$scope.$$phase) {
-                    $scope.$apply();
-                }
-                $scope.updatePDF();
-
+            $scope.idClase = jsonObject.id;
+            $scope.actClass = jsonObject;
+            if (!$scope.$$phase) {
+                $scope.$apply();
             }
-        )
-        ;
+            $scope.updatePDF();
+
+            io.socket.get('/api/user/getUser', function (data) {
+                $scope.userId = data.userId;
+                console.log(data.userId);
+
+                //Asigno a mi usuario la clase en la cual me estoy inscribiendo
+
+                io.socket.put("/api/user/" + $scope.userId,{"live_class_student" :  $scope.idClase}, function (data) {
+
+                });
+            });
+
+
+
+        });
     };
 
 // Listen to incoming Updates from Live_class_student we just suscribed to
@@ -70,14 +86,16 @@ app.controller('contentShared', ['$scope', '$rootScope', "$sailsBind", function 
     $scope.updatePDF = function(){
         if ($scope.actClass.pdf_sharing) {
             $rootScope.$broadcast('pdfChange',
-                { file: $scope.actClass.pdf_url,
+                {
+                    file: $scope.actClass.pdf_url,
                     pag: $scope.actClass.pdf_studentPageNumber,
                     nav: $scope.actClass.pdf_allowNavigation
                 }
             );
         } else {
             $rootScope.$broadcast('pdfChange',
-                { file: '',
+                {
+                    file: '',
                     pag: 0,
                     nav: false
                 }

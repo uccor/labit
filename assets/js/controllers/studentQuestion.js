@@ -25,7 +25,7 @@ app.controller('QuestionControllerStudent', ['$scope',"$sailsBind","$compile", "
 	/*When new question is visible reload questions*/
 	io.socket.on("newQuestion", function onServerSentEvent (data) { 
 		var classId = $rootScope.currentClassId;
-		$scope.getQuestion(classId);
+		$rootScope.getQuestion(classId);
 	});
 
 	$scope.$on('changedQuestionStatus', function (event, args) {
@@ -36,27 +36,31 @@ app.controller('QuestionControllerStudent', ['$scope',"$sailsBind","$compile", "
    
 	$scope.validAnswers = 0;     
 	
-	$scope.sendResult = function(answer) {
-		var questionId = answer.$parent.question.id;
-		var question = answer.$parent.question;
-		var answerUser = answer.$index;
+	$scope.sendResult = function(questionId,ansInd) {
+		//var questionId = answer.$parent.question.id;
+		//var question = answer.$parent.question;
+		//var answerUser = answer.$index;
+
 		io.socket.post(
 			'/answer/send', 
 			{
 				question: questionId,
-				answer: answerUser
+				answer: ansInd
 
 			}, 
 			function (data, jwres) {
 				//if the answer was saved, then remove the question only in form..
 				if (data.status == "ok") {
-					// $("#" + answer.$parent.question.id).parents('.question').delay( 100 ).fadeOut( 300 );
-					//var delQuestion = $scope.questions[questionId];
+					
+					$(".questionId#" + questionId).parent().delay( 100 ).fadeOut( 100 );
+					// var delQuestion = $scope.questions[questionId];
 
-					$scope.questions.splice( question, 1 );
-					if (!$scope.$$phase) {
-						$scope.$apply();
-					}
+
+//                     $scope.questions.pop(questionId);
+// //					$scope.questions.splice( question, 1 );
+// 					if (!$scope.$$phase) {
+// 						$scope.$apply();
+// 					}
 				} 
 			}
 		);

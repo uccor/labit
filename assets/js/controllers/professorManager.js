@@ -20,6 +20,9 @@ app.config(['$routeProvider',
         $routeProvider.when('/viewQuestion', {
             template: JST["assets/templates/professor/viewQuestion.html"]
         });
+        $routeProvider.when('/ConnectedStudents', {
+            template: JST["assets/templates/professor/ConnectedStudents.html"]
+        });
         $routeProvider.otherwise({
             template: JST["assets/templates/professor/fileShare.html"]
         });
@@ -46,8 +49,18 @@ app.controller('professorManagerFooter', ['$scope', '$rootScope', "$sailsBind", 
     $scope.synchronize = true;
     $scope.pdfName = '';
 
+
+    $scope.$parent.getLiveClassStudent().then(function (liveClass) {
+        $scope.pageNum = $scope.$parent.class.pdf_screenPageNumber;
+        $scope.allowNavigation = $scope.$parent.class.pdf_allowNavigation;
+        $scope.synchronize = $scope.$parent.class.pdf_synchronize;
+
+        $scope.getPdf( $scope.$parent.class.pdf_url,  $scope.$parent.class.pdf_screenPageNumber);
+    });
+
+
     /**
-     * Donload and evalute a pdf file
+     * Download and evalute a pdf file
      * @return
      * @method getPdf
      * @param {} file
@@ -172,6 +185,8 @@ app.controller('professorManagerFooter', ['$scope', '$rootScope', "$sailsBind", 
 app.controller('professorManager', ['$scope', '$rootScope', "$sailsBind", '$q' , function ($scope, $rootScope, $sailsBind, $q) {
     $scope.live_class_student = '';
     $scope.userId = '';
+    $scope.live_course = '';
+    $scope.class = ''
 
     /**
      * This function ask the server the current LifeClassID of the current user.
@@ -186,6 +201,7 @@ app.controller('professorManager', ['$scope', '$rootScope', "$sailsBind", '$q' ,
                 $scope.userId = data.userId;
                 io.socket.get('/api/user/' + $scope.userId, function (user) {
                     //console.log(user);
+                    $scope.class =  user.live_class_student;
                     $scope.live_class_student = user.live_class_student.id;
                     $scope.live_course = user.live_class_student.course;
 
@@ -202,9 +218,14 @@ app.controller('professorManager', ['$scope', '$rootScope', "$sailsBind", '$q' ,
         var user = {
             live_class_student: null
         };
-        io.socket.put("/api/user/" + $scope.userId, user, function (data) {
-            document.location.href = '/professorCourse';
+        io.socket.put("/api/live_class_student/" + $scope.live_class_student, {status:'Finished'}, function (data) {
+
+            io.socket.put("/api/user/" + $scope.userId, user, function (data) {
+                document.location.href = '/professorCourse';
+            });
         });
+
+
     }
     $scope.getLiveClassStudent();
 }]);

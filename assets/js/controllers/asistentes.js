@@ -5,9 +5,12 @@
 
 
 app.controller("Asistentes", function ($scope, $sailsBind) {
-    $sailsBind.bind("api/user", $scope);
-    $scope.colorFor = {
-        'Online': 'success',
-        'Offline': 'danger'
-    };
+    $scope.$parent.getLiveClassStudent().then(function (liveClassID) {
+
+        $sailsBind.bind("api/user", $scope, {"role": "student", "live_class_student": liveClassID});
+        $scope.colorFor = {
+            'Online': 'success',
+            'Offline': 'danger'
+        };
+    });
 });

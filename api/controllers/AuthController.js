@@ -70,9 +70,14 @@ var AuthController = {
   logout: function (req, res) {
     if(req.user) {
       req.user.status = "Offline";
+
       req.user.save();
+      User.publishUpdate(req.user.id,{ status:"Offline" });
+
       req.logout();
-      res.redirect('/');  
+
+      res.redirect('/');
+
     }
     
   },
@@ -141,16 +146,20 @@ var AuthController = {
       req.flash('msgError',errorMsg);
       // console.log('UsernameError');
       datos = req.body;
+
         console.log(errorMsg);
       req.flash('form', req.body);
+
       req.flash('name', datos.name);
       req.flash('lastName', datos.lastName);
       req.flash('username', datos.username);
       req.flash('email', datos.email);
+
       req.flash('role', datos.role);
         console.log(datos.name);
       console.log('authcontroller');
       res.redirect('/');
+
     }
 
     //---------====--------------==============------------

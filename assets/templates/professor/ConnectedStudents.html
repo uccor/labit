@@ -1,0 +1,16 @@
+<div class="container col-md-4">
+    <div class="panel panel-info">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Lista de Alumnos</div>
+        <div class="panel-body">
+            <p>Esta es la lista de alumnos y su estado</p>
+        </div>
+        <table class="table" ng-controller="Asistentes" >
+
+            <tr ng-repeat="user in users ">
+                <td>{{user.username}}</td>
+                <td><span class="label label-{{colorFor[user.status]}}">{{user.status}}</span></td>
+            </tr>
+        </table>
+    </div>
+</div>
