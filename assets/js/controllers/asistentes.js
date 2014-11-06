@@ -7,7 +7,7 @@
 app.controller("Asistentes", function ($scope, $sailsBind) {
     $scope.$parent.getLiveClassStudent().then(function (liveClassID) {
 
-        $sailsBind.bind("api/user", $scope, {"role": "student", "live_class_student": liveClassID});
+        $sailsBind.bind("api/user", $scope, {"role": "student"});
         $scope.colorFor = {
             'Online': 'success',
             'Offline': 'danger'
