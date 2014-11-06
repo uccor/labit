@@ -9,12 +9,17 @@
             <div id="contentShared" ng-controller="contentShared" class="col-md-12" style="background: white;">
                 <br><br>
                 <div> <p ng-show="selectClassState">Seleccione ID Clase a la cual desea suscribirse:</p>
+                    <p ng-hide="selectClassState">Bienvenido a la clase:{{currentClassName}}</p>
                     <select ng-model="itemSelectedClass"  ng-show="selectClassState" class="form-control" ng-model="selectedItem" >
-                        <option value=""  ng-click="onLiveClassClick(class.id)" ng-repeat="class in avaibleClasses">{{ class.course.name }}</option>
+                        <option             value=""
+                                            ng-click="onLiveClassClick(live_class_student.id,live_class_student.course.name)"
+                                            ng-repeat="live_class_student in live_class_students">
+                                            {{ live_class_student.course.name }}
+                        </option>
                     </select>
                     <!--input type="text" ng-model="id_subscribedClass"-->
-                    <button ng-show='subscribeState' class="btn" id="subcribeBTN" ng-click="subscribe_to_class()">Suscribirse</button>
-                    <button ng-show='unsubscribeState' class="btn" id="unsubcribeBTN" ng-click="unsubscribe_from_class()">Desuscribirse</button>
+                    <button ng-show='subscribeState' class="btn" id="subcribeBTN" ng-click="subscribe_to_class()">Entrar a la Clase</button>
+                    <button ng-show='unsubscribeState' class="btn" id="unsubcribeBTN" ng-click="unsubscribe_from_class()">Salir de la Clase</button>
                 </div>
                 <br><br><br>
             </div>

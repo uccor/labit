@@ -73,7 +73,7 @@ var AuthController = {
       req.user.status = "Offline";
 
       req.user.save();
-      User.publishUpdate(req.user.id,{ status:"Offline" });
+     // User.publishUpdate(req.user.id,{ status:"Offline" });
 
       req.logout();
 

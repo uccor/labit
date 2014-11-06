@@ -13,7 +13,7 @@ app.controller('contentShared', ['$scope', '$rootScope', "$sailsBind", function 
     //$sailsBind.bind("/api/live_class_student", $scope);
 
     io.socket.get('/api/live_class_student?status=live', function messageReceived(jsonObject) {
-        $scope.avaibleClasses = jsonObject;
+        $scope.live_class_students = jsonObject;
         if (!$scope.$$phase) {
             $scope.$apply();
         }
@@ -24,15 +24,25 @@ app.controller('contentShared', ['$scope', '$rootScope', "$sailsBind", function 
         if ($scope.previous_idClase != '') {
             io.socket.get('/api/live_class_student/unsubscribe/' + $scope.previous_idClase, function messageReceived(data) {
 
-                $scope.previous_idClase = '';
-
                 $scope.subscribeState=true;
                 $scope.unsubscribeState = false;
                 $scope.selectClassState = true;
 
+
+                for (var k in $scope.actClass) {
+                    $scope.actClass[k] = '';
+                }
                 if (!$scope.$$phase) {
                     $scope.$apply();
                 }
+                $scope.updatePDF();
+
+
+                if (!$scope.$$phase) {
+                    $scope.$apply();
+                }
+
+
             });
 
 
@@ -56,10 +66,6 @@ app.controller('contentShared', ['$scope', '$rootScope', "$sailsBind", function 
         $scope.unsubscribeState = true;
         $scope.selectClassState = false;
         // If already subscribed to one class, unsubscribe from it
-        if ($scope.previous_idClase != '') {
-            io.socket.get('/api/live_class_student/unsubscribe/' + $scope.previous_idClase, function messageReceived(data) {
-            });
-        }
 
         // Subscription
         io.socket.get('/api/live_class_student/' + $scope.currentClassId, function messageReceived(jsonObject) {
@@ -131,10 +137,11 @@ app.controller('contentShared', ['$scope', '$rootScope', "$sailsBind", function 
         }
     };
 
-    $scope.onLiveClassClick = function(idClass) {
+    $scope.onLiveClassClick = function(idClass,nameClass) {
         //$scope.$parent.getQuestion(idClass);
         $rootScope.getQuestion(idClass);
         $rootScope.currentClassId = idClass;
+        $scope.currentClassName = nameClass;
     }
 
 
