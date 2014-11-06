@@ -72,8 +72,7 @@ var AuthController = {
       req.user.status = "Offline";
       req.user.save();
       req.logout();
-      console.log("entroooooooooooooo al logout")
-      res.redirect('/');
+      res.redirect('/');  
     }
     
   },
