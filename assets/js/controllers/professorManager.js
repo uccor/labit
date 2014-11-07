@@ -21,7 +21,7 @@ app.config(['$routeProvider',
 
 app.controller('professorTab', function ($scope, $location) {
     /**
-     * Description
+     * Evaluate if the current route is selected
      * @method isActive
      * @param {} route
      * @return BinaryExpression
@@ -40,11 +40,12 @@ app.controller('professorManagerFooter', ['$scope', '$rootScope', "$sailsBind", 
     $scope.pdfName = '';
 
     /**
-     * Description
+     * Download and evalute a pdf file
+     * @return
      * @method getPdf
      * @param {} file
      * @param {} pag
-     * @return 
+     * @return
      */
     $scope.getPdf = function (file, pag) {
         pag = typeof pag !== 'undefined' ? pag : 1;
@@ -69,12 +70,13 @@ app.controller('professorManagerFooter', ['$scope', '$rootScope', "$sailsBind", 
     }
 
     /**
-     * Description
+     * Called to change the current page shared
+     * @return
      * @method pageStageChange
      * @param {} sharing
      * @param {} file
      * @param {} page
-     * @return 
+     * @return
      */
     $scope.pageStageChange = function (sharing, file, page) {
 
@@ -103,9 +105,8 @@ app.controller('professorManagerFooter', ['$scope', '$rootScope', "$sailsBind", 
 
 
     /**
-     * Description
+     * Return the page of the current pdf Shared
      * @method prevPage
-     * @return 
      */
     $scope.prevPage = function () {
         if ($scope.pageNum > 1) {
@@ -116,9 +117,8 @@ app.controller('professorManagerFooter', ['$scope', '$rootScope', "$sailsBind", 
     };
 
     /**
-     * Description
+     * Advance the page of the current pdf shared
      * @method nextPage
-     * @return 
      */
     $scope.nextPage = function () {
         if ($scope.pageNum < $scope.pageTotal) {
@@ -130,9 +130,8 @@ app.controller('professorManagerFooter', ['$scope', '$rootScope', "$sailsBind", 
     };
 
     /**
-     * Description
+     * Stop sharing content with the users and the proyector window
      * @method stopSharing
-     * @return 
      */
     $scope.stopSharing = function () {
         io.socket.put('/api/live_class_student/' + $scope.$parent.id_class_to_share, {pdf_sharing: false});
@@ -146,9 +145,8 @@ app.controller('professorManagerFooter', ['$scope', '$rootScope', "$sailsBind", 
     });
 
     /**
-     * Description
+     * Open an external windows with the current PDF shared
      * @method openShare
-     * @return 
      */
     $scope.openShare = function (){
 
