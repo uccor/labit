@@ -65,7 +65,7 @@ app.controller('professorManagerFooter', ['$scope', '$rootScope', "$sailsBind", 
      * @method getPdf
      * @param {} file
      * @param {} pag
-     * @return 
+     * @return
      */
     $scope.getPdf = function (file, pag) {
         pag = typeof pag !== 'undefined' ? pag : 1;
@@ -96,7 +96,7 @@ app.controller('professorManagerFooter', ['$scope', '$rootScope', "$sailsBind", 
      * @param {} sharing
      * @param {} file
      * @param {} page
-     * @return 
+     * @return
      */
     $scope.pageStageChange = function (sharing, file, page) {
 

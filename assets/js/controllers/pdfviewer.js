@@ -14,7 +14,7 @@ app.controller('pdfViewer', ['$scope', '$rootScope', "$sailsBind", function ($sc
     $scope.navigation = false;
 
     /**
-     * Description
+     * Usado para cargar el PDF desde el alumno
      * @method getpdf
      * @param {} file
      * @param {} pag
