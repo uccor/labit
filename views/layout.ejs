@@ -29,6 +29,8 @@
     <link rel="stylesheet" href="/js/dependencies/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/js/dependencies/bootstrap/dist/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="/js/dependencies/angular-xeditable/dist/css/xeditable.css">
+    <link rel="stylesheet" href="/js/dependencies/fontawesome/css/font-awesome.css">
+    <link rel="stylesheet" href="/js/dependencies/angular-toastr/dist/angular-toastr.min.css">
     <!--STYLES-->
     <link rel="stylesheet" href="/styles/importer.css">
     <link rel="stylesheet" href="/styles/index.css">
@@ -39,6 +41,12 @@
 </head>
 
 <body>
+<div style="float: right; position: absolute; z-index: 20; right: 5px">
+  <form action="/logout" method="get">
+    <input type="submit" name="logout" id="logout" value="Logout" class="btn btn-info pull-right"
+           style="margin-bottom: 20px;">
+  </form>
+</div>
 <%- body %>
 
 
@@ -103,6 +111,7 @@
 <script src="/js/dependencies/angular-route/angular-route.min.js"></script>
 <script src="/js/dependencies/angular-sails-bind/dist/angular-sails-bind.js"></script>
 <script src="/js/dependencies/lodash/dist/lodash.js"></script>
+<script src="/js/dependencies/angular-toastr/dist/angular-toastr.js"></script>
 
 <script src="/js/utils.js"></script>
 
@@ -114,10 +123,11 @@
 <script src="/js/controllers/professorScreen.js"></script>
 <script src="/js/controllers/professorFileShare.js"></script>
 <script src="/js/controllers/professorFileUpload.js"></script>
+<script src="/js/controllers/professorQuestion.js"></script>
 <script src="/js/controllers/professorCourse.js"></script>
-<script src="/js/controllers/question.js"></script>
 <script src="/js/controllers/student.js"></script>
 <script src="/js/controllers/asistentes.js"></script>
 <script src="/js/controllers/currentUser.js"></script>
+<script src="/js/controllers/studentQuestion.js"></script>
 </body>
 </html>
