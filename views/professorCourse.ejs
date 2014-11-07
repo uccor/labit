@@ -1,3 +1,6 @@
+<head>
+  <title>Labit - Professor</title>
+</head>
 <div ng-controller="professorCourse" id="professorCourse">
     <div class="page-header" align="center" style="margin-top: 0px">
 
@@ -9,7 +12,7 @@
         <div class="row">
             <div class="col-md-6" style="background: white">
                 <br>
-                <button class="btn btn-default" ng-click="addCourse()">Agregar Nuevo Curso</button>
+                <button id="createClass" class="btn btn-default" ng-click="addCourse()">Agregar Nuevo Curso</button>
                 <table class="table table-striped table-hover table" style="width: 100%">
                     <thead>
                     <tr>
@@ -22,7 +25,7 @@
                     <tbody>
                     <tr ng-repeat="c in courses | filter:{name:'!!'}" ng-click="">
                         <td>
-                              <span editable-text="c.name" e-form="rowform" onbeforesave="checkName($data)">
+                              <span class="courseName" editable-text="c.name" e-form="rowform" onbeforesave="checkName($data)">
           {{ c.name || 'empty' }}
                               </span>
                         </td>
@@ -30,33 +33,31 @@
                             <form editable-form name="rowform" ng-show="rowform.$visible"
                                   onbeforesave="saveCourse(rowform.$data, c.id)"
                                   class="form-buttons form-inline" shown="inserted.id == c.id">
-                                <span ng-disabled="rowform.$waiting"
+                                <span ng-disabled="rowform.$waiting" id="editOK"
                                       class="pointer pointer-success fa fa-check fa-2x" ng-click="$scope.inserted = {};rowform.$submit()">
                                 </span>
                                 &numsp;
                                 <span type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()"
-                                      class="pointer pointer-danger fa fa-remove fa-2x">
+                                      id="editCancel" class="pointer pointer-danger fa fa-remove fa-2x">
                                 </span>
                             </form>
                             <div>
                                 <span class="pointer fa fa-edit fa-2x" ng-click="rowform.$show()"
-                                      ng-hide="rowform.$visible">
+                                      id="edit" ng-hide="rowform.$visible">
                                 </span>
                                 &numsp;
                                 <span class="pointer pointer-danger fa fa-trash fa-2x" ng-click="removeCourse($index)"
-                                      ng-hide="rowform.$visible">
+                                      id="delete" ng-hide="rowform.$visible">
                                 </span>
                             </div>
 
                         </td>
                         <td class="text-center">
-                            <span class="pointer-primary pointer"
-                                  ng-click="courseStart(c.id)"><span class="fa fa-play fa-2x"></span>
+                            <span class="pointer-primary pointer fa fa-play fa-2x" ng-click="courseStart(c.id)">
                             </span>
                         </td>
                         <td class="text-center">
-                            <span class="pointer"
-                                  ng-click="loadClasses(c.id)"><span class="fa fa-eye fa-2x"></span>
+                            <span class="pointer fa fa-eye fa-2x" ng-click="loadClasses(c.id)">
                             </span>
                         </td>
                     </tr>

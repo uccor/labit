@@ -24,5 +24,17 @@ var LoginPage = function () {
     this.close = function () {
         browser.get('http://localhost:' + process.env.PORT + '/logout');
     }
+
+    this.waitForTitleChange = function (tit) {
+      browser.wait(function () {
+        return browser.getTitle().then(function (titulo) {
+          if (titulo != tit) {
+            return false;
+          } else {
+            return true;
+          }
+        });
+      }, 10000);
+    }
 }
 module.exports = new LoginPage();

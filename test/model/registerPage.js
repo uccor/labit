@@ -9,7 +9,7 @@ var RegisterPage= function() {
         });
     }
 
-    this.fill= function(name, lastName, username, email, pass, pass2) {
+    this.fill= function(name, lastName, username, email, pass, pass2, professor) {
         n=element(by.id('name'));
         n.sendKeys(name);
         ln=element(by.id('lastName'));
@@ -22,6 +22,13 @@ var RegisterPage= function() {
         p.sendKeys(pass);
         p2=element(by.id('pass2'));
         p2.sendKeys(pass2);
+      if(professor){
+        ra=element(by.id('professorRadio'));
+        ra.click();
+      }else{
+        ra=element(by.id('studentRadio'))
+          ra.click();
+      }
     }
     this.register = function(){
        e=element(by.id('submit'));

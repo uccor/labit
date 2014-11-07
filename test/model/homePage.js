@@ -9,5 +9,8 @@ var homePage = function () {
     this.getTitle = function () {
         return browser.getTitle();
     }
+    this.logout = function(){
+      element(by.id('logout')).click();
+    }
 }
 module.exports = new homePage();

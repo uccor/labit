@@ -1,6 +1,16 @@
 var studentPage = require('./model/studentPage');
+var loginPage = require('./model/loginPage');
+var homePage = require('./model/homePage');
+
 
 describe('Student page', function () {
+    beforeEach(function(){
+      homePage.logout();
+      homePage.get();
+      //var loginPage = LoginPage;
+      loginPage.fill('tstudent', '12');
+      loginPage.login();
+    });
     it('should subscribe to a class and have 4 pages in the pdf1.pdf being shared.', function () {
         studentPage.get();
         studentPage.suscribeToClass('CLASS1');

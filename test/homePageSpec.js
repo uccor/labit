@@ -6,17 +6,8 @@
 var homePage = require('./model/homePage');
 var registerPage = require('./model/registerPage');
 var loginPage = require('./model/loginPage');
-function waitForTitleChange() {
-    browser.wait(function () {
-        return homePage.getTitle().then(function (titulo) {
-            if (titulo != 'Labit - Estudiante') {
-                return false;
-            } else {
-                return true;
-            }
-        });
-    }, 30000);
-}
+
+
 describe('home page', function () {
 
     var rand;
@@ -27,27 +18,37 @@ describe('home page', function () {
     });
 
 
-    it('should allow to register a new user', function () {
-        homePage.get();
+  it('should allow to register a new student', function () {
+    homePage.get();
 
-        rand = Math.floor((Math.random() * 1000) + 1);
-        registerPage.fill('2' + rand, 'leu3si', '2' + rand, 'p0' + rand + 'o@p.com', '12', '12');
-        registerPage.register();
-        waitForTitleChange();
-        expect(homePage.getTitle()).toEqual('Labit - Estudiante');
+    // Parametros de fill: name, lastName, username, email, pass, pass2
+    //------como se hace esto porque cuando querramos pasar muchos test hay que -
+    //cambiar estos datos siempre??
+    registerPage.fill('test', 'student', 'tstudent', 'student@p.com', '12', '12',false);
+    registerPage.register();
+    loginPage.waitForTitleChange('Labit - Estudiante');
+    expect(homePage.getTitle()).toEqual('Labit - Estudiante');
+  });
 
-        // Parametros de fill: name, lastName, username, email, pass, pass2
-        //------como se hace esto porque cuando querramos pasar muchos test hay que -
-        //cambiar estos datos siempre??
-    });
+  it('should allow to register a new professor', function () {
+    homePage.logout();
+    homePage.get();
+
+    registerPage.fill('test', 'professor', 'tprofessor', 'professor@p.com', '12', '12',true);
+    registerPage.register();
+    loginPage.waitForTitleChange('Labit - Professor');
+    expect(homePage.getTitle()).toEqual('Labit - Professor');
+
+  });
 
     it('should  allow me to login', function () {
+      homePage.logout();
         homePage.get();
         //var loginPage = LoginPage;
-        loginPage.fill('2' + rand, '12');
+        loginPage.fill('tstudent', '12');
         loginPage.login();
 
-        waitForTitleChange();
+       loginPage.waitForTitleChange('Labit - Estudiante');
         expect(homePage.getTitle()).toEqual('Labit - Estudiante');
     });
 });
