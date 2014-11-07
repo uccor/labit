@@ -16,7 +16,9 @@ describe('Professor course page', function () {
     loginPage.fill('tstudent', '12');
     loginPage.login();
     ProfessorCoursePage.get();
+    browser.sleep(2000);
     ProfessorCoursePage.addNewCourse();
+    browser.sleep(2000);
     ProfessorCoursePage.newCourseName('CourseTest1');
 
     ProfessorCoursePage.editOK(0);
@@ -24,15 +26,21 @@ describe('Professor course page', function () {
   });
   it('should edit courses', function () {
     ProfessorCoursePage.get();
+    browser.sleep(2000);
     ProfessorCoursePage.edit(0);
+    browser.sleep(2000);
     ProfessorCoursePage.newCourseName('EditedCourseTest1');
+    browser.sleep(2000);
 
     ProfessorCoursePage.editOK(0);
+    browser.sleep(2000);
     expect(ProfessorCoursePage.getCourseName(0)).toEqual('EditedCourseTest1');
   });
   it('should enter class', function () {
     ProfessorCoursePage.get();
+    browser.sleep(2000);
     ProfessorCoursePage.comenzar(0);
+    browser.sleep(2000);
 
     loginPage.waitForTitleChange('Página Administración');
     expect(homePage.getTitle()).toEqual('Página Administración');
