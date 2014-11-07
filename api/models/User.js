@@ -7,7 +7,8 @@
 
 module.exports = {
 
-  schema: true, 
+  schema: true,
+  autosubscribe: ['update','create','destroy'],
   attributes: { 
 
     name: { type: 'string' },

@@ -5,7 +5,7 @@
 var ProfessorUploadPage = function () {
 
     this.get = function () {
-        browser.get('http://localhost:' + process.env.PORT + '/professorManager#/fileUpload');
+        browser.get('http://localhost:' + process.env.PORT || '8080' + '/professorManager#/fileUpload');
         browser.wait(function () {
             return browser.executeScript(function () {
                 return angular.element($('#professorManager')).scope()['live_class_students'];
@@ -36,13 +36,13 @@ var ProfessorUploadPage = function () {
         unhideFileInputs();
 
         var path = require('path');
-        var fileToUpload = '/File_Testing_Uploads/PDFtest.pdf';
+        var fileToUpload = 'http://eurecaproject.eu/files/4613/9886/3802/report3.pdf';
         var absolutePath = path.resolve(__dirname, fileToUpload);
         $('input[type="file"]').sendKeys(absolutePath);
     }
 
     this.submitPDF = function (){
-        //element(by.id('submit_newFile_button')).click()
+        element(by.id('submit_newFile_button')).click()
 
 /*
         //

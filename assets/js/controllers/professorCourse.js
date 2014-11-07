@@ -120,8 +120,8 @@ app.controller('professorCourse', ['$scope', '$rootScope', "$sailsBind", "toastr
         var user = {
             live_class_student: cid
         };
-       io.socket.put("/api/user/" + $scope.userId, user, function (data) {
-                document.location.href = '/professorManager';
+        io.socket.put("/api/user/" + $scope.userId, user, function (data) {
+            document.location.href = '/professorManager';
         });
     };
 

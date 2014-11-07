@@ -8,8 +8,8 @@
 module.exports = {
 
   autosubscribe: ['update','create','destroy','remove','add'],
-      attributes: {
 
+      attributes: {
 
       //Atributos ultimo sprint
       name: {

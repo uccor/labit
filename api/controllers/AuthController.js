@@ -33,6 +33,7 @@ var AuthController = {
 
    login: function (req, res) {
     var strategies = sails.config.passport, providers  = {};
+    User.publishUpdate(req.user.id,{ status:"Online" });
     
     // Get a list of available providers for use in your templates.
     Object.keys(strategies).forEach(function (key) {
@@ -70,9 +71,14 @@ var AuthController = {
   logout: function (req, res) {
     if(req.user) {
       req.user.status = "Offline";
+
       req.user.save();
+     // User.publishUpdate(req.user.id,{ status:"Offline" });
+
       req.logout();
-      res.redirect('/');  
+
+      res.redirect('/');
+
     }
     
   },

@@ -20,6 +20,9 @@ app.config(['$routeProvider',
         $routeProvider.when('/viewQuestion', {
             template: JST["assets/templates/professor/viewQuestion.html"]
         });
+        $routeProvider.when('/ConnectedStudents', {
+            template: JST["assets/templates/professor/ConnectedStudents.html"]
+        });
         $routeProvider.otherwise({
             template: JST["assets/templates/professor/fileShare.html"]
         });
@@ -215,9 +218,14 @@ app.controller('professorManager', ['$scope', '$rootScope', "$sailsBind", '$q' ,
         var user = {
             live_class_student: null
         };
-        io.socket.put("/api/user/" + $scope.userId, user, function (data) {
-            document.location.href = '/professorCourse';
+        io.socket.put("/api/live_class_student/" + $scope.live_class_student, {status:'Finished'}, function (data) {
+
+            io.socket.put("/api/user/" + $scope.userId, user, function (data) {
+                document.location.href = '/professorCourse';
+            });
         });
+
+
     }
     $scope.getLiveClassStudent();
 }]);

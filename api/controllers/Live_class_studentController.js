@@ -9,10 +9,15 @@ module.exports = {
 
     unsubscribe: function (req, res) {
 
-        var id = req.param('id');
+        var userID      =   req.session.passport.user;
+
         Live_class_student.find().exec(function(err, Live_class_student_Instance) {
             Live_class_student.unsubscribe(req.socket, Live_class_student_Instance);
             return res.send(Live_class_student_Instance);
+        });
+
+        User.update({id:userID},{status:'Offline'}).exec(function findCB(err,found) {
+            User.publishUpdate(userID, { status: "Offline" });
         });
 
 }
