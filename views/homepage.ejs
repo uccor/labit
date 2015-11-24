@@ -17,7 +17,7 @@
 
             <!--LOGIN-->
             <div class="col-md-6" style="background: #CEECF5; padding-top: 2px;">
-                <form class="form-horizontal" role="form" action="/auth/local" method="post">
+                <form class="form-horizontal" role="form" action="/auth/local" method="post" onsubmit="login_submit(this);">
                     <div class="form-group">
                         <label for="inputEmail3" class="col-sm-3 control-label">Username o Email</label>
 
@@ -31,7 +31,7 @@
                         <label for="inputPassword3" class="col-sm-3 control-label">Password</label>
 
                         <div class="col-sm-6">
-                            <input type="password" class="form-control" id="login-pass" name="password">
+                            <input type="password" class="form-control" id="login-pass" name="password" value="">
                         </div>
                         <div class="col-sm-3">
                             <button type="submit" class="btn btn-default" id="login-submit">Sign in</button>
@@ -65,26 +65,26 @@
                     <h3 id="errorForm" style="margin-top: 15px"> <%- req.flash('msgError') %> </h3>
                 </section>
 
-                <form role="form" action="auth/local/register" method="post">
+                <form role="form" action="auth/local/register" method="post" onsubmit="register_submit(this);">
 
                     <div>
                         <strong><span class="glyphicon glyphicon-asterisk"></span>Required Field</strong>
                     </div>
-                    <div class="form-group">
-                        <label for="InputName">Ingrese su nombre</label>
+                    <div class="form-group" style="display: none;">
+                        <label for="InputName">Ingrese su usuario</label>
 
                         <div class="input-group">
-                            <input type="text" class="form-control" name="name" id="name"
+                            <input type="text" class="form-control" name="name" id="name" value=" ."
                                    value="<%- req.flash('name') %>" required>
                                         <span class="input-group-addon"><span
                                                     class="glyphicon glyphicon-asterisk"></span></span>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" style="display: none;">
                         <label for="InputLastName">Ingrese su Apellido</label>
 
                         <div class="input-group">
-                            <input type="text" class="form-control" name="lastName" id="lastName"
+                            <input type="text" class="form-control" name="lastName" id="lastName" value=" ."
                                    value="<%- req.flash('lastName') %>" required>
                                         <span class="input-group-addon"><span
                                                     class="glyphicon glyphicon-asterisk"></span></span>
@@ -97,44 +97,46 @@
                         <div class="input-group">
                             <input type="text" class="form-control" name="username" id="username"
                                    value="<%- req.flash('username') %>" required>
-                                        <span class="input-group-addon"><span
-                                                    class="glyphicon glyphicon-asterisk"></span></span>
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-asterisk"></span>
+                                </span>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" style="display: none;">
                         <label for="InputEmail">Ingrese su Email</label>
 
                         <div class="input-group">
-                            <input type="email" class="form-control" id="email" name="email"
+                            <input type="email" class="form-control" id="email" name="email" value="a@a.a"
                                    value="<%- req.flash('email') %>" required>
-                                        <span class="input-group-addon"><span
-                                                    class="glyphicon glyphicon-asterisk"></span></span>
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-asterisk"></span>
+                            </span>
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" style="display: none;">
                         <label for="InputPassword">Ingrese contraseña</label>
 
                         <div class="input-group">
-                            <input type="password" class="form-control" id="pass" name="password"
+                            <input type="password" class="form-control" id="pass" name="password" value="12345678"
                                    required>
                                         <span class="input-group-addon"><span
                                                     class="glyphicon glyphicon-asterisk"></span></span>
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" style="display: none;">
                         <label for="InputConfirmPassword">Confirme la contraseña</label>
 
                         <div class="input-group">
-                            <input type="password" class="form-control" id="pass2" name="password2"
+                            <input type="password" class="form-control" id="pass2" name="password2" value="12345678"
                                    required>
                                         <span class="input-group-addon"><span
                                                     class="glyphicon glyphicon-asterisk"></span></span>
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" style="display: none;">
                         <label for="InputRole">Seleccione su rol</label>
 
                         <div class="input-group">

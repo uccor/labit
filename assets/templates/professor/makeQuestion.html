@@ -1,17 +1,22 @@
 <h1>Arme sus preguntas:</h1>
 <div class="center" ng-controller="QuestionControllerProfessor">
     <form>
-            <input id="text" class="question" type="text" placeholder="Preguntas" ng-model="question_text">
-            <ul id="allAnswers">
-                <li ng-repeat="ans in answers">
-                    <input type="text" placeholder="Respuesta" class="answer question" ng-model="ans.text">
-                    <button class="question_button_grey" ng-click="removeAnswer(ans)">X</button>
-                </li>
-                <!--<li id="template"><input  type="text" placeholder="Respuesta" class="answer"></li>-->
-            </ul>
+        <div class="input-group">
+            <input placeholder="Titulo Pregunta" id="pregTitulo" type="text" class="form-control input-lg"
+                   name="pregTitulo" ng-model="question_text">
+        </div>
 
-            <button  class="question_button" ng-click="addAnswer()">Otra Opcion</button>
-            <button class="question_button" id="send" type="submit" ng-click="addQuestion()">Enviar</button>
+
+        <div class="input-group" ng-repeat="ans in answers" style="width: 50%">
+            <input type="text" placeholder="Respuesta" class="form-control  input-lg" ng-model="ans.text">
+            <span class="input-group-btn">
+                <button class="btn btn-default btn-lg" ng-click="removeAnswer(ans)">X</button>
+            </span>
+        </div>
+
+
+        <button class="btn btn-info" ng-click="addAnswer()">Otra Opcion</button>
+        <button class="btn btn-info" id="send" type="submit" ng-click="addQuestion()">Enviar</button>
     </form>
     <b ng-model="error">{{error}}</b>
     <b ng-if="saveOk" ng-model="saveOk">Agregada exitosamente</b>

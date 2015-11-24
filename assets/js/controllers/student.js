@@ -80,6 +80,7 @@ app.controller('contentShared', ['$scope', '$rootScope', "$sailsBind", function 
             io.socket.get('/api/user/getUser', function (data) {
                 $scope.userId = data.userId;
                 console.log(data.userId);
+                $rootScope.getQuestion($rootScope.currentClassId);
 
                 //Asigno a mi usuario la clase en la cual me estoy inscribiendo
 
@@ -138,8 +139,6 @@ app.controller('contentShared', ['$scope', '$rootScope', "$sailsBind", function 
     };
 
     $scope.onLiveClassClick = function(idClass,nameClass) {
-        //$scope.$parent.getQuestion(idClass);
-        $rootScope.getQuestion(idClass);
         $rootScope.currentClassId = idClass;
         $scope.currentClassName = nameClass;
     }

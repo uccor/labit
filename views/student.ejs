@@ -8,33 +8,41 @@
         <div class="col-md-3">
             <div id="contentShared" ng-controller="contentShared" class="col-md-12" style="background: white;">
                 <br><br>
-                <div> <p ng-show="selectClassState">Seleccione ID Clase a la cual desea suscribirse:</p>
+
+                <div><p ng-show="selectClassState">Seleccione ID Clase a la cual desea suscribirse:</p>
+
                     <p ng-hide="selectClassState">Bienvenido a la clase:{{currentClassName}}</p>
-                    <select ng-model="itemSelectedClass"  ng-show="selectClassState" class="form-control" ng-model="selectedItem" >
-                        <option             value=""
-                                            ng-click="onLiveClassClick(live_class_student.id,live_class_student.course.name)"
-                                            ng-repeat="live_class_student in live_class_students">
-                                            {{ live_class_student.course.name }}
+                    <select ng-model="itemSelectedClass" ng-show="selectClassState" class="form-control"
+                            ng-model="selectedItem">
+                        <option value=""
+                                ng-click="onLiveClassClick(live_class_student.id,live_class_student.course.name)"
+                                ng-repeat="live_class_student in live_class_students">
+                            {{ live_class_student.course.name }}
                         </option>
                     </select>
                     <!--input type="text" ng-model="id_subscribedClass"-->
-                    <button ng-show='subscribeState' class="btn" id="subcribeBTN" ng-click="subscribe_to_class()">Entrar a la Clase</button>
-                    <button ng-show='unsubscribeState' class="btn" id="unsubcribeBTN" ng-click="unsubscribe_from_class()">Salir de la Clase</button>
+                    <button ng-show='subscribeState' class="btn" id="subcribeBTN" ng-click="subscribe_to_class()">Entrar
+                        a la Clase
+                    </button>
+                    <button ng-show='unsubscribeState' class="btn" id="unsubcribeBTN"
+                            ng-click="unsubscribe_from_class()">Salir de la Clase
+                    </button>
                 </div>
                 <br><br><br>
             </div>
 
             <div ng-controller="QuestionControllerStudent">
                 <h1>Preguntas:</h1>
+
                 <div class="questions">
                     <div class="question" ng-repeat="question in questions">
 
-                        <p class="status-{{question.status}} questionId" id="{{question.id}}" >{{question.text}}</p>
+                        <p class="status-{{question.status}} questionId">{{question.text}}</p>
 
                         <div class="answers" ng-repeat="answer in question.answers">
-                            <!--<input type="radio" id="{{$index}}" name="question-{{question.id}}" ng-click="sendResult(this)"/>-->
-                            <input type="radio" id="{{$index}}" name="question-{{question.id}}" ng-click="sendResult(question.id,$index)"/>
-                            <label class="ansLabel" for="{{$index}}">{{answer}}</label>
+                            <button class="btn btn-default" ng-click="sendResult(question.id,$index)"/>
+                            {{answer}}
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -44,10 +52,12 @@
         <div ng-controller="pdfViewer" class="col-md-9">
             <div align="center">
                 <div type="button" class="btn-group">
-                    <button id="pdfPrev" type="button" class="btn btn-info btn-sm" ng-click="prevPage()" ng-disabled="!navigation"><b>Anterior</b></button>
+                    <button id="pdfPrev" type="button" class="btn btn-info btn-sm" ng-click="prevPage()"
+                            ng-disabled="!navigation"><b>Anterior</b></button>
                 </div>
                 <div type="button" class="btn-group">
-                    <button id="pdfNext" type="button" class="btn btn-info btn-sm" ng-click="nextPage()" ng-disabled="!navigation"><b>Siguiente</b></button>
+                    <button id="pdfNext" type="button" class="btn btn-info btn-sm" ng-click="nextPage()"
+                            ng-disabled="!navigation"><b>Siguiente</b></button>
                 </div>
                 <span><b>
                         Página
@@ -59,13 +69,9 @@
 
             <div align="center">
                 <canvas id="contentShareCanvas" class="canvasStudent"
-                        height="633" width="490" style="width:100%; height: 100%;" ></canvas>
+                        height="280" width="490" style="width:100%; height: 100%;"></canvas>
             </div>
         </div>
-
-
-
-
 
     </div>
 </div>

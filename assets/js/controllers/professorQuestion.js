@@ -27,22 +27,15 @@ app.controller('QuestionControllerProfessor', ['$scope',"$sailsBind","$timeout",
 	$scope.responses = [];
 	$scope.summaryAnswers = [];
 	$scope.changeStatus = function (question) {
-		
-		$( "input:checkbox.checkButton" ).each(function(ind,element) {
-			var questionId = $(element).attr("id");
-			var isVisible = $(element).prop("checked");
-			// var statusNow = "invisible"; 	
-			
+
+		$scope.questions.forEach(function(q) {
+
 			var currentClassId = $scope.live_class_student;
-			io.socket.put('/api/question/'+questionId, { visible: isVisible, live_class : currentClassId }, function (data) {
-				// console.log(data)
+			io.socket.put('/api/question/'+ q.id, { visible: q.visible, live_class : currentClassId }, function (data) {
+				 console.log(data)
 			});	
 		});
 		io.socket.get('/question/reload');
-		// io.socket.emit('newQuestion'); //no me deja :(
-		// $rootScope.$broadcast('changedQuestionStatus', {'change': "pepeChange"});
-	   
-
 	};
 	
 	$scope.searchAnswers = function (ques) {

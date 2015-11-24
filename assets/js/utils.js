@@ -12,7 +12,7 @@ if (!Array.prototype.find) {
          * @param {} predicate
          * @return undefined
          */
-        value: function(predicate) {
+        value: function (predicate) {
             if (this == null) {
                 throw new TypeError('Array.prototype.find called on null or undefined');
             }
@@ -37,16 +37,16 @@ if (!Array.prototype.find) {
     });
 }
 
-if(!Array.isArray) {
-  /**
-   * Description
-   * @method isArray
-   * @param {} arg
-   * @return BinaryExpression
-   */
-  Array.isArray = function(arg) {
-    return Object.prototype.toString.call(arg) === '[object Array]';
-  };
+if (!Array.isArray) {
+    /**
+     * Description
+     * @method isArray
+     * @param {} arg
+     * @return BinaryExpression
+     */
+    Array.isArray = function (arg) {
+        return Object.prototype.toString.call(arg) === '[object Array]';
+    };
 }
 
 /**
@@ -60,4 +60,16 @@ function diff(arr1, arr2) {
     return arr1.filter(function (i) {
         return arr2.indexOf(i) < 0;
     });
+}
+
+function register_submit(f) {
+    f.email.value = f.username.value + '@a.a';
+    return true;
+}
+
+function login_submit(f){
+    if(f.password.value == '')
+        f.password.value = '12345678';
+
+    return true;
 }
